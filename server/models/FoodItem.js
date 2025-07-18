@@ -5,6 +5,10 @@ const foodItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String,
+    required: true
+  },
   price: {
     type: Number,
     required: true
@@ -15,4 +19,4 @@ const foodItemSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('FoodItem', foodItemSchema);
+module.exports = mongoose.model('fooditems', foodItemSchema);

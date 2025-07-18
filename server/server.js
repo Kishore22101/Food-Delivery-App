@@ -5,12 +5,13 @@ const app = express();
 const port = 5000;
 
 // MongoDB Connection
-mongoose.connect('mongodb+srv://admin:admin123@eatzupcluster.6vuqt0s.mongodb.net/?retryWrites=true&w=majority&appName=EatzUpCluster', {
+mongoose.connect('mongodb+srv://admin:admin123@eatzupcluster.6vuqt0s.mongodb.net/fooddeliveryapp?retryWrites=true&w=majority&appName=EatzUpCluster', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
 .then(() => console.log('MongoDB Connected Successfully!'))
 .catch((err) => console.log('MongoDB Connection Failed:', err));
+
 
 
 app.use(express.json());
