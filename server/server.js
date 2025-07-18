@@ -14,6 +14,9 @@ mongoose.connect('mongodb+srv://admin:<db_password>@fooddeliveryapp.bjpbyzu.mong
 
 app.use(express.json());
 
+const foodRoutes = require('./routes/foodRoutes');
+app.use('/api/food', foodRoutes);
+
 // Sample Route
 app.get('/', (req, res) => {
   res.send('Backend Working Fine with MongoDB!');

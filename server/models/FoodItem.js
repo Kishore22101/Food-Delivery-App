@@ -5,19 +5,13 @@ const foodItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  description: {
-    type: String
-  },
   price: {
     type: Number,
     required: true
   },
   category: {
-    type: String
-  },
-  date: {
-    type: Date,
-    default: Date.now
+    type: String,
+    required: true
   }
 });
 
