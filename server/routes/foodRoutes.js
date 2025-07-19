@@ -30,25 +30,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-module.exports = router;  // ✅ Don’t forget this!
-=======
-// POST Route to add new food item
-router.post('/', async (req, res) => {
-  try {
-    const { name, description, price, category } = req.body;
-    const newFoodItem = new FoodItem({
-      name,
-      description,
-      price,
-      category
-    });
-    await newFoodItem.save();
-    res.status(201).json(newFoodItem);
-  } catch (err) {
-    console.log('Error:', err);
-    res.status(500).json({ message: err.message });
-  }
-});
 module.exports = router;
->>>>>>> 53dad2095d92347bd7f93ae2842a70ed6d113c12
