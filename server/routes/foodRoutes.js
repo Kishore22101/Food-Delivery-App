@@ -43,4 +43,20 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+// PUT Route to update a food item by ID
+router.put('/:id', async (req, res) => {
+  try {
+    const { name, description, price, category } = req.body;
+    const updatedItem = await FoodItem.findByIdAndUpdate(
+      req.params.id,
+      { name, description, price, category },
+      { new: true }
+    );
+    if (!updatedItem) return res.status(404).json({ message: 'Food Item Not Found' });
+    res.json(updatedItem);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 module.exports = router;
