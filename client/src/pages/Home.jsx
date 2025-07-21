@@ -1,9 +1,15 @@
+import Hero from '../components/Hero';
+import Offers from '../components/Offers';
+
 function Home() {
-return (
-<div>
-<h2>Welcome to Our Food Delivery App!</h2>
-<p>Order your favorite meals now.</p>
-</div>
-);
+  return (
+    <div>
+      <Hero />
+      <Offers />
+      <h2>Welcome to EatzUp Home Page</h2>
+      <p>Explore our delicious menu and amazing offers!</p>
+    </div>
+  );
 }
+
 export default Home;

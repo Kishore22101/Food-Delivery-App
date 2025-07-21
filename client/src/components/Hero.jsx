@@ -1,8 +1,9 @@
 function Hero() {
   return (
-    <div>
+    <div className="hero">
       <h1>Welcome to EatzUp</h1>
-      <p>Delicious food delivered fast!</p>
+      <p>Delicious food delivered to your doorstep!</p>
+      <button>Order Now</button>
     </div>
   );
 }
