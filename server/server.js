@@ -5,10 +5,9 @@ const port = 5000;
 
 // ✅ MongoDB Connection
 mongoose.connect('mongodb+srv://admin:admin123@eatzupcluster.6vuqt0s.mongodb.net/fooddeliveryapp?retryWrites=true&w=majority&appName=EatzUpCluster')
-  .then(() => console.log('✅ MongoDB Connected!'))
+  .then(() => console.log('✅ MongoDB Connected Successfully'))
   .catch((err) => console.log('❌ MongoDB Connection Error:', err));
 
-// ✅ Middleware to parse JSON
 app.use(express.json());
 
 // ✅ Import Routes
@@ -23,10 +22,10 @@ app.use('/api/order', orderRoutes);
 
 // ✅ Default Route
 app.get('/', (req, res) => {
-  res.send('✅ Backend Server is Running with MongoDB!');
+  res.send('✅ Backend Server is Running with MongoDB & Routes Connected!');
 });
 
-// ✅ Start the Server
+// ✅ Start Server
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
 });

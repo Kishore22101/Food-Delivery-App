@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
+const verifyToken = require('../middleware/authMiddleware');
 
-// Place a new Order (POST)
-router.post('/', async (req, res) => {
+// Place a New Order — Protected Route
+router.post('/', verifyToken, async (req, res) => {
   try {
-    const { userId, items, totalAmount } = req.body;
-    const newOrder = new Order({ userId, items, totalAmount });
+    const { items, totalAmount } = req.body;
+    const newOrder = new Order({
+      userId: req.user.id,  // From JWT
+      items,
+      totalAmount
+    });
     await newOrder.save();
     res.status(201).json(newOrder);
   } catch (err) {
@@ -14,35 +19,11 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get All Orders (GET)
-router.get('/', async (req, res) => {
+// Get All Orders — Protected Route
+router.get('/', verifyToken, async (req, res) => {
   try {
-    const orders = await Order.find().populate('userId').populate('items.foodId');
+    const orders = await Order.find({ userId: req.user.id }).populate('items.foodId');
     res.json(orders);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Update Order Status (PUT)
-router.put('/:id', async (req, res) => {
-  try {
-    const updatedOrder = await Order.findByIdAndUpdate(
-      req.params.id,
-      { status: req.body.status },
-      { new: true }
-    );
-    res.json(updatedOrder);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Delete Order (DELETE)
-router.delete('/:id', async (req, res) => {
-  try {
-    const deletedOrder = await Order.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Order Deleted Successfully' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
