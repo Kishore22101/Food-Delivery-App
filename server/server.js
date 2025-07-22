@@ -25,6 +25,10 @@ app.get('/', (req, res) => {
   res.send('✅ Backend Server is Running with MongoDB & Routes Connected!');
 });
 
+// ✅ Error Handler (Must be after routes)
+const errorHandler = require('./middleware/errorHandler');
+app.use(errorHandler);
+
 // ✅ Start Server
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
