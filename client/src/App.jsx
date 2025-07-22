@@ -1,29 +1,38 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Menu from './pages/Menu';
 import Cart from './pages/Cart';
-import Login from './pages/Login';
-import OrderForm from './components/OrderForm';  // ✅ Import OrderForm
-import ProtectedRoute from './routes/ProtectedRoute';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import MyOrders from './pages/MyOrders';
+import Navbar from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar />
       <Routes>
+
         <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
+
         <Route path="/cart" element={
-          <ProtectedRoute><Cart /></ProtectedRoute>
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
         } />
-        <Route path="/order" element={
-          <ProtectedRoute><OrderForm /></ProtectedRoute>
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
+        <Route path="/myorders" element={
+          <ProtectedRoute>
+            <MyOrders />
+          </ProtectedRoute>
         } />
-        <Route path="/login" element={<Login />} />
+
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
-export default App;
+export default App;

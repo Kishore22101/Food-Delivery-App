@@ -1,30 +1,44 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function Navbar() {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const location = useLocation();
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    setUser(userData);
+  }, [location]); // Refresh on location change
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    alert('Logged out!');
+    localStorage.removeItem('userData');
     navigate('/login');
   };
 
+  const isActive = (path) => location.pathname === path ? 'active-link' : '';
+
   return (
-    <nav>
-      <h1>Food Delivery App</h1>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/menu">Menu</Link></li>
-        <li><Link to="/cart">Cart</Link></li>
-        {token ? (
-          <li><button onClick={handleLogout}>Logout</button></li>
-        ) : (
-          <li><Link to="/login">Login</Link></li>
+    <nav style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
+      <ul style={{ listStyle: 'none', display: 'flex', gap: '20px' }}>
+        <li><Link className={isActive('/')} to="/">Home</Link></li>
+        {user && (
+          <>
+            <li><Link className={isActive('/cart')} to="/cart">Cart</Link></li>
+            <li><Link className={isActive('/myorders')} to="/myorders">My Orders</Link></li>
+            <li><button onClick={handleLogout}>Logout</button></li>
+          </>
+        )}
+        {!user && (
+          <>
+            <li><Link className={isActive('/login')} to="/login">Login</Link></li>
+            <li><Link className={isActive('/register')} to="/register">Register</Link></li>
+          </>
         )}
       </ul>
     </nav>
   );
 }
 
-export default Navbar;
+export default Navbar;
