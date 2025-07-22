@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
+import PlaceOrder from './pages/PlaceOrder';
 import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={
           <ProtectedRoute><Cart /></ProtectedRoute>
+        } />
+        <Route path="/placeorder" element={
+          <ProtectedRoute><PlaceOrder /></ProtectedRoute>
         } />
         <Route path="/login" element={<Login />} />
       </Routes>
