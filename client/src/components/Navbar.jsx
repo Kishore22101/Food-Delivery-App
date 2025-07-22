@@ -1,44 +1,105 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('userData'));
-    setUser(userData);
-  }, [location]); // Refresh on location change
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('userData');
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
     navigate('/login');
   };
 
-  const isActive = (path) => location.pathname === path ? 'active-link' : '';
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Menu', path: '/menu' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'Orders', path: '/myorders' },
+  ];
 
   return (
-    <nav style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
-      <ul style={{ listStyle: 'none', display: 'flex', gap: '20px' }}>
-        <li><Link className={isActive('/')} to="/">Home</Link></li>
-        {user && (
-          <>
-            <li><Link className={isActive('/cart')} to="/cart">Cart</Link></li>
-            <li><Link className={isActive('/myorders')} to="/myorders">My Orders</Link></li>
-            <li><button onClick={handleLogout}>Logout</button></li>
-          </>
-        )}
-        {!user && (
-          <>
-            <li><Link className={isActive('/login')} to="/login">Login</Link></li>
-            <li><Link className={isActive('/register')} to="/register">Register</Link></li>
-          </>
-        )}
-      </ul>
+    <nav className="bg-black text-white shadow-lg fixed top-0 left-0 w-full z-50">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+        <Link to="/" className="text-2xl font-bold text-yellow-400 tracking-wide">
+          EatzUp 🍔
+        </Link>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex space-x-8 items-center">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>
+                (isActive
+                  ? 'text-yellow-400 font-semibold border-b-2 border-yellow-400 pb-1'
+                  : 'hover:text-yellow-300 transition') + ' px-2'
+              }
+            >
+              {link.name}
+            </NavLink>
+          ))}
+          {!isLoggedIn ? (
+            <>
+              <Link to="/login" className="hover:text-yellow-300 px-2">Login</Link>
+              <Link to="/register" className="hover:text-yellow-300 px-2">Register</Link>
+            </>
+          ) : (
+            <button onClick={handleLogout} className="hover:text-red-400 px-2">
+              Logout
+            </button>
+          )}
+        </div>
+
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-black px-4 pb-4">
+          <div className="flex flex-col space-y-3">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  (isActive
+                    ? 'text-yellow-400 font-semibold'
+                    : 'hover:text-yellow-300 transition') + ' px-2'
+                }
+              >
+                {link.name}
+              </NavLink>
+            ))}
+            {!isLoggedIn ? (
+              <>
+                <Link to="/login" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 px-2">Login</Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 px-2">Register</Link>
+              </>
+            ) : (
+              <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="hover:text-red-400 px-2">
+                Logout
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
 
-export default Navbar;
+export default Navbar;
