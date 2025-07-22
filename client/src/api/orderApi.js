@@ -1,36 +1,10 @@
-import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance';
 
-export const placeOrder = async (items, totalAmount, token) => {
+export const placeOrder = async (orderData) => {
   try {
-    const response = await axios.post(
-      '/api/order',
-      { items, totalAmount },
-      { headers: { Authorization: token } }
-    );
-    return response.data;
-  } catch (error) {
-    throw error.response.data.message;
-  }
-};
-
-export const getMyOrders = async (token) => {
-  try {
-    const response = await axios.get('/api/order', {
-      headers: { Authorization: token }
-    });
-    return response.data;
-  } catch (error) {
-    throw error.response.data.message;
-  }
-};
-
-export const deleteOrder = async (orderId, token) => {
-  try {
-    const response = await axios.delete('/api/order/${orderId}', {
-      headers: { Authorization: token }
-    });
-    return response.data;
-  } catch (error) {
-    throw error.response.data.message;
+    const res = await axiosInstance.post('/order', orderData);
+    return res.data;
+  } catch (err) {
+    throw err.response.data;
   }
 };
