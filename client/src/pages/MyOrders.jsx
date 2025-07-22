@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
-import { fetchUserOrders } from '../api/orderAPI';
+import { getMyOrders } from '../api/orderApi';
 
 function MyOrders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetchUserOrders()
+    getMyOrders()
       .then((data) => setOrders(data))
-      .catch((err) => alert('Failed to fetch orders: ' + err.message));
+      .catch((err) => alert('Failed to fetch orders: ' + err));
   }, []);
 
   return (
-    <div>
-      <h2>My Orders</h2>
+    <div style={{ padding: '20px' }}>
+      <h2>🧾 My Orders</h2>
       {orders.length === 0 ? (
         <p>No orders found.</p>
       ) : (

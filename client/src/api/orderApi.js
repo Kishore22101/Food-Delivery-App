@@ -23,7 +23,7 @@ export const getMyOrders = async () => {
 // ✅ Delete Order — DELETE /api/order/:orderId
 export const deleteOrder = async (orderId) => {
   try {
-    const res = await axiosInstance.delete('/order/${orderId}');
+    const res = await axiosInstance.delete(`/order/${orderId}`);
     return res.data;
   } catch (err) {
     throw err.response.data.message;
