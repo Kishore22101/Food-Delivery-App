@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import LoginPage from './pages/LoginPage';
@@ -37,6 +40,7 @@ function App() {
         />
 
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

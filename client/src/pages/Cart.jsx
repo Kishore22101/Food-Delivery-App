@@ -8,6 +8,15 @@ function Cart() {
     setCartItems(savedCart);
   }, []);
 
+  const handleQuantityChange = (index, newQty) => {
+    const updatedCart = [...cartItems];
+    updatedCart[index].quantity = newQty;
+    setCartItems(updatedCart);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+  };
+
+  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
   return (
     <div style={{ padding: '20px' }}>
       <h2>🛒 My Cart</h2>
@@ -24,12 +33,21 @@ function Cart() {
               marginBottom: '10px'
             }}>
               <p><strong>{item.name}</strong></p>
-              <p>Quantity: {item.quantity}</p>
               <p>Price: ₹{item.price}</p>
+              <p>
+                Quantity:
+                <input
+                  type="number"
+                  value={item.quantity}
+                  min="1"
+                  onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
+                  style={{ width: '60px', marginLeft: '10px' }}
+                />
+              </p>
             </div>
           ))}
 
-          <h3>Total: ₹{cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)}</h3>
+          <h3>Total: ₹{totalAmount}</h3>
           <button>Place Order</button>
         </div>
       )}
@@ -37,4 +55,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default Cart;
