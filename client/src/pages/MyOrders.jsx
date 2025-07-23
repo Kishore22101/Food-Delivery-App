@@ -21,6 +21,7 @@ function MyOrders() {
     if (window.confirm('Are you sure you want to cancel this order?')) {
       try {
         await deleteOrder(orderId);
+        alert('Order cancelled successfully!');
         fetchOrders(); // Refresh after cancel
       } catch (err) {
         alert('Failed to cancel order: ' + err);
@@ -46,7 +47,7 @@ function MyOrders() {
               key={order._id}
               style={{
                 border: '1px solid #ccc',
-                margin: '10px',
+                margin: '10px 0',
                 padding: '10px',
                 borderRadius: '5px',
               }}
@@ -59,7 +60,9 @@ function MyOrders() {
               <p><strong>Items:</strong></p>
               <ul>
                 {order.items.map((item, idx) => (
-                  <li key={idx}>Food ID: {item.foodId} | Qty: {item.quantity}</li>
+                  <li key={idx}>
+                    🍽 Food ID: {item.foodId} | Qty: {item.quantity}
+                  </li>
                 ))}
               </ul>
 
