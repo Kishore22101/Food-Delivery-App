@@ -1,3 +1,4 @@
+// server/models/FoodItem.js
 const mongoose = require('mongoose');
 
 const foodItemSchema = new mongoose.Schema({
@@ -19,4 +20,5 @@ const foodItemSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('fooditems', foodItemSchema);
+// 👇 Register with name 'FoodItem' (PascalCase, singular)
+module.exports = mongoose.model('FoodItem', foodItemSchema);
