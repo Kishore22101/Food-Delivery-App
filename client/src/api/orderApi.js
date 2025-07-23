@@ -1,6 +1,6 @@
 import axiosInstance from '../utils/axiosInstance';
 
-// ✅ Place Order — POST /api/order
+// ✅ Place Order
 export const placeOrder = async (orderData) => {
   try {
     const res = await axiosInstance.post('/order', orderData);
@@ -10,17 +10,17 @@ export const placeOrder = async (orderData) => {
   }
 };
 
-// ✅ Get My Orders — GET /api/order
+// ✅ Get My Orders
 export const getMyOrders = async () => {
   try {
-    const res = await axiosInstance.get('/order');
+    const res = await axiosInstance.get('/order/myorders');
     return res.data;
   } catch (err) {
     throw err.response.data.message;
   }
 };
 
-// ✅ Delete Order — DELETE /api/order/:orderId
+// ✅ Cancel Order
 export const deleteOrder = async (orderId) => {
   try {
     const res = await axiosInstance.delete(`/order/${orderId}`);
