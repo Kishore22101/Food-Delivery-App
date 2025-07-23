@@ -1,21 +1,22 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
+import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'eatzup_secret';
+const generateToken = (userId) => {
+  return jwt.sign({ userId }, 'secret123', { expiresIn: '1d' });
+};
 
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const exists = await User.findOne({ email });
-    if (exists) return res.status(400).json({ message: 'User already exists' });
+    const userExists = await User.findOne({ email });
+    if (userExists) return res.status(400).json({ message: 'User already exists' });
 
-    const hashed = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, password: hashed });
+    const newUser = new User({ name, email, password });
     await newUser.save();
-    res.status(201).json({ message: 'User Registered' });
+
+    res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Registration failed' });
+    res.status(500).json({ message: 'Registration failed', error: err.message });
   }
 };
 
@@ -23,14 +24,12 @@ export const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!user || user.password !== password)
+      return res.status(401).json({ message: 'Invalid credentials' });
 
-    const valid = await bcrypt.compare(password, user.password);
-    if (!valid) return res.status(400).json({ message: 'Invalid credentials' });
-
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '3h' });
-    res.status(200).json({ token, user: { id: user._id, name: user.name } });
+    const token = generateToken(user._id);
+    res.json({ token, name: user.name, id: user._id });
   } catch (err) {
-    res.status(500).json({ message: 'Login failed' });
+    res.status(500).json({ message: 'Login failed', error: err.message });
   }
 };

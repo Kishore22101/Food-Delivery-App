@@ -1,6 +1,11 @@
 import express from 'express';
+import FoodItem from '../models/FoodItem.js';
+
 const router = express.Router();
 
-// Future food item routes
+router.get('/', async (req, res) => {
+  const items = await FoodItem.find();
+  res.json(items);
+});
 
 export default router;
