@@ -1,43 +1,24 @@
-const Order = require('../models/Order');
+import Order from '../models/orderModel.js';
 
-// Place a New Order
-const placeOrder = async (req, res, next) => {
+export const placeOrder = async (req, res) => {
+  const { items, totalAmount } = req.body;
+  const userId = req.userId;
+
   try {
-    const { items, totalAmount } = req.body;
-    if (!items || items.length === 0) {
-      return res.status(400).json({ message: 'Order must have at least one item' });
-    }
-    const newOrder = new Order({
-      userId: req.user.id,
-      items,
-      totalAmount
-    });
+    const newOrder = new Order({ userId, items, totalAmount });
     await newOrder.save();
-    res.status(201).json(newOrder);
+    res.status(201).json({ message: 'Order placed successfully' });
   } catch (err) {
-    next(err);
+    res.status(500).json({ message: 'Order failed' });
   }
 };
 
-// Get All Orders
-const getUserOrders = async (req, res, next) => {
+export const getMyOrders = async (req, res) => {
+  const userId = req.userId;
   try {
-    const orders = await Order.find({ userId: req.user.id }).populate('items.foodId');
-    res.json(orders);
+    const orders = await Order.find({ userId }).sort({ createdAt: -1 });
+    res.status(200).json(orders);
   } catch (err) {
-    next(err);
+    res.status(500).json({ message: 'Fetching orders failed' });
   }
 };
-
-// Delete Order
-const deleteOrder = async (req, res, next) => {
-  try {
-    const deletedOrder = await Order.findByIdAndDelete(req.params.id);
-    if (!deletedOrder) return res.status(404).json({ message: 'Order not found' });
-    res.json({ message: 'Order deleted successfully' });
-  } catch (err) {
-    next(err);
-  }
-};
-
-module.exports = { placeOrder, getUserOrders, deleteOrder };

@@ -1,19 +1,18 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = 'eatzup_secret';
 
 const verifyToken = (req, res, next) => {
-  const token = req.header('Authorization');
-  if (!token) {
-    return res.status(401).json({ message: 'Access Denied. No token provided.' });
-  }
+  const token = req.headers.authorization;
+  if (!token) return res.status(401).json({ message: 'No token provided' });
 
   try {
-    const verified = jwt.verify(token, 'jwtSecretKey'); // ✅ Same as login key
-    req.user = verified;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.userId = decoded.id;
     next();
   } catch (err) {
-    console.log("❌ JWT Error:", err.message);
-    return res.status(401).json({ message: 'Invalid or Expired Token.' });
+    res.status(401).json({ message: 'Invalid or expired token' });
   }
 };
 
-module.exports = verifyToken;
+export default verifyToken;

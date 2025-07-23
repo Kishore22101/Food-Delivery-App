@@ -1,8 +1,8 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "type": "module",         
   "main": "server.js",
-  "type": "commonjs",
   "scripts": {
     "dev": "nodemon server.js"
   },
