@@ -1,35 +1,27 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
-const port = 5000;
-
-// ✅ MongoDB Connection
-mongoose.connect('mongodb+srv://admin:admin123@eatzupcluster.6vuqt0s.mongodb.net/fooddeliveryapp?retryWrites=true&w=majority&appName=EatzUpCluster')
-  .then(() => console.log('✅ MongoDB Connected Successfully'))
-  .catch((err) => console.log('❌ MongoDB Connection Error:', err));
-
-app.use(express.json());
-
-// ✅ Import Routes
-const foodRoutes = require('./routes/foodRoutes');
+const cors = require('cors');
+const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
-// ✅ Use Routes
-app.use('/api/food', foodRoutes);
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// Routes
 app.use('/api/user', userRoutes);
 app.use('/api/order', orderRoutes);
 
-// ✅ Default Route
-app.get('/', (req, res) => {
-  res.send('✅ Backend Server is Running with MongoDB & Routes Connected!');
-});
-
-// ✅ Error Handler (Must be after routes)
-const errorHandler = require('./middleware/errorHandler');
-app.use(errorHandler);
-
-// ✅ Start Server
-app.listen(port, () => {
-  console.log(`✅ Server running on port ${port}`);
-});
+// Connect MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/eatzup', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('✅ MongoDB Connected');
+  app.listen(5000, () => console.log('✅ Server running on http://localhost:5000'));
+})
+.catch(err => console.error('❌ MongoDB Connection Error:', err));
