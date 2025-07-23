@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 function Navbar() {
@@ -20,20 +20,19 @@ function Navbar() {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Menu', path: '/menu' },
-    { name: 'Contact', path: '/contact' },
-    { name: 'Orders', path: '/myorders' },
+    { name: 'Cart', path: '/cart' },
+    { name: 'My Orders', path: '/myorders' },
   ];
 
   return (
-    <nav className="bg-black text-white shadow-lg fixed top-0 left-0 w-full z-50">
+    <nav className="bg-black text-white shadow-md fixed top-0 left-0 w-full z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold text-yellow-400 tracking-wide">
           EatzUp 🍔
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex space-x-8 items-center">
+        <div className="hidden md:flex space-x-6 items-center">
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
@@ -49,8 +48,8 @@ function Navbar() {
           ))}
           {!isLoggedIn ? (
             <>
-              <Link to="/login" className="hover:text-yellow-300 px-2">Login</Link>
-              <Link to="/register" className="hover:text-yellow-300 px-2">Register</Link>
+              <NavLink to="/login" className="hover:text-yellow-300 px-2">Login</NavLink>
+              <NavLink to="/register" className="hover:text-yellow-300 px-2">Register</NavLink>
             </>
           ) : (
             <button onClick={handleLogout} className="hover:text-red-400 px-2">
@@ -87,8 +86,8 @@ function Navbar() {
             ))}
             {!isLoggedIn ? (
               <>
-                <Link to="/login" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 px-2">Login</Link>
-                <Link to="/register" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 px-2">Register</Link>
+                <NavLink to="/login" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 px-2">Login</NavLink>
+                <NavLink to="/register" onClick={() => setMenuOpen(false)} className="hover:text-yellow-300 px-2">Register</NavLink>
               </>
             ) : (
               <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="hover:text-red-400 px-2">
