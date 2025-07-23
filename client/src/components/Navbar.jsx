@@ -27,11 +27,12 @@ function Navbar() {
   return (
     <nav className="bg-black text-white shadow-md fixed top-0 left-0 w-full z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+        {/* Brand Text only (Logo Removed) */}
         <Link to="/" className="text-2xl font-bold text-yellow-400 tracking-wide">
-          EatzUp 🍔
+          EatzUp
         </Link>
 
-        {/* Desktop Links */}
+        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6 items-center">
           {navLinks.map((link) => (
             <NavLink
@@ -52,9 +53,7 @@ function Navbar() {
               <NavLink to="/register" className="hover:text-yellow-300 px-2">Register</NavLink>
             </>
           ) : (
-            <button onClick={handleLogout} className="hover:text-red-400 px-2">
-              Logout
-            </button>
+            <button onClick={handleLogout} className="hover:text-red-400 px-2">Logout</button>
           )}
         </div>
 

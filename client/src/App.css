@@ -1,79 +1,87 @@
-/* ✅ Navbar Styles */
+/* ✅ GLOBAL STYLES */
+body {
+  margin: 0;
+  font-family: 'Urbanist', sans-serif;
+  background: linear-gradient(to right, #000000, #1a1a1a);
+  color: #ffffff;
+}
+
+/* ✅ Navbar */
 nav {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  background-color: #f9f9f9;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffcc00; /* Yellow */
+  color: #000;
+  border-bottom: 2px solid #222;
 }
 
 nav ul {
-  display: flex;
   list-style: none;
-  gap: 20px;
+  display: flex;
+  gap: 25px;
   margin: 0;
   padding: 0;
 }
 
-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: normal;
-}
-
+nav ul li a,
 nav ul li button {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  font-size: 16px;
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #333;
-  font-weight: normal;
 }
 
-/* ✅ Active Link Style */
+nav ul li a:hover,
+nav ul li button:hover {
+  color: #ffffff;
+  background: #000;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Active Link */
 .active-link {
   font-weight: bold;
   text-decoration: underline;
-  color: #ff5722;
+  color: #d35400;
 }
 
-/* ✅ Hover Effect */
-nav ul li a:hover,
-nav ul li button:hover {
-  color: #ff5722;
-}
-
-/* ✅ Basic Page Layout */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* ✅ Simple Container Class (Optional) */
-.container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 15px;
-}
-
-/* ✅ Card Style (You can reuse for My Orders) */
+/* ✅ Reusable Card Style */
 .card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin: 20px 0;
+  color: #fff;
 }
 
-/* ✅ Button Style (Optional Use) */
+/* ✅ Reusable Button */
 button {
-  padding: 8px 16px;
-  border-radius: 4px;
+  background-color: #ffcc00;
   border: none;
-  background-color: #ff5722;
-  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #000;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #e64a19;
+  background-color: #e6b800;
+}
+
+/* ✅ Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
