@@ -1,9 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const foodItemSchema = new mongoose.Schema({
   name: String,
   price: Number,
-  image: String
-});
+  image: String,
+  description: String
+}, { timestamps: true });
 
-module.exports = mongoose.model('FoodItem', foodItemSchema);
+const FoodItem = mongoose.model('FoodItem', foodItemSchema);
+
+export default FoodItem;
