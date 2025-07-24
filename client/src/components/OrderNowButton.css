@@ -1,17 +1,25 @@
+/* client/src/components/OrderNowButton.css */
+
+.order-now-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 60px 0;
+}
+
 .order-now-btn {
-  padding: 10px 22px;
-  background: linear-gradient(135deg, #ffb703, #ff9900);
-  color: #000;
-  font-weight: 600;
-  font-size: 15px;
+  background: linear-gradient(135deg, #ffb347, #ffcc33);
+  color: #222;
   border: none;
-  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 0px rgba(255, 183, 3, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 204, 51, 0.5);
 }
 
 .order-now-btn:hover {
-  box-shadow: 0 0 12px 2px rgba(255, 183, 3, 0.7);
-  background: linear-gradient(135deg, #ff9900, #ffb703);
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(255, 204, 51, 0.7);
 }

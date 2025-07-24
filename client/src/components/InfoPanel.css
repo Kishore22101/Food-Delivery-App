@@ -1,39 +1,35 @@
+/* client/src/components/InfoPanel.css */
+
 .info-panel {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  background: #fff8e1;
   padding: 40px 20px;
-  background-color: #fffbe6;
-  text-align: center;
-  border-top: 2px solid #f4b400;
-  border-bottom: 2px solid #f4b400;
+  border-radius: 20px;
+  margin: 60px auto;
+  max-width: 1200px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .info-card {
-  flex: 1;
-  margin: 0 15px;
-  padding: 20px;
+  flex: 1 1 250px;
+  margin: 20px;
   background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .info-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
 
-.emoji {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-}
-
-.info-card h3 {
-  margin: 10px 0 5px;
-  font-size: 1.3rem;
-  color: #333;
-}
-
-.info-card p {
-  color: #777;
-  font-size: 0.95rem;
+.info-icon {
+  font-size: 36px;
+  color: #ffcc33;
+  margin-bottom: 12px;
 }

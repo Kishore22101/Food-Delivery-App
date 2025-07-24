@@ -1,35 +1,28 @@
-// src/components/InfoPanel.jsx
+// client/src/components/InfoPanel.jsx
 import React from 'react';
 import './InfoPanel.css';
+import { FaShippingFast, FaStar, FaHeadset } from 'react-icons/fa';
 
 function InfoPanel() {
-  const infoData = [
-    {
-      emoji: "🍽️",
-      title: "500+ Restaurants",
-      desc: "Partnered with top-rated restaurants",
-    },
-    {
-      emoji: "🚀",
-      title: "Fast Delivery",
-      desc: "Your food at your doorstep in 30 mins",
-    },
-    {
-      emoji: "💳",
-      title: "Easy Payments",
-      desc: "Pay via UPI, card, or cash on delivery",
-    },
-  ];
-
   return (
     <div className="info-panel">
-      {infoData.map((item, index) => (
-        <div key={index} className="info-card">
-          <div className="emoji">{item.emoji}</div>
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </div>
-      ))}
+      <div className="info-card">
+        <FaShippingFast className="info-icon" />
+        <h3>Fast Delivery</h3>
+        <p>Get your food hot and fresh in 30 minutes or less.</p>
+      </div>
+
+      <div className="info-card">
+        <FaStar className="info-icon" />
+        <h3>Top Quality</h3>
+        <p>We serve only the best dishes from top-rated chefs.</p>
+      </div>
+
+      <div className="info-card">
+        <FaHeadset className="info-icon" />
+        <h3>24/7 Support</h3>
+        <p>We’re here to help you anytime, anywhere.</p>
+      </div>
     </div>
   );
 }
