@@ -1,0 +1,39 @@
+.categories-page {
+  padding: 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.category-filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border: 2px solid #ff9800;
+  background-color: white;
+  color: #333;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #ffe0b2;
+}
+
+.filter-btn.active {
+  background-color: #ff9800;
+  color: white;
+  box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
+}

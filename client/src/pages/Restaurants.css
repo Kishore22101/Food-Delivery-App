@@ -1,0 +1,9 @@
+.restaurant-page {
+  padding: 2rem;
+  text-align: center;
+}
+
+.restaurant-page h2 {
+  font-size: 2rem;
+  color: #ff9900;
+}

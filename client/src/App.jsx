@@ -1,35 +1,31 @@
-// App.js
+// src/App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Components
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import InfoPanel from './components/InfoPanel';
-
-// Pages
 import Home from './pages/Home';
+import MenuPage from './pages/MenuPage';
+import Restaurants from './pages/Restaurants';
+import About from './pages/About';
+import Account from './pages/Account';
+import Orders from './pages/Orders';
 import Cart from './pages/Cart';
+import Categories from './pages/Categories';
 
 function App() {
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
-        <Route 
-          path="/" 
-          element={
-            <>
-              <HeroSection />
-              <InfoPanel />
-              <Home />
-            </>
-          } 
-        />
-        <Route path="/menu" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/restaurants" element={<Restaurants />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/categories" element={<Categories />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 

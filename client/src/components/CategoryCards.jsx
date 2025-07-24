@@ -1,39 +1,42 @@
-// client/src/components/CategoryCards.jsx
+// src/components/CategoryCards.jsx
 import React from 'react';
 import './CategoryCards.css';
 
-// Dynamically import all food images from assets/foods
-const images = import.meta.glob('../assets/foods/*.{png,jpg,jpeg,webp}', { eager: true });
-
 function CategoryCards({ items }) {
   if (!items || items.length === 0) {
-    return <div className="no-items">No food items found in this category.</div>;
+    return <p style={{ textAlign: 'center', padding: '2rem' }}>No food items found.</p>;
   }
 
-  return (
-    <section className="cards-grid">
-      {items.map((item, index) => {
-        // Match image path with file
-        const matchedImage = Object.entries(images).find(([path]) =>
-          path.includes(item.image)
-        );
-        const imageSrc = matchedImage ? matchedImage[1].default : '';
+  const handleOrderNow = (item) => {
+    const existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const existingItem = existingCart.find((cartItem) => cartItem.id === item.id);
 
-        return (
-          <div className="card" key={index}>
-            <img src={imageSrc} alt={item.name} className="card-img" />
-            <div className="card-content">
-              <h3 className="card-title">{item.name}</h3>
-              <p className="card-desc">{item.description}</p>
-              <div className="card-bottom">
-                <span className="price">₹{item.price}</span>
-                <button className="order-btn">Order Now</button>
-              </div>
-            </div>
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      existingCart.push({ ...item, quantity: 1 });
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(existingCart));
+    alert(`${item.name} added to cart ✅`);
+  };
+
+  return (
+    <div className="category-cards-container">
+      {items.map((item) => (
+        <div key={item.id} className="category-card">
+          <img src={item.image} alt={item.name} className="card-img" />
+          <div className="card-content">
+            <h3 className="card-title">{item.name}</h3>
+            <p className="card-desc">{item.description}</p>
+            <p className="card-price">₹{item.price}</p>
+            <button className="order-btn" onClick={() => handleOrderNow(item)}>
+              Order Now
+            </button>
           </div>
-        );
-      })}
-    </section>
+        </div>
+      ))}
+    </div>
   );
 }
 

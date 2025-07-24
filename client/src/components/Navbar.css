@@ -1,3 +1,4 @@
+/* Main navbar container */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -10,6 +11,7 @@
   z-index: 10;
 }
 
+/* Left side: logo + hamburger */
 .navbar-left {
   display: flex;
   align-items: center;
@@ -21,14 +23,18 @@
   border: none;
   font-size: 22px;
   cursor: pointer;
+  display: none; /* shown only on mobile */
 }
 
 .logo {
   font-size: 24px;
   font-weight: bold;
   color: #ffbf00;
+  cursor: pointer;
+  text-decoration: none;
 }
 
+/* Center menu links */
 .navbar-menu {
   list-style: none;
   display: flex;
@@ -36,6 +42,24 @@
   font-weight: 500;
 }
 
+.navbar-menu li {
+  cursor: pointer;
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover,
+.navbar-menu li a.active {
+  color: #ffc107;
+  font-weight: bold;
+  border-bottom: 2px solid #ffc107;
+}
+
+/* Right section: contact, account, cart */
 .navbar-right {
   display: flex;
   align-items: center;
@@ -47,31 +71,51 @@
   color: #444;
 }
 
+/* Account dropdown */
 .account-dropdown {
   cursor: pointer;
   font-weight: 500;
+  position: relative;
+}
+
+.account-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #eee;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+  padding: 10px;
+  z-index: 20;
+}
+
+.account-dropdown:hover .account-dropdown-menu {
+  display: block;
+}
+
+.account-dropdown-menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.account-dropdown-menu li:hover {
+  background-color: #f9f9f9;
+}
+
+/* Cart icon */
+.cart-icon-wrapper {
+  position: relative;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .cart-icon {
   font-size: 20px;
   cursor: pointer;
-}
-
-.confirm-btn {
-  background-color: #ffc107;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-/* Add below existing styles */
-
-.cart-icon-wrapper {
-  position: relative;
-  margin-left: 1rem;
-  font-size: 1.5rem;
+  color: #333;
 }
 
 .cart-count-badge {
@@ -84,4 +128,46 @@
   padding: 2px 6px;
   border-radius: 50%;
   font-weight: bold;
+}
+
+/* Confirm/checkout button */
+.confirm-btn {
+  background-color: #ffc107;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+}
+
+/* Responsive - Mobile View */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+  }
+
+  .navbar-menu.active {
+    display: flex;
+  }
+
+  .navbar-menu li {
+    margin: 8px 0;
+  }
+
+  .navbar-right {
+    gap: 10px;
+  }
 }
