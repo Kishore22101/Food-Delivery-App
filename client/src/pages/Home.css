@@ -1,31 +1,25 @@
+/* src/styles/Home.css */
+
 .home-page {
-  padding: 1rem;
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff8f0;
+  min-height: 100vh;
 }
-
-.filters-section {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.search-bar-section {
-  display: flex;
-  justify-content: center;
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #333;
   margin-bottom: 1.5rem;
 }
 
-.search-input {
-  padding: 0.7rem 1rem;
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  font-size: 1rem;
-  outline: none;
-  transition: 0.3s ease;
-}
-
-.search-input:focus {
-  border-color: #ffbb00;
-  box-shadow: 0 0 8px rgba(255, 187, 0, 0.3);
+.filters-section,
+.search-bar-section {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }

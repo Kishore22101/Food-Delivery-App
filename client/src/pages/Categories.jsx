@@ -1,6 +1,6 @@
 // src/pages/Categories.jsx
 import React, { useEffect, useState } from 'react';
-import foodData from '../data/foodData';
+import foodData from '../data/foodData'; // or './data/foodData' if same level
 import CategoryCards from '../components/CategoryCards';
 import './Categories.css'; // make sure this file exists!
 

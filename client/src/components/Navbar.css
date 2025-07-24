@@ -21,11 +21,12 @@
 .menu-icon {
   background: none;
   border: none;
-  font-size: 22px;
+  font-size: 24px;
   cursor: pointer;
-  display: none; /* shown only on mobile */
+  display: none; /* Mobile only */
 }
 
+/* Logo */
 .logo {
   font-size: 24px;
   font-weight: bold;
@@ -34,7 +35,7 @@
   text-decoration: none;
 }
 
-/* Center menu links */
+/* Center navbar links */
 .navbar-menu {
   list-style: none;
   display: flex;
@@ -53,13 +54,13 @@
 }
 
 .navbar-menu li a:hover,
-.navbar-menu li a.active {
+.navbar-menu li a.active-link {
   color: #ffc107;
   font-weight: bold;
   border-bottom: 2px solid #ffc107;
 }
 
-/* Right section: contact, account, cart */
+/* Right side of navbar */
 .navbar-right {
   display: flex;
   align-items: center;
@@ -107,14 +108,12 @@
 /* Cart icon */
 .cart-icon-wrapper {
   position: relative;
-  margin-left: 1rem;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
 .cart-icon {
   font-size: 20px;
-  cursor: pointer;
   color: #333;
 }
 
@@ -130,7 +129,7 @@
   font-weight: bold;
 }
 
-/* Confirm/checkout button */
+/* Confirm Order Button */
 .confirm-btn {
   background-color: #ffc107;
   border: none;
@@ -141,7 +140,12 @@
   color: white;
 }
 
-/* Responsive - Mobile View */
+.confirm-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsive for Mobile */
 @media (max-width: 768px) {
   .menu-icon {
     display: block;

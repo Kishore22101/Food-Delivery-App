@@ -18,35 +18,69 @@ function Navbar() {
         <button className="menu-icon">
           <FiMenu />
         </button>
-        <h1 className="logo">🍴 EatzUp</h1>
+        <NavLink to="/" className="logo">
+          <h1>🍴 EatzUp</h1>
+        </NavLink>
       </div>
 
       <ul className="navbar-menu">
-        <li><NavLink to="/menu" activeclassname="active-link">Find Food</NavLink></li>
-        <li><NavLink to="/categories" activeclassname="active-link">Categories</NavLink></li>
-        <li><NavLink to="/restaurant" activeclassname="active-link">Restaurant</NavLink></li>
-        <li><NavLink to="/about" activeclassname="active-link">About Us</NavLink></li>
-        <li><NavLink to="/account" activeclassname="active-link">Account</NavLink></li>
-        <li><NavLink to="/orders" activeclassname="active-link">Orders</NavLink></li>
-        <li><NavLink to="/cart" activeclassname="active-link">Cart</NavLink></li>
+        <li>
+          <NavLink to="/menu" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Find Food
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/categories" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Categories
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/restaurant" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Restaurant
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/about" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            About Us
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/account" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Account
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/orders" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Orders
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/cart" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Cart
+          </NavLink>
+        </li>
       </ul>
 
       <div className="navbar-right">
         <span className="contact-number">📞 +91 9876543210</span>
 
         <div className="account-dropdown">
-          <NavLink to="/account" activeclassname="active-link">Account</NavLink>
+          <NavLink to="/account" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Account
+          </NavLink>
         </div>
 
         <div className="cart-icon-wrapper">
-          <NavLink to="/cart">
+          <NavLink to="/cart" className={({ isActive }) => isActive ? 'active-link' : ''}>
             <FiShoppingCart className="cart-icon" />
             {cartCount > 0 && <span className="cart-count-badge">{cartCount}</span>}
           </NavLink>
         </div>
 
         <button className="confirm-btn">
-          <NavLink to="/orders">Confirm Order</NavLink>
+          <NavLink to="/orders" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Confirm Order
+          </NavLink>
         </button>
       </div>
     </nav>
