@@ -1,0 +1,93 @@
+.chef-section {
+  background: radial-gradient(circle, #fffefc, #fff3f3);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-radius: 20px;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.chef-section::before,
+.chef-section::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255, 213, 117, 0.3), transparent);
+  z-index: 0;
+}
+
+.chef-section::before {
+  top: -40px;
+  left: -40px;
+}
+
+.chef-section::after {
+  bottom: -40px;
+  right: -40px;
+}
+
+.chef-section h2 {
+  font-size: 2rem;
+  color: #d35400;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.chef-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  z-index: 1;
+  position: relative;
+}
+
+.chef-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.chef-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ffe1b3;
+  border-radius: 18px;
+  padding: 1.5rem;
+  width: 260px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+.chef-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.chef-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  border: 2px solid #ffd580;
+}
+
+.chef-card h3 {
+  font-size: 1.2rem;
+  color: #e67e22;
+  margin: 0.5rem 0;
+}
+
+.chef-card p {
+  font-size: 0.95rem;
+  color: #555;
+}

@@ -1,0 +1,84 @@
+.today-offers {
+  padding: 3rem 1.5rem;
+  background: #fff3f3;
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 🔥 Animated Heading */
+.offers-heading {
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #ff3c3c, #ff6a00, #ffc107, #ff3c3c);
+  background-size: 300% 300%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradientShift 5s infinite ease-in-out;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.offer-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* 🔁 Zoom + Breathing Pulse */
+.offer-card {
+  background: #fff;
+  border: 2px dashed #ff3c3c;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  width: 260px;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 12px rgba(255, 60, 60, 0.1);
+  position: relative;
+}
+
+.offer-card:hover {
+  transform: scale(1.06);
+  background-color: #fff0f0;
+  box-shadow: 0 10px 20px rgba(255, 60, 60, 0.15);
+}
+
+/* 🎯 Pulse animation */
+.pulse {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(255, 60, 60, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(255, 60, 60, 0.2);
+  }
+}
+
+.offer-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #d60000;
+}
+
+.offer-card p {
+  font-size: 0.95rem;
+  color: #444;
+}

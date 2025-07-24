@@ -1,0 +1,125 @@
+.mobile-app-banner {
+  padding: 3rem 1.5rem;
+  background: linear-gradient(to right, #fff7e6, #fff2cc);  /* 🍊 gradient for premium feel */
+  border-radius: 20px;
+  margin: 3rem auto;
+  max-width: 1200px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Add a subtle graphic shape to side */
+.mobile-app-banner::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 204, 0, 0.15);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.app-content {
+  display: flex;
+  justify-content: center;       /* ✅ centered horizontally */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.app-text {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;             /* ✅ center align text */
+}
+
+.app-text h2 {
+  font-size: 2.4rem;
+  color: #ff9900;
+  margin-bottom: 0.5rem;
+}
+
+.app-text p {
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* ✅ Compact button */
+.download-btn {
+  background-color: #ff9900;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: auto;
+  display: inline-block;
+}
+
+.download-btn:hover {
+  background-color: #e68500;
+}
+
+.available-text {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 6px;
+}
+
+.app-image {
+  flex: 1;
+  text-align: center;
+  min-width: 260px;
+}
+
+.app-image img {
+  width: 260px;
+  max-width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* subtle lift */
+}
+
+/* 📱 Responsive - Mobile */
+@media (max-width: 768px) {
+  .app-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .app-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .app-text p {
+    font-size: 0.95rem;
+  }
+
+  .app-image img {
+    width: 200px;
+  }
+
+  .download-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

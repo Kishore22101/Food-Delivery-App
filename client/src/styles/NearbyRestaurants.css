@@ -1,0 +1,123 @@
+/* src/styles/NearbyRestaurants.css */
+.nearby-carousel {
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, #fffefc, #f9f9ff);
+  max-width: 1200px;
+  margin: 3rem auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.nearby-carousel h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(45deg, #ff8a00, #e52e71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  animation: slideIn 0.5s ease;
+}
+
+/* ✅ Scroll Wrapper with animation */
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  animation: scrollLeft 20s linear infinite;
+  will-change: transform;
+}
+
+/* Card Styling */
+.restaurant-card {
+  flex: 0 0 260px;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.restaurant-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Card Content */
+.card-info {
+  padding: 1rem;
+}
+
+.card-info h3 {
+  font-size: 1.3rem;
+  color: #ff6f00;
+  margin: 0.5rem 0;
+}
+
+.card-info p {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0.3rem 0;
+}
+
+.card-info span {
+  font-size: 0.85rem;
+  color: #999;
+  display: inline-block;
+  margin-top: 0.4rem;
+}
+
+/* ✅ Slide Keyframe */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Heading Slide Animation */
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ✅ Mobile Responsive */
+@media (max-width: 768px) {
+  .restaurant-card {
+    flex: 0 0 200px;
+  }
+
+  .restaurant-card img {
+    height: 160px;
+  }
+
+  .card-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .card-info p {
+    font-size: 0.9rem;
+  }
+
+  .card-info span {
+    font-size: 0.8rem;
+  }
+}
