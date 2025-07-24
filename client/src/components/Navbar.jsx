@@ -25,8 +25,8 @@ function Navbar() {
 
       <ul className="navbar-menu">
         <li>
-          <NavLink to="/menu" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            Find Food
+          <NavLink to="/" className={({ isActive }) => isActive ? 'active-link' : ''}>
+            Home
           </NavLink>
         </li>
         <li>

@@ -3,19 +3,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 14px 28px;
+  background: rgba(255, 255, 255, 0.85); /* semi-transparent */
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
 }
 
 /* Left side: logo + hamburger */
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .menu-icon {
@@ -28,9 +30,9 @@
 
 /* Logo */
 .logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #ffbf00;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff9800;
   cursor: pointer;
   text-decoration: none;
 }
@@ -39,25 +41,44 @@
 .navbar-menu {
   list-style: none;
   display: flex;
-  gap: 24px;
+  gap: 28px;
   font-weight: 500;
 }
 
 .navbar-menu li {
   cursor: pointer;
+  position: relative;
 }
 
 .navbar-menu li a {
   text-decoration: none;
   color: #333;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 6px 0;
+  position: relative;
+  font-size: 16px;
+}
+
+.navbar-menu li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #ffb300, #ff5722);
+  transition: width 0.3s ease;
+}
+
+.navbar-menu li a:hover::after,
+.navbar-menu li a.active-link::after {
+  width: 100%;
 }
 
 .navbar-menu li a:hover,
 .navbar-menu li a.active-link {
-  color: #ffc107;
+  color: #ff9800;
   font-weight: bold;
-  border-bottom: 2px solid #ffc107;
 }
 
 /* Right side of navbar */
@@ -69,12 +90,11 @@
 
 .contact-number {
   font-size: 14px;
-  color: #444;
+  color: #555;
 }
 
 /* Account dropdown */
 .account-dropdown {
-  cursor: pointer;
   font-weight: 500;
   position: relative;
 }
@@ -86,9 +106,10 @@
   right: 0;
   background-color: white;
   border: 1px solid #eee;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   padding: 10px;
   z-index: 20;
+  border-radius: 8px;
 }
 
 .account-dropdown:hover .account-dropdown-menu {
@@ -102,42 +123,49 @@
 }
 
 .account-dropdown-menu li:hover {
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
 }
 
 /* Cart icon */
 .cart-icon-wrapper {
   position: relative;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
 }
 
 .cart-icon {
-  font-size: 20px;
+  font-size: 22px;
   color: #333;
 }
 
 .cart-count-badge {
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: -6px;
+  right: -6px;
   background-color: #ff3c3c;
   color: white;
   font-size: 0.7rem;
   padding: 2px 6px;
   border-radius: 50%;
   font-weight: bold;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
 }
 
 /* Confirm Order Button */
 .confirm-btn {
-  background-color: #ffc107;
+  background: linear-gradient(90deg, #ff9800, #ff5722);
   border: none;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
   color: white;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-1px);
 }
 
 .confirm-btn a {
@@ -158,9 +186,11 @@
     top: 64px;
     left: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.98);
     padding: 1rem;
     border-top: 1px solid #eee;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+    z-index: 999;
   }
 
   .navbar-menu.active {
@@ -168,10 +198,10 @@
   }
 
   .navbar-menu li {
-    margin: 8px 0;
+    margin: 10px 0;
   }
 
   .navbar-right {
-    gap: 10px;
+    gap: 12px;
   }
 }
