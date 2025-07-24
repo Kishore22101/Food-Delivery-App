@@ -1,0 +1,27 @@
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.filters button {
+  padding: 8px 16px;
+  border: 1px solid #f0c000;
+  background-color: white;
+  color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filters button:hover {
+  background-color: #f0c000;
+  color: white;
+}
+
+.filters .active {
+  background-color: #f0c000;
+  color: white;
+}

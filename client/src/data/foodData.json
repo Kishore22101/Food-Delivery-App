@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Margherita Pizza",
+    "category": "Pizza",
+    "price": 299,
+    "image": "/image/cheese-pizza.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Veg Burger",
+    "category": "Burger",
+    "price": 149,
+    "image": "/images/veg-burger.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Pasta Alfredo",
+    "category": "Pasta",
+    "price": 249,
+    "image": "/images/pasta-alfredo.jpg"
+  }
+]

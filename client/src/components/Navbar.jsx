@@ -1,9 +1,16 @@
 // src/components/Navbar.jsx
-import React from 'react';
-import './Navbar.css'; // We'll create this CSS next
+import React, { useEffect, useState } from 'react';
+import './Navbar.css';
 import { FiMenu, FiShoppingCart } from 'react-icons/fi';
 
 function Navbar() {
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    setCartCount(cartItems.reduce((acc, item) => acc + item.quantity, 0));
+  }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -21,9 +28,15 @@ function Navbar() {
       </ul>
 
       <div className="navbar-right">
-        <span className="contact-number">📞 +88012345678</span>
+        <span className="contact-number">📞 +91 9876543210</span>
         <div className="account-dropdown">Account</div>
-        <FiShoppingCart className="cart-icon" />
+
+        {/* 🛒 Cart Icon with Count */}
+        <div className="cart-icon-wrapper">
+          <FiShoppingCart className="cart-icon" />
+          {cartCount > 0 && <span className="cart-count-badge">{cartCount}</span>}
+        </div>
+
         <button className="confirm-btn">Confirm Order</button>
       </div>
     </nav>
