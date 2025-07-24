@@ -1,45 +1,27 @@
-// src/components/CategoryCards.jsx
 import React from 'react';
 import './CategoryCards.css';
 
-function CategoryCards({ items = [] }) {
-  const addToCart = (item) => {
-    const existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-    const existingItemIndex = existingCart.findIndex(cartItem => cartItem.id === item.id);
-
-    if (existingItemIndex !== -1) {
-      existingCart[existingItemIndex].quantity += 1;
-    } else {
-      existingCart.push({ ...item, quantity: 1 });
-    }
-
-    localStorage.setItem('cartItems', JSON.stringify(existingCart));
-    alert(`${item.name} added to cart!`);
-  };
-
-  // Optional: Show message when no items
-  if (!items.length) {
-    return <p style={{ textAlign: 'center' }}>No food items to show.</p>;
+function CategoryCards({ items }) {
+  if (!items || items.length === 0) {
+    return <div className="no-items">No food items found in this category.</div>;
   }
 
   return (
-    <div className="category-cards">
-      {items.map(item => (
-        <div key={item.id} className="category-card">
-          <img
-            src={`/assets/${item.name.toLowerCase().replace(/\s+/g, '')}.jpg`}
-            alt={item.name}
-            className="food-img"
-          />
-          <h3>{item.name}</h3>
-          <p>₹{item.price}</p>
-          <button className="order-now" onClick={() => addToCart(item)}>
-            Order Now
-          </button>
+    <section className="cards-grid">
+      {items.map((item, index) => (
+        <div className="card" key={index}>
+          <img src={item.image} alt={item.name} className="card-img" />
+          <div className="card-content">
+            <h3 className="card-title">{item.name}</h3>
+            <p className="card-desc">{item.description}</p>
+            <div className="card-bottom">
+              <span className="price">₹{item.price}</span>
+              <button className="order-btn">Order Now</button>
+            </div>
+          </div>
         </div>
       ))}
-    </div>
+    </section>
   );
 }
 

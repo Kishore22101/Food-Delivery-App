@@ -1,11 +1,10 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import InfoPanel from './components/InfoPanel';
-import MenuPage from './pages/MenuPage';
+import Home from './pages/Home'; // Updated
 import Cart from './pages/Cart';
 
 function App() {
@@ -17,9 +16,10 @@ function App() {
           <>
             <HeroSection />
             <InfoPanel />
+            <Home />
           </>
         } />
-        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/menu" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>

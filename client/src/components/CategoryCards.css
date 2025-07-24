@@ -1,38 +1,72 @@
-.category-cards {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin: 3rem 0;
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
-.food-card {
+.card {
   background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  width: 220px;
-  text-align: center;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
   padding: 1rem;
 }
 
-.food-img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-
-.add-cart-btn {
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #ffbe00;
-  color: #000;
+.card-title {
+  font-size: 1.2rem;
   font-weight: 600;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
 }
 
-.add-cart-btn:hover {
-  background-color: #ffaa00;
+.card-desc {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.order-btn {
+  background-color: #ffc107;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order-btn:hover {
+  background-color: #e0a800;
+}
+
+.no-items {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #999;
+  padding: 3rem 0;
 }

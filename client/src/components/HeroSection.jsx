@@ -1,33 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import Filters from '../components/Filters';
-import CategoryCards from '../components/CategoryCards';
-import foodData from '../data/foodData.json'; // assume you have this or static array
+import React from 'react';
+import './HeroSection.css'; // styling
 
-function Home() {
-  const [items, setItems] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
-  useEffect(() => {
-    setItems(foodData); // or fetch from API later
-  }, []);
-
-  const categories = [...new Set(foodData.map(item => item.category))];
-
-  const filteredItems = selectedCategory === 'All'
-    ? items
-    : items.filter(item => item.category === selectedCategory);
-
+function HeroSection() {
   return (
-    <div>
-      <Filters
-        categories={categories}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
+    <section className="hero">
+      <div className="hero-content">
+        <h2>Welcome to</h2>
+        <h1>
+          <span className="highlight">EatzUp</span> Food Delivery
+        </h1>
+        <p>Your favorite meals delivered fast at your door.</p>
+        <button className="order-now-btn">Order Now</button>
+      </div>
 
-      <CategoryCards items={filteredItems} />
-    </div>
+      <div className="hero-image">
+        <img src="/assets/hero-food.jpg" alt="Delicious Food" />
+      </div>
+    </section>
   );
 }
 
-export default Home;
+export default HeroSection;

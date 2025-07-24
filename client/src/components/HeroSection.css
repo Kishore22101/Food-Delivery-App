@@ -5,10 +5,12 @@
   padding: 60px 10%;
   background: #fffbd6;
   min-height: 90vh;
+  flex-wrap: wrap;
 }
 
 .hero-content {
   flex: 1;
+  min-width: 300px;
 }
 
 .hero-content h2 {
@@ -51,6 +53,7 @@
 
 .hero-image {
   flex: 1;
+  min-width: 300px;
   display: flex;
   justify-content: center;
 }
