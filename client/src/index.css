@@ -1,11 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* GLOBAL STYLES */
-body {
+* {
   margin: 0;
-  font-family: 'Urbanist', sans-serif;
-  background: linear-gradient(to right, #000000, #1a1a1a);
-  color: #ffffff;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #fffefc;
 }

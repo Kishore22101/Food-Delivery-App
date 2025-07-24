@@ -1,0 +1,31 @@
+body {
+  background: #23232b;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #fff;
+}
+h1, h2, h3 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.button, .order-now-btn {
+  background: #ffe600;
+  color: #23232b;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.button:hover, .order-now-btn:hover {
+  background: #ffd600;
+}
+.navbar {
+  background: #222227;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

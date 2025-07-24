@@ -1,0 +1,45 @@
+/* Footer.css */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 60px;
+  background-color: #111;
+  color: white;
+  flex-wrap: wrap;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-left {
+  max-width: 300px;
+}
+
+.footer h2 {
+  color: #ffcc00;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  font-size: 14px;
+  margin: 6px 0;
+  color: #ccc;
+}
+
+.footer-links {
+  min-width: 150px;
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+  color: #ffcc00;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 6px;
+  color: #ccc;
+  cursor: pointer;
+}
