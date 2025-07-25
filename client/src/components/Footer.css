@@ -1,36 +1,38 @@
-/* Footer.css */
+/* src/components/Footer.css */
 .footer {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 40px 60px;
   background-color: #111;
   color: white;
-  flex-wrap: wrap;
   font-family: 'Segoe UI', sans-serif;
+  border-top: 4px solid #ffcc00;
 }
 
-.footer-left {
-  max-width: 300px;
+.footer-section {
+  flex: 1;
+  margin: 10px 20px;
+  min-width: 200px;
 }
 
-.footer h2 {
+.footer-left h2 {
   color: #ffcc00;
   margin-bottom: 10px;
+  font-size: 28px;
 }
 
 .footer p {
   font-size: 14px;
-  margin: 6px 0;
   color: #ccc;
+  margin: 6px 0;
 }
 
-.footer-links {
-  min-width: 150px;
-}
-
-.footer-links h4 {
-  margin-bottom: 10px;
+.footer-links h4,
+.footer-contact h4 {
   color: #ffcc00;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .footer-links ul {
@@ -39,7 +41,28 @@
 }
 
 .footer-links ul li {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   color: #ccc;
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li:hover {
+  color: #ffcc00;
+}
+
+.footer-socials {
+  margin-top: 10px;
+}
+
+.footer-socials svg {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-socials svg:hover {
+  color: #ffcc00;
 }

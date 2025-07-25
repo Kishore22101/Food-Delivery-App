@@ -205,3 +205,24 @@
     gap: 12px;
   }
 }
+
+/* Navbar.css */
+
+.logo-with-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.navbar-logo-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000000;
+}

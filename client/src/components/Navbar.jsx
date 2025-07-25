@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import { FiMenu, FiShoppingCart } from 'react-icons/fi';
+import logo from '../assets/logo.png'; // 🔥 Logo path here
 
 function Navbar() {
   const [cartCount, setCartCount] = useState(0);
@@ -18,8 +19,12 @@ function Navbar() {
         <button className="menu-icon">
           <FiMenu />
         </button>
+
         <NavLink to="/" className="logo">
-          <h1>🍴 EatzUp</h1>
+          <div className="logo-with-text">
+            <img src={logo} alt="EatzUp Logo" className="navbar-logo-img" />
+            <h1 className="logo-text">EatzUp</h1>
+          </div>
         </NavLink>
       </div>
 

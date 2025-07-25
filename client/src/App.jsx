@@ -9,12 +9,13 @@ import Account from './pages/Account';
 import Orders from './pages/Orders';
 import Cart from './pages/Cart';
 import Categories from './pages/Categories';
-
+import Footer from './components/Footer'; // ✅ Import Footer
 
 function App() {
   return (
     <>
       <Navbar />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/restaurants" element={<Restaurants />} />
@@ -24,6 +25,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/categories" element={<Categories />} />
       </Routes>
+      
+      <Footer /> {/* ✅ Add Footer just below Routes */}
     </>
   );
 }
