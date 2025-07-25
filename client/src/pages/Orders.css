@@ -1,5 +1,3 @@
-/* src/pages/Orders.css */
-
 .orders-page {
   max-width: 900px;
   margin: auto;
@@ -7,6 +5,7 @@
   background: #fff9f0;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .orders-page h2 {
@@ -14,6 +13,7 @@
   color: #ff7b00;
   text-align: center;
   margin-bottom: 2rem;
+  font-weight: 700;
 }
 
 .empty-order {
@@ -21,6 +21,23 @@
   color: #888;
   text-align: center;
   margin-top: 2rem;
+}
+
+.countdown {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #b04d00;
+  font-weight: 600;
+}
+
+.invoice-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #ffe0c1;
+  margin-bottom: 2rem;
 }
 
 .order-list {
@@ -51,6 +68,7 @@
   font-size: 1.2rem;
   margin: 0;
   color: #333;
+  font-weight: 600;
 }
 
 .item-details p {
@@ -63,14 +81,15 @@
   background: #fff;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 1px dashed #ffd8b2;
 }
 
 .order-summary h3 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
   color: #222;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid #ffe0c1;
   padding-bottom: 0.5rem;
 }
 
@@ -86,40 +105,8 @@
   font-size: 1.2rem;
   color: #e67300;
   margin-top: 1rem;
-}
-
-.timer-box {
-  margin-top: 1rem;
-  background: #fff3e0;
-  padding: 0.8rem;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 500;
-  color: #b04d00;
-  font-size: 1rem;
-}
-
-.pay-btn {
-  margin-top: 1.5rem;
-  width: 100%;
-  padding: 0.9rem;
-  font-size: 1.1rem;
-  background: linear-gradient(to right, #ff7b00, #ffa726);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.pay-btn:hover {
-  transform: scale(1.02);
-  background: linear-gradient(to right, #ffa726, #ff7b00);
-}
-
-.pay-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
+  border-top: 1px dashed #ccc;
+  padding-top: 0.7rem;
 }
 
 .expired-msg {
@@ -127,4 +114,46 @@
   font-size: 1rem;
   text-align: center;
   margin-top: 1rem;
+}
+
+.payment-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pay-btn,
+.invoice-btn {
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #ff7b00, #ffa726);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+  box-shadow: 0 3px 8px rgba(255, 123, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.pay-btn:hover,
+.invoice-btn:hover {
+  transform: scale(1.02);
+  background: linear-gradient(to right, #ffa726, #ff7b00);
+}
+
+.pay-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.invoice-btn i,
+.invoice-btn svg {
+  font-size: 1.2rem;
 }
