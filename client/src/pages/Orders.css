@@ -157,3 +157,58 @@
 .invoice-btn svg {
   font-size: 1.2rem;
 }
+
+.invoice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.invoice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.invoice-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.invoice-logo {
+  height: 100px;
+  width: auto;
+}
+
+.invoice-brand-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ff7b00;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.stamp-row {
+  display: inline-block;
+  white-space: nowrap;      /* Keep all images in single line */
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.stamp-row img {
+  display: inline-block;
+  width: 150;             /* Increased size */
+  height: auto;
+  margin: 0 10px;           /* More spacing between stamps */
+  opacity: 1;               /* Full visibility */
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.2)); /* Stronger shadow */
+  transition: transform 0.3s ease-in-out;
+}
+
+.stamp-row img:hover {
+  transform: scale(1.08);   /* Bigger hover zoom */
+}
+

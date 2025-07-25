@@ -1,4 +1,3 @@
-// Orders.jsx (Updated with full invoice + company info + styling + GST)
 import React, { useEffect, useState, useRef } from 'react';
 import './Orders.css';
 import html2pdf from 'html2pdf.js';
@@ -6,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function Orders() {
   const [cartItems, setCartItems] = useState([]);
-  const [timer, setTimer] = useState(600); // 10 minutes
+  const [timer, setTimer] = useState(600);
   const invoiceRef = useRef();
   const [orderId] = useState(uuidv4().slice(0, 8).toUpperCase());
 
@@ -58,13 +57,20 @@ function Orders() {
         <p className="empty-order">🛒 You have no items to order.</p>
       ) : (
         <>
-          <div className="countdown">⏰ Time left to pay: <span>{formatTime()}</span></div>
+          <div className="countdown">
+            ⏰ Time left to pay: <span>{formatTime()}</span>
+          </div>
 
           <div ref={invoiceRef} className="invoice-box">
-            <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-              <h2 style={{ margin: 0 }}>EatzUp</h2>
-              <p>Invoice ID: #{orderId}</p>
-              <p>Date: {new Date().toLocaleDateString()}</p>
+            <div className="invoice-header">
+              <div className="invoice-brand">
+                <img src="/src/assets/logo.png" alt="EatzUp Logo" className="invoice-logo" />
+                <span className="invoice-brand-name">EatzUp</span>
+              </div>
+              <div>
+                <p><strong>Invoice ID:</strong> #{orderId}</p>
+                <p><strong>Date:</strong> {new Date().toLocaleDateString()}</p>
+              </div>
             </div>
 
             <ul className="order-list">
@@ -87,8 +93,21 @@ function Orders() {
               <div className="bill-line"><span>Food GST (12%):</span><span>₹{foodGST.toFixed(2)}</span></div>
               <div className="bill-line"><span>Delivery Charge:</span><span>₹{deliveryCharge.toFixed(2)}</span></div>
               <div className="bill-line"><span>Delivery GST (5%):</span><span>₹{deliveryGST.toFixed(2)}</span></div>
-              <div className="bill-line grand-total"><strong>Grand Total:</strong><strong>₹{grandTotal.toFixed(2)}</strong></div>
+              <div className="bill-line grand-total">
+                <strong>Grand Total:</strong><strong>₹{grandTotal.toFixed(2)}</strong>
+              </div>
             </div>
+
+            <div 
+              className="stamp-row"
+              style={{ width: '100%', whiteSpace: 'nowrap', textAlign: 'center' }}
+            >
+              <img src="/src/assets/stamp1.png" style={{ width: '150px', display: 'inline-block' }} />
+              <img src="/src/assets/stamp2.png" style={{ width: '150px', display: 'inline-block' }} />
+              <img src="/src/assets/stamp3.png" style={{ width: '150px', display: 'inline-block' }} />
+              <img src="/src/assets/stamp4.png" style={{ width: '150px', display: 'inline-block' }} />
+            </div>
+
           </div>
 
           <div className="payment-buttons">
@@ -96,7 +115,9 @@ function Orders() {
             <button className="invoice-btn" onClick={downloadInvoice}>📥 Download Invoice</button>
           </div>
 
-          {timer === 0 && <p className="expired-msg">❌ Payment time expired! Please go back to cart.</p>}
+          {timer === 0 && (
+            <p className="expired-msg">❌ Payment time expired! Please go back to cart.</p>
+          )}
         </>
       )}
     </div>
