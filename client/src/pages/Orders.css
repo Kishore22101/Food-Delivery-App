@@ -1,9 +1,130 @@
+/* src/pages/Orders.css */
+
 .orders-page {
+  max-width: 900px;
+  margin: auto;
   padding: 2rem;
-  text-align: center;
+  background: #fff9f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .orders-page h2 {
-  font-size: 2rem;
-  color: #ff9900;
+  font-size: 2.2rem;
+  color: #ff7b00;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.empty-order {
+  font-size: 1.2rem;
+  color: #888;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.order-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.item-details h4 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333;
+}
+
+.item-details p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.order-summary {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+.order-summary h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #222;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.bill-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin: 0.4rem 0;
+}
+
+.grand-total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #e67300;
+  margin-top: 1rem;
+}
+
+.timer-box {
+  margin-top: 1rem;
+  background: #fff3e0;
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  color: #b04d00;
+  font-size: 1rem;
+}
+
+.pay-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  background: linear-gradient(to right, #ff7b00, #ffa726);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.pay-btn:hover {
+  transform: scale(1.02);
+  background: linear-gradient(to right, #ffa726, #ff7b00);
+}
+
+.pay-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.expired-msg {
+  color: red;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 1rem;
 }
