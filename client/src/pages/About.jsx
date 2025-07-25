@@ -1,8 +1,8 @@
 import React from 'react';
 import './About.css';
 import kishoreImg from '../assets/team/kishore.jpg';
-import kaviyanImg from '../assets/team/kaviyan.jpg';
 import kumareshImg from '../assets/team/kumaresh.jpg';
+import kaviyanImg from '../assets/team/kaviyan.jpg';
 import athithyanImg from '../assets/team/athithyan.jpg';
 
 function About() {
@@ -38,16 +38,7 @@ function About() {
             Kishore led the project vision, managed component design, and built the full authentication & order system.
           </p>
         </div>
-        <div className="team-member glass">
-          <img src={kaviyanImg} alt="Kaviyan A." />
-          <h4>Kaviyan A.</h4>
-          <p>
-            <span className="degree">B.Tech AI & Data Science</span><br />
-            3rd Year, JNN Institute of Engineering<br />
-            <strong>Role:</strong> Frontend Developer, UI/UX Specialist<br />
-            Kaviyan crafted modern user interfaces, category filters, and ensured a responsive, mobile-friendly experience.
-          </p>
-        </div>
+
         <div className="team-member glass">
           <img src={kumareshImg} alt="Kumaresh S." />
           <h4>Kumaresh S.</h4>
@@ -58,6 +49,18 @@ function About() {
             Kumaresh handled database operations, API development, JWT security, and error handling.
           </p>
         </div>
+
+        <div className="team-member glass">
+          <img src={kaviyanImg} alt="Kaviyan A." />
+          <h4>Kaviyan A.</h4>
+          <p>
+            <span className="degree">B.Tech AI & Data Science</span><br />
+            3rd Year, JNN Institute of Engineering<br />
+            <strong>Role:</strong> Frontend Developer, UI/UX Specialist<br />
+            Kaviyan crafted modern user interfaces, category filters, and ensured a responsive, mobile-friendly experience.
+          </p>
+        </div>
+
         <div className="team-member glass">
           <img src={athithyanImg} alt="Athithyan D." />
           <h4>Athithyan D.</h4>
@@ -77,11 +80,12 @@ function About() {
           src="https://www.loom.com/embed/7ef6e7d69813471d87d6547c005c8c82"
           title="EatzUp Demo"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          frameBorder="0"
+          webkitallowfullscreen
+          mozallowfullscreen
           allowFullScreen
         ></iframe>
       </div>
-
-
 
       {/* 📞 Contact Us CTA */}
       <div className="contact-cta">
