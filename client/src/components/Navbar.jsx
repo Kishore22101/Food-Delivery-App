@@ -35,7 +35,7 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/restaurant" className={({ isActive }) => isActive ? 'active-link' : ''}>
+          <NavLink to="/restaurants" className={({ isActive }) => isActive ? 'active-link' : ''}>
             Restaurant
           </NavLink>
         </li>

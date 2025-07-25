@@ -1,16 +1,38 @@
 // src/pages/Categories.jsx
 import React, { useEffect, useState } from 'react';
-import foodData from '../data/foodData'; // or './data/foodData' if same level
+import foodData from '../data/foodData';
 import CategoryCards from '../components/CategoryCards';
-import './Categories.css'; // make sure this file exists!
+import './Categories.css';
+import { useLocation } from 'react-router-dom';
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 function Categories() {
   const [allFoods, setAllFoods] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const query = useQuery();
 
   useEffect(() => {
-    setAllFoods(foodData); // load all food initially
+    setAllFoods(foodData);
   }, []);
+
+  useEffect(() => {
+    const catParam = query.get('category');
+    if (catParam) {
+      // Capitalize first letter of each word
+      const formatted = catParam
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      if (['North Indian', 'South Indian', 'Italian'].includes(formatted)) {
+        setSelectedCategory(formatted);
+      }
+    }
+  }, [query]);
 
   const categories = ['All', 'North Indian', 'South Indian', 'Italian'];
 
@@ -23,12 +45,13 @@ function Categories() {
     <div className="categories-page">
       <h2 className="section-title">Explore Foods by Category</h2>
 
-      {/* Filter Buttons */}
       <div className="category-filter-buttons">
         {categories.map((cat) => (
           <button
             key={cat}
-            className={`filter-btn ${selectedCategory === cat ? 'active' : ''}`}
+            className={`filter-btn ${
+              selectedCategory === cat ? 'active' : ''
+            }`}
             onClick={() => setSelectedCategory(cat)}
           >
             {cat}
@@ -36,7 +59,6 @@ function Categories() {
         ))}
       </div>
 
-      {/* Food Cards */}
       <CategoryCards items={filteredFoods} />
     </div>
   );

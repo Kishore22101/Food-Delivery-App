@@ -1,10 +1,28 @@
-import React from 'react';
+// src/components/HeroSection.jsx
+import React, { useState } from 'react';
 import './HeroSection.css';
 import { FiMapPin } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 function HeroSection() {
+  const [location, setLocation] = useState('');
+  const navigate = useNavigate();
+
+  const handleFindRestaurant = () => {
+    if (location.trim()) {
+      navigate(`/restaurants?location=${encodeURIComponent(location.trim())}`);
+    } else {
+      alert('Please enter a location');
+    }
+  };
+
   return (
     <div className="hero-container">
+      {/* Floating Ingredients */}
+      <img src="/src/assets/ingredients/tomato.png" className="floating tomato" alt="tomato" />
+      <img src="/src/assets/ingredients/basil.png" className="floating basil" alt="basil" />
+      <img src="/src/assets/ingredients/garlic.png" className="floating garlic" alt="garlic" />
+
       {/* Left Text */}
       <div className="hero-left">
         <h1>
@@ -18,18 +36,24 @@ function HeroSection() {
 
         <div className="location-bar">
           <FiMapPin className="map-icon" />
-          <input type="text" placeholder="Enter your location..." />
-          <button className="order-btn">Find Restaurant</button>
+          <input
+            type="text"
+            placeholder="Enter your location..."
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <button className="order-btn" onClick={handleFindRestaurant}>
+            Find Restaurant
+          </button>
         </div>
       </div>
 
       {/* Right Image */}
       <div className="hero-right">
-        {/* ✅ Fix: public image usage – don't import, use full path */}
         <img src="/assets/hero-food.jpg" alt="Delicious Meal" />
       </div>
 
-      {/* Background Orange Arc */}
+      {/* Background Glow Arc */}
       <div className="background-wave" />
     </div>
   );
