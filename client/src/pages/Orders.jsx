@@ -1,30 +1,25 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Orders.css';
-import html2pdf from 'html2pdf.js';
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 function Orders() {
   const [cartItems, setCartItems] = useState([]);
-  const [timer, setTimer] = useState(600);
   const invoiceRef = useRef();
   const [orderId] = useState(uuidv4().slice(0, 8).toUpperCase());
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(savedCart);
   }, []);
 
-  useEffect(() => {
-    if (timer > 0) {
-      const countdown = setInterval(() => setTimer(prev => prev - 1), 1000);
-      return () => clearInterval(countdown);
-    }
-  }, [timer]);
-
-  const formatTime = () => {
-    const mins = Math.floor(timer / 60);
-    const secs = timer % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const day = d.getDate().toString().padStart(2, '0');
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
   };
 
   const foodSubtotal = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
@@ -34,42 +29,39 @@ function Orders() {
   const grandTotal = foodSubtotal + foodGST + deliveryCharge + deliveryGST;
 
   const handlePayNow = () => {
-    alert('✅ Payment successful! Your order has been placed.');
-    localStorage.removeItem('cartItems');
-    window.location.href = '/';
-  };
-
-  const downloadInvoice = () => {
-    const opt = {
-      margin: 0.5,
-      filename: `EatzUp_Invoice_${orderId}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
-    html2pdf().set(opt).from(invoiceRef.current).save();
+    navigate('/payment', {
+      state: {
+        cartItems,
+        orderId,
+        date: formatDate(new Date()),
+        grandTotal,
+        foodSubtotal,
+        foodGST,
+        deliveryCharge,
+        deliveryGST
+      }
+    });
   };
 
   return (
     <div className="orders-page">
+      <div className="logo-brand-section">
+        <img src="/src/assets/logo.png" alt="EatzUp Logo" />
+        <h1 className="brand-name">EatzUp</h1>
+      </div>
+
       <h2>🧾 Confirm Your Order</h2>
+
       {cartItems.length === 0 ? (
         <p className="empty-order">🛒 You have no items to order.</p>
       ) : (
         <>
-          <div className="countdown">
-            ⏰ Time left to pay: <span>{formatTime()}</span>
-          </div>
-
           <div ref={invoiceRef} className="invoice-box">
             <div className="invoice-header">
-              <div className="invoice-brand">
-                <img src="/src/assets/logo.png" alt="EatzUp Logo" className="invoice-logo" />
-                <span className="invoice-brand-name">EatzUp</span>
-              </div>
               <div>
                 <p><strong>Invoice ID:</strong> #{orderId}</p>
-                <p><strong>Date:</strong> {new Date().toLocaleDateString()}</p>
+                <p><strong>Date:</strong> {formatDate(new Date())}</p>
+                <p><strong>GST ID:</strong> 33ABCDE1234F1Z5</p>
               </div>
             </div>
 
@@ -98,26 +90,16 @@ function Orders() {
               </div>
             </div>
 
-            <div 
-              className="stamp-row"
-              style={{ width: '100%', whiteSpace: 'nowrap', textAlign: 'center' }}
-            >
-              <img src="/src/assets/stamp1.png" style={{ width: '150px', display: 'inline-block' }} />
-              <img src="/src/assets/stamp2.png" style={{ width: '150px', display: 'inline-block' }} />
-              <img src="/src/assets/stamp3.png" style={{ width: '150px', display: 'inline-block' }} />
-              <img src="/src/assets/stamp4.png" style={{ width: '150px', display: 'inline-block' }} />
+            <div className="stamp-row">
+              {[1, 2, 3, 4].map((n) => (
+                <img key={n} src={`/src/assets/stamp${n}.png`} alt={`Stamp ${n}`} />
+              ))}
             </div>
-
           </div>
 
           <div className="payment-buttons">
-            <button className="pay-btn" onClick={handlePayNow} disabled={timer === 0}>💳 Pay Now</button>
-            <button className="invoice-btn" onClick={downloadInvoice}>📥 Download Invoice</button>
+            <button className="pay-btn" onClick={handlePayNow}>💳 Pay Now</button>
           </div>
-
-          {timer === 0 && (
-            <p className="expired-msg">❌ Payment time expired! Please go back to cart.</p>
-          )}
         </>
       )}
     </div>

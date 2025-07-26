@@ -10,6 +10,7 @@ import Orders from './pages/Orders';
 import Cart from './pages/Cart';
 import Categories from './pages/Categories';
 import Footer from './components/Footer'; // ✅ Import Footer
+import Payment from './pages/Payment';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
       
       <Footer /> {/* ✅ Add Footer just below Routes */}
