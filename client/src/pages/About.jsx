@@ -22,7 +22,7 @@ const IconLinkedin = () => <svg viewBox="0 0 24 24" fill="currentColor" aria-hid
 
 const team = [
   {
-    name: 'Kishore K.',
+    name: 'Kishore Kumar',
     degree: 'B.Tech AI & Data Science',
     year: '4th Year, JNN Institute of Engineering',
     role: 'Team Lead · Architecture · Full Stack Developer',
@@ -34,10 +34,10 @@ const team = [
     email: 'kishore22oct@gmail.com',
     instagram: 'https://www.instagram.com/itz.kizzzy?igsh=emZxdXZ1aXFqeXBk',
     github: 'https://github.com/Kishore22101',
-    linkedin: 'https://linkedin.com/in/kishore22101',
+    linkedin: 'https://www.linkedin.com/in/kishore-kumar-0717542a1?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
-    name: 'Kumaresh S.',
+    name: 'Kumaresh Shankar',
     degree: 'B.E Computer Science',
     year: '4th Year, JNN Institute of Engineering',
     role: 'Backend Developer · API & Middleware Expert',
@@ -49,10 +49,10 @@ const team = [
     email: 'skumaresh200@gmail.com',
     instagram: 'https://www.instagram.com/__kumaresh__02?igsh=MTRvZGFhaWhtZDQ1dg==',
     github: 'https://github.com/Kumaresh200',
-    linkedin: 'https://linkedin.com/in/kumaresh200',
+    linkedin: 'https://www.linkedin.com/in/kumaresh-s-43b8b4321?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
-    name: 'Kaviyan A.',
+    name: 'Kaviyan Anandan',
     degree: 'B.Tech AI & Data Science',
     year: '4th Year, JNN Institute of Engineering',
     role: 'Frontend Developer · UI/UX Specialist',
@@ -64,10 +64,10 @@ const team = [
     email: 'kaviyan5242@gmail.com',
     instagram: 'https://www.instagram.com/itzz_.kavi?igsh=MTc4cWxycTk5MmJ6NQ==',
     github: 'https://github.com/kaviyan1409',
-    linkedin: 'https://linkedin.com/in/kaviyan1409',
+    linkedin: 'https://www.linkedin.com/in/kaviyan-anandan-ba6144321?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
-    name: 'Athithyan D.',
+    name: 'Athithyan Dhanraj',
     degree: 'B.E Computer Science',
     year: '4th Year, JNN Institute of Engineering',
     role: 'Frontend Developer · Navigation & Mobile Optimization',
@@ -79,7 +79,7 @@ const team = [
     email: 'aaadhithyan77@gmail.com',
     instagram: 'https://www.instagram.com/aadhithyan56?igsh=dHhlcno4ZzdyZzUx',
     github: 'https://github.com/Athithyan123',
-    linkedin: 'https://linkedin.com/in/athithyan123',
+    linkedin: 'https://www.linkedin.com/in/athithyan-d-62325b2b9?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
 ];
 
