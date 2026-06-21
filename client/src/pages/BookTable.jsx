@@ -8,6 +8,12 @@ import stamp1 from '../assets/stamp1.png';
 import stamp2 from '../assets/stamp2.png';
 import stamp3 from '../assets/stamp3.png';
 import stamp4 from '../assets/stamp4.png';
+import gpayImg    from '../assets/payment/gpay.png';
+import phonepeImg from '../assets/payment/phonepe.png';
+import upiImg     from '../assets/payment/upi.png';
+import visaImg    from '../assets/payment/visa.png';
+import netbankImg from '../assets/payment/netbanking.png';
+import codImg     from '../assets/payment/cod.png';
 
 /* ─── SVG Icons ─── */
 const IconStar      = () => <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>;
@@ -39,7 +45,14 @@ const SEAT_MAP_TABLES = [
   { id: 'T5', type: 'large',  seats: 6, x: 40, y: 58, reserved: false },
   { id: 'T6', type: 'medium', seats: 4, x: 68, y: 58, reserved: true  },
 ];
-const PAYMENT_METHODS = ['GPay', 'PhonePe', 'UPI', 'Visa/Mastercard', 'Net Banking', 'Cash'];
+const PAYMENT_METHODS = [
+  { name: 'GPay',            img: gpayImg },
+  { name: 'PhonePe',        img: phonepeImg },
+  { name: 'UPI',             img: upiImg },
+  { name: 'Visa/Mastercard', img: visaImg },
+  { name: 'Net Banking',     img: netbankImg },
+  { name: 'Cash',            img: codImg },
+];
 const STEPS = ['Select Restaurant', 'Reservation Details', 'Seat Map', 'Booking Summary'];
 
 function BookTable() {
@@ -292,11 +305,14 @@ function BookTable() {
 
               <h4 className="bkt-pay-method-title">Select Payment Method</h4>
               <div className="bkt-pay-methods">
-                {PAYMENT_METHODS.map(m => (
-                  <button key={m} type="button"
-                    className={`bkt-pay-method${paymentMethod === m ? ' selected' : ''}`}
-                    onClick={() => setPaymentMethod(m)}>{m}
-                    {paymentMethod === m && <span className="bkt-pay-check"><IconCheck /></span>}
+                {PAYMENT_METHODS.map(({ name, img }) => (
+                  <button key={name} type="button"
+                    className={`bkt-pay-method${paymentMethod === name ? ' selected' : ''}`}
+                    onClick={() => setPaymentMethod(name)}
+                  >
+                    <img src={img} alt={name} className="bkt-pay-method-img" />
+                    <span>{name}</span>
+                    {paymentMethod === name && <span className="bkt-pay-check"><IconCheck /></span>}
                   </button>
                 ))}
               </div>

@@ -486,17 +486,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: -10px;
+  gap: 0px;
   flex-wrap: wrap;
-  gap: 8px;
 }
 .payment-stamp {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
-  opacity: 0.88;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+  opacity: 0.92;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
   transition: transform 0.3s, opacity 0.3s;
+  margin: -18px -32px;
 }
 .payment-stamp:nth-child(1) { transform: rotate(-6deg); }
 .payment-stamp:nth-child(2) { transform: rotate(4deg); }

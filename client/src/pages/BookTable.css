@@ -242,7 +242,7 @@
 .bkt-stamps-row { margin-top: 20px; padding-top: 16px; border-top: 1px dashed rgba(0,0,0,0.1); }
 .bkt-stamps-label { font-size: 0.68rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; text-align: center; }
 .bkt-stamps-grid { display: flex; align-items: center; justify-content: center; gap: 0px; flex-wrap: wrap; }
-.bkt-stamp { width: 150px; height: 150px; object-fit: contain; opacity: 0.92; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15)); transition: transform 0.3s; margin: -10px -15px; }
+.bkt-stamp { width: 200px; height: 200px; object-fit: contain; opacity: 0.92; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15)); transition: transform 0.3s; margin: -18px -32px; }
 .bkt-stamp:nth-child(1) { transform: rotate(-6deg); }
 .bkt-stamp:nth-child(2) { transform: rotate(4deg); }
 .bkt-stamp:nth-child(3) { transform: rotate(-3deg); }
@@ -261,15 +261,16 @@
 .bkt-pay-method-title { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.4px; margin: 4px 0 0; }
 .bkt-pay-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .bkt-pay-method {
-  position: relative; display: flex; align-items: center; justify-content: center;
-  padding: 11px 12px; border: 1.5px solid #e5e7eb;
-  border-radius: 10px; background: #fff;
-  font-size: 0.82rem; font-weight: 600; color: #444;
-  cursor: pointer; transition: all 0.2s;
+  position: relative; display: flex; align-items: center; justify-content: flex-start;
+  gap: 12px; padding: 10px 16px; border: 1.5px solid #e5e7eb;
+  border-radius: 12px; background: #fff;
+  font-size: 0.84rem; font-weight: 700; color: #444;
+  cursor: pointer; transition: all 0.2s ease;
 }
 .bkt-pay-method:hover { border-color: #E8303A; background: rgba(232,48,58,0.03); }
 .bkt-pay-method.selected { border-color: #E8303A; background: #FDE8E9; color: #E8303A; }
-.bkt-pay-check { position: absolute; top: 5px; right: 5px; width: 16px; height: 16px; border-radius: 50%; background: #E8303A; color: #fff; display: flex; align-items: center; justify-content: center; }
+.bkt-pay-method-img { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
+.bkt-pay-check { position: absolute; top: 6px; right: 6px; width: 16px; height: 16px; border-radius: 50%; background: #E8303A; color: #fff; display: flex; align-items: center; justify-content: center; }
 .bkt-pay-check svg { width: 10px; height: 10px; }
 .bkt-pay-btn {
   width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;

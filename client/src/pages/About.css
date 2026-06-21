@@ -329,23 +329,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  border: 1.5px solid rgba(0,0,0,0.1);
-  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.08);
+  background: #fbfbfb;
   color: var(--text-secondary);
-  transition: all 0.22s;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   flex-shrink: 0;
 }
 .founder-social-link svg {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
 }
 .founder-social-link:hover {
   background: var(--card-color, #E8303A);
   border-color: var(--card-color, #E8303A);
   color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  transform: translateY(-4px) scale(1.12);
+  border-radius: 30%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 4px 12px var(--card-color);
 }
