@@ -13,6 +13,27 @@ import Footer from './components/Footer';
 import Payment from './pages/Payment';
 import BookTable from './pages/BookTable';
 
+/* ── Floating SVG Components ── */
+const LeafIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 8.48 17 11.5c0 3.12-2.33 6.78-6 8.5z" />
+    <path d="M9 11c3 1.5 5.5.5 8-2.5" />
+  </svg>
+);
+const PepperIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2a4 4 0 0 0-4 4c0 .8.2 1.5.5 2.1C5 9.5 3 12.2 3 15.5c0 3.6 2.9 6.5 6.5 6.5 4.5 0 8-3.5 10.5-8 .6-1.1.8-2.3.8-3.5 0-3.3-2.7-6-6-6-1.1 0-2.1.3-3 .8C14.5 3.3 13.3 2 12 2z" />
+  </svg>
+);
+const GrainIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2 22l20-20" />
+    <path d="M8 12a3 3 0 0 1-3-3 3 3 0 0 1 3 3z" />
+    <path d="M12 8a3 3 0 0 1-3-3 3 3 0 0 1 3 3z" />
+    <path d="M12 16a3 3 0 0 0 3-3 3 3 0 0 0-3 3z" />
+  </svg>
+);
+
 function App() {
   const location = useLocation();
   const animFrameRef = useRef(null);
@@ -21,6 +42,23 @@ function App() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
+
+  // Scroll progress bar listener
+  useEffect(() => {
+    const handleScroll = () => {
+      const bar = document.getElementById('scroll-progress-indicator');
+      if (!bar) return;
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll <= 0) {
+        bar.style.width = '0%';
+        return;
+      }
+      const scrollPercent = (window.scrollY / totalScroll) * 100;
+      bar.style.width = `${scrollPercent}%`;
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Scroll Reveal — re-runs on every route change
   useEffect(() => {
@@ -117,11 +155,31 @@ function App() {
       {/* ── Fixed canvas overlay — MUST be position:fixed via CSS id ── */}
       <canvas id="cursor-canvas" aria-hidden="true" />
 
-      {/* ── Ambient floating orbs ── */}
+      {/* ── Scroll Progress Indicator ── */}
+      <div id="scroll-progress-indicator" style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        height: '3px',
+        width: '0%',
+        background: 'var(--brand-gradient)',
+        zIndex: 100001,
+        transition: 'width 0.08s ease-out',
+        pointerEvents: 'none'
+      }} />
+
+      {/* ── Ambient floating orbs & decorative elements ── */}
       <div className="bg-orbs" aria-hidden="true">
         <div className="bg-orb bg-orb-1" />
         <div className="bg-orb bg-orb-2" />
         <div className="bg-orb bg-orb-3" />
+
+        {/* Floating food icons */}
+        <div className="floating-element float-icon-1"><LeafIcon /></div>
+        <div className="floating-element float-icon-2"><PepperIcon /></div>
+        <div className="floating-element float-icon-3"><GrainIcon /></div>
+        <div className="floating-element float-icon-4"><LeafIcon /></div>
+        <div className="floating-element float-icon-5"><PepperIcon /></div>
       </div>
 
       <Navbar />

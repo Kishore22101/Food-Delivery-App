@@ -38,7 +38,7 @@ function NewsletterSignup() {
   };
 
   return (
-    <section className="newsletter-section">
+    <section className="newsletter-section reveal">
       <div className="newsletter-inner">
         <div className="newsletter-icon-wrap">
           <IconMail />

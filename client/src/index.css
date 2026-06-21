@@ -579,3 +579,55 @@ main { animation: pageEnter 0.45s var(--ease-out) both; }
   border-radius: var(--r-full);
   animation: loaderFill 1.3s var(--ease-out) both;
 }
+
+/* ── Floating ambient background elements ── */
+.floating-element {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.12;
+  color: var(--brand-primary);
+  filter: drop-shadow(0 4px 10px rgba(232, 48, 58, 0.06));
+  z-index: 0;
+}
+.floating-element svg {
+  width: 100%;
+  height: 100%;
+}
+.float-icon-1 {
+  width: 52px; height: 52px;
+  top: 15%; left: 6%;
+  animation: floatSlow 14s ease-in-out infinite;
+}
+.float-icon-2 {
+  width: 40px; height: 40px;
+  top: 32%; right: 8%;
+  color: #27AE60; /* Basil green */
+  animation: floatMedium 11s ease-in-out infinite alternate;
+}
+.float-icon-3 {
+  width: 48px; height: 48px;
+  top: 58%; left: 9%;
+  animation: floatSlow 16s ease-in-out infinite alternate-reverse;
+}
+.float-icon-4 {
+  width: 56px; height: 56px;
+  top: 78%; right: 7%;
+  animation: floatMedium 15s ease-in-out infinite;
+}
+.float-icon-5 {
+  width: 36px; height: 36px;
+  top: 46%; left: 48%;
+  animation: floatSlow 22s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-24px) rotate(16deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes floatMedium {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-16px) rotate(-14deg) scale(1.06); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}

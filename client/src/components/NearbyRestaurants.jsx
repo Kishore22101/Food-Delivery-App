@@ -82,7 +82,7 @@ function NearbyRestaurants() {
   };
 
   return (
-    <section className="food-slider-section" aria-label="Popular dishes">
+    <section className="food-slider-section reveal" aria-label="Popular dishes">
       <div className="food-slider-header">
         <div>
           <p className="food-slider-eyebrow">Our Menu</p>
@@ -109,13 +109,14 @@ function NearbyRestaurants() {
       </div>
 
       <div className="food-slider-track-wrap">
-        <div className="food-slider-track" ref={trackRef} role="list">
+        <div className="food-slider-track stagger-children" ref={trackRef} role="list">
           {dishes.map((dish, i) => {
             const key = dish.name;
             const isAdded = addedMap[key];
+
             return (
               <div className="food-card" key={i} role="listitem">
-                {/* Circular image */}
+                <div className="card-shine" />
                 <div className="food-card-img-wrap">
                   <img src={dish.image} alt={dish.name} className="food-card-img" />
                   <button

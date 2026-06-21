@@ -75,7 +75,7 @@ const offers = [
 
 function TodayOffers() {
   return (
-    <section className="offers-section">
+    <section className="offers-section reveal">
       <div className="offers-header">
         <div className="offers-badge">
           <IconZap />
@@ -85,7 +85,7 @@ function TodayOffers() {
         <p className="offers-subtitle">Use promo codes at checkout — offers updated daily</p>
       </div>
 
-      <div className="offers-grid">
+      <div className="offers-grid stagger-children">
         {offers.map((offer) => (
           <div
             className="offer-card"

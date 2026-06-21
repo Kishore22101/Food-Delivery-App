@@ -13,16 +13,7 @@
     <title>EatzUp – Food Delivered Fast</title>
   </head>
   <body>
-    <div id="app-splash" style="position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:#F5F0EB;pointer-events:none;">
-      <div style="font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:900;color:#E8303A;letter-spacing:-1px;">EatzUp</div>
-      <div style="width:180px;height:3px;background:rgba(232,48,58,0.12);border-radius:99px;overflow:hidden;">
-        <div id="splash-bar" style="height:100%;background:linear-gradient(90deg,#E8303A,#C1272D);border-radius:99px;width:0%;transition:width 0.9s ease;"></div>
-      </div>
-    </div>
-    <script>
-      setTimeout(function(){ var b=document.getElementById('splash-bar'); if(b) b.style.width='100%'; }, 60);
-      setTimeout(function(){ var s=document.getElementById('app-splash'); if(s){ s.style.transition='opacity 0.4s'; s.style.opacity='0'; setTimeout(function(){ s.remove(); },420); } }, 1100);
-    </script>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

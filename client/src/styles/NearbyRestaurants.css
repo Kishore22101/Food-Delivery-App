@@ -197,3 +197,32 @@
   .food-card-img-wrap { top: -44px; }
   .food-card { padding-top: 50px; }
 }
+
+/* ── Card Sweep Shine Hover Effect ── */
+.card-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.card-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 75%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.42) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.food-card:hover .card-shine::after {
+  left: 150%;
+}

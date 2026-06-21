@@ -79,6 +79,26 @@
   box-shadow: 0 16px 44px rgba(26,10,10,0.10);
   border-color: var(--offer-color, rgba(232,48,58,0.25));
 }
+.offer-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 75%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+.offer-card:hover::after {
+  left: 150%;
+}
 
 .offer-icon-wrap {
   width: 50px; height: 50px;

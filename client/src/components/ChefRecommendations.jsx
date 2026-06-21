@@ -32,7 +32,7 @@ const chefs = [
 
 function ChefRecommendations() {
   return (
-    <section className="chef-section">
+    <section className="chef-section reveal">
       <div className="chef-header">
         <div className="chef-label">
           <IconChef />
@@ -42,7 +42,7 @@ function ChefRecommendations() {
         <p className="chef-subtitle">Curated delights from top chefs — crafted with passion</p>
       </div>
 
-      <div className="chef-grid">
+      <div className="chef-grid stagger-children">
         {chefs.map((chef) => (
           <div className="chef-card" key={chef.name}>
             <div className="chef-img-wrap">

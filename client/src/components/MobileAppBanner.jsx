@@ -31,10 +31,10 @@ const IconStar = () => (
 
 function MobileAppBanner() {
   return (
-    <section className="app-banner">
+    <section className="app-banner reveal">
       <div className="app-banner-inner">
         {/* Left Text */}
-        <div className="app-text">
+        <div className="app-text stagger-children">
           <div className="app-label">
             <IconDownload />
             <span>Mobile App</span>
