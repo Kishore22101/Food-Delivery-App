@@ -241,8 +241,8 @@
 /* Stamps in ticket */
 .bkt-stamps-row { margin-top: 20px; padding-top: 16px; border-top: 1px dashed rgba(0,0,0,0.1); }
 .bkt-stamps-label { font-size: 0.68rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; text-align: center; }
-.bkt-stamps-grid { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.bkt-stamp { width: 110px; height: 110px; object-fit: contain; opacity: 0.88; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12)); transition: transform 0.3s; }
+.bkt-stamps-grid { display: flex; align-items: center; justify-content: center; gap: 0px; flex-wrap: wrap; }
+.bkt-stamp { width: 150px; height: 150px; object-fit: contain; opacity: 0.92; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15)); transition: transform 0.3s; margin: -10px -15px; }
 .bkt-stamp:nth-child(1) { transform: rotate(-6deg); }
 .bkt-stamp:nth-child(2) { transform: rotate(4deg); }
 .bkt-stamp:nth-child(3) { transform: rotate(-3deg); }
