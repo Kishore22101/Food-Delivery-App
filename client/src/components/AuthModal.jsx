@@ -101,7 +101,24 @@ function AuthModal({ onSuccess, onClose, reason = 'to continue' }) {
       // Network/CORS error — try local fallback
       if (!err.response) {
         const localUsers = JSON.parse(localStorage.getItem('eatzup_local_users') || '[]');
-        const found = localUsers.find(u => u.email.toLowerCase() === siEmail.trim().toLowerCase() && u.password === siPassword);
+        let found = localUsers.find(u => u.email.toLowerCase() === siEmail.trim().toLowerCase() && u.password === siPassword);
+        
+        // Seed default user if logging in with default credentials
+        if (!found && siEmail.trim().toLowerCase() === 'user@eatzup.com' && siPassword === 'eatzup123') {
+          found = {
+            id: 'usr_default',
+            name: 'Kishore K',
+            email: 'user@eatzup.com',
+            password: 'eatzup123',
+            mobile: '+91 98765 43210',
+            address: '123, Food Street, Chennai',
+            pincode: '600001',
+            joined: 'June 2026'
+          };
+          localUsers.push(found);
+          localStorage.setItem('eatzup_local_users', JSON.stringify(localUsers));
+        }
+
         if (found) {
           const user = { id: found.id, name: found.name, email: found.email, mobile: found.mobile || '', address: found.address || '', pincode: found.pincode || '', joined: found.joined };
           localStorage.setItem('eatzup_user', JSON.stringify(user));
