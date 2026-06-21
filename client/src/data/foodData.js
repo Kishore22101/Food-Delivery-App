@@ -1,69 +1,88 @@
+// src/data/foodData.js
+// Images are mapped to available assets in /src/assets/
+// Categories: North Indian, South Indian, Italian
+
+import pizza from '../assets/pizza.jpg';
+import burger from '../assets/Burger.jpg';
+import rolls from '../assets/rolls.jpg';
+import cheeseburst from '../assets/cheeseburst.jpg';
+import icecream from '../assets/icecream.jpg';
+import rest1Img from '../assets/rest1.jpg';
+import rest2Img from '../assets/rest2.jpg';
+import rest3Img from '../assets/rest3.jpg';
+import rest4Img from '../assets/rest4.jpg';
+import rest5Img from '../assets/rest5.jpg';
+
+// Rotating available images across food items
+const imgs = [pizza, burger, rolls, cheeseburst, icecream, rest1Img, rest2Img, rest3Img, rest4Img, rest5Img];
+const img = (i) => imgs[i % imgs.length];
+
 const foodData = [
   // ---------- NORTH INDIAN ----------
-  { name: "Chole Bhature", price: 120, category: "North Indian", image: "/assets/foods/chole-bhature1.jpg", description: "Spicy chickpeas served with deep-fried bread." },
-  { name: "Butter Chicken", price: 200, category: "North Indian", image: "/assets/foods/butter-chicken1.jpg", description: "Creamy tomato-based chicken curry." },
-  { name: "Paneer Tikka", price: 160, category: "North Indian", image: "/assets/foods/paneer-tikka.jpg", description: "Grilled marinated paneer cubes." },
-  { name: "Dal Makhani", price: 130, category: "North Indian", image: "/assets/foods/dal-makhani.jpg", description: "Slow-cooked black lentils in creamy gravy." },
-  { name: "Rajma Chawal", price: 100, category: "North Indian", image: "/assets/foods/rajma-chawal.jpg", description: "Red kidney beans curry with rice." },
-  { name: "Tandoori Chicken", price: 190, category: "North Indian", image: "/assets/foods/tandoori-chicken.jpg", description: "Chicken marinated in yogurt and spices, grilled to perfection." },
-  { name: "Palak Paneer", price: 140, category: "North Indian", image: "/assets/foods/palak-paneer.jpg", description: "Spinach curry with cottage cheese cubes." },
-  { name: "Aloo Paratha", price: 90, category: "North Indian", image: "/assets/foods/aloo-paratha.jpg", description: "Stuffed flatbread with spiced potatoes." },
-  { name: "Chicken Korma", price: 180, category: "North Indian", image: "/assets/foods/chicken-korma.jpg", description: "Rich and creamy chicken curry." },
-  { name: "Kadai Paneer", price: 150, category: "North Indian", image: "/assets/foods/kadai-paneer.jpg", description: "Paneer cooked with capsicum in a spicy gravy." },
-  { name: "Bhindi Masala", price: 110, category: "North Indian", image: "/assets/foods/bhindi-masala.jpg", description: "Spicy okra fry." },
-  { name: "Malai Kofta", price: 150, category: "North Indian", image: "/assets/foods/malai-kofta.jpg", description: "Soft paneer dumplings in creamy gravy." },
-  { name: "Baingan Bharta", price: 120, category: "North Indian", image: "/assets/foods/baingan-bharta.jpg", description: "Smoky mashed eggplant curry." },
-  { name: "Chicken Tikka Masala", price: 200, category: "North Indian", image: "/assets/foods/chicken-tikka-masala.jpg", description: "Spiced grilled chicken in tomato sauce." },
-  { name: "Jeera Rice", price: 80, category: "North Indian", image: "/assets/foods/jeera-rice.jpg", description: "Basmati rice with cumin seeds." },
-  { name: "Methi Thepla", price: 100, category: "North Indian", image: "/assets/foods/methi-thepla.jpg", description: "Spiced fenugreek flatbread." },
-  { name: "Gajar Halwa", price: 90, category: "North Indian", image: "/assets/foods/gajar-halwa.jpg", description: "Sweet carrot dessert with milk and nuts." },
-  { name: "Lassi", price: 60, category: "North Indian", image: "/assets/foods/lassi.jpg", description: "Chilled yogurt-based drink." },
-  { name: "Kachori", price: 70, category: "North Indian", image: "/assets/foods/kachori.jpg", description: "Fried pastry filled with spicy lentils." },
-  { name: "Punjabi Kadhi Pakora", price: 110, category: "North Indian", image: "/assets/foods/punjabi-kadhi-pakora.jpg", description: "Gram flour dumplings in yogurt curry." },
+  { name: 'Chole Bhature',         price: 120, category: 'North Indian', image: img(0),  description: 'Spicy chickpeas served with deep-fried bread.' },
+  { name: 'Butter Chicken',        price: 200, category: 'North Indian', image: img(1),  description: 'Creamy tomato-based chicken curry.' },
+  { name: 'Paneer Tikka',          price: 160, category: 'North Indian', image: img(2),  description: 'Grilled marinated paneer cubes.' },
+  { name: 'Dal Makhani',           price: 130, category: 'North Indian', image: img(3),  description: 'Slow-cooked black lentils in creamy gravy.' },
+  { name: 'Rajma Chawal',          price: 100, category: 'North Indian', image: img(4),  description: 'Red kidney beans curry with rice.' },
+  { name: 'Tandoori Chicken',      price: 190, category: 'North Indian', image: img(5),  description: 'Chicken marinated in yogurt and spices, grilled to perfection.' },
+  { name: 'Palak Paneer',          price: 140, category: 'North Indian', image: img(6),  description: 'Spinach curry with cottage cheese cubes.' },
+  { name: 'Aloo Paratha',          price: 90,  category: 'North Indian', image: img(7),  description: 'Stuffed flatbread with spiced potatoes.' },
+  { name: 'Chicken Korma',         price: 180, category: 'North Indian', image: img(8),  description: 'Rich and creamy chicken curry.' },
+  { name: 'Kadai Paneer',          price: 150, category: 'North Indian', image: img(9),  description: 'Paneer cooked with capsicum in a spicy gravy.' },
+  { name: 'Bhindi Masala',         price: 110, category: 'North Indian', image: img(0),  description: 'Spicy okra fry.' },
+  { name: 'Malai Kofta',           price: 150, category: 'North Indian', image: img(1),  description: 'Soft paneer dumplings in creamy gravy.' },
+  { name: 'Baingan Bharta',        price: 120, category: 'North Indian', image: img(2),  description: 'Smoky mashed eggplant curry.' },
+  { name: 'Chicken Tikka Masala',  price: 200, category: 'North Indian', image: img(3),  description: 'Spiced grilled chicken in tomato sauce.' },
+  { name: 'Jeera Rice',            price: 80,  category: 'North Indian', image: img(4),  description: 'Basmati rice with cumin seeds.' },
+  { name: 'Methi Thepla',          price: 100, category: 'North Indian', image: img(5),  description: 'Spiced fenugreek flatbread.' },
+  { name: 'Gajar Halwa',           price: 90,  category: 'North Indian', image: img(6),  description: 'Sweet carrot dessert with milk and nuts.' },
+  { name: 'Lassi',                 price: 60,  category: 'North Indian', image: img(7),  description: 'Chilled yogurt-based drink.' },
+  { name: 'Kachori',               price: 70,  category: 'North Indian', image: img(8),  description: 'Fried pastry filled with spicy lentils.' },
+  { name: 'Punjabi Kadhi Pakora',  price: 110, category: 'North Indian', image: img(9),  description: 'Gram flour dumplings in yogurt curry.' },
 
   // ---------- SOUTH INDIAN ----------
-  { name: "Masala Dosa", price: 90, category: "South Indian", image: "/assets/foods/masala-dosa.jpg", description: "Crispy dosa filled with spiced potatoes." },
-  { name: "Idli Sambar", price: 60, category: "South Indian", image: "/assets/foods/idli-sambar.jpg", description: "Steamed rice cakes with spicy lentil soup." },
-  { name: "Medu Vada", price: 70, category: "South Indian", image: "/assets/foods/medu-vada.jpg", description: "Crispy lentil fritters." },
-  { name: "Upma", price: 65, category: "South Indian", image: "/assets/foods/upma.jpg", description: "Semolina breakfast dish with spices." },
-  { name: "Pongal", price: 75, category: "South Indian", image: "/assets/foods/pongal.jpg", description: "Rice-lentil dish seasoned with pepper and ghee." },
-  { name: "Onion Uttapam", price: 85, category: "South Indian", image: "/assets/foods/onion-uttapam.jpg", description: "Thick dosa topped with onions." },
-  { name: "Lemon Rice", price: 80, category: "South Indian", image: "/assets/foods/lemon-rice.jpg", description: "Tangy yellow rice with mustard seeds." },
-  { name: "Chicken Chettinad", price: 190, category: "South Indian", image: "/assets/foods/chicken-chettinad.jpg", description: "Spicy Chettinad-style chicken curry." },
-  { name: "Fish Curry", price: 200, category: "South Indian", image: "/assets/foods/fish-curry.jpg", description: "Tangy fish curry with coconut and spices." },
-  { name: "Curd Rice", price: 70, category: "South Indian", image: "/assets/foods/curd-rice.jpg", description: "Cooling rice mixed with curd and seasoning." },
-  { name: "Pesarattu", price: 85, category: "South Indian", image: "/assets/foods/pesarattu.jpg", description: "Green gram dosa." },
-  { name: "Kozhukattai", price: 65, category: "South Indian", image: "/assets/foods/kozhukattai.jpg", description: "Steamed rice dumpling, often sweet." },
-  { name: "Rasam", price: 60, category: "South Indian", image: "/assets/foods/rasam.jpg", description: "Spicy and tangy tamarind soup." },
-  { name: "Sambar Rice", price: 90, category: "South Indian", image: "/assets/foods/sambar-rice.jpg", description: "Rice mixed with lentil-vegetable stew." },
-  { name: "Thayir Vadai", price: 80, category: "South Indian", image: "/assets/foods/thayir-vadai.jpg", description: "Lentil fritters soaked in curd." },
-  { name: "Avial", price: 95, category: "South Indian", image: "/assets/foods/avial.jpg", description: "Mixed vegetables cooked in coconut gravy." },
-  { name: "Tomato Bath", price: 85, category: "South Indian", image: "/assets/foods/tomato-bath.jpg", description: "Spiced tomato rice." },
-  { name: "Kootu", price: 70, category: "South Indian", image: "/assets/foods/kootu.jpg", description: "Vegetable stew with lentils." },
-  { name: "Murukku", price: 50, category: "South Indian", image: "/assets/foods/murukku.jpg", description: "Crispy spiral savory snack." },
-  { name: "Filter Coffee", price: 40, category: "South Indian", image: "/assets/foods/filter-coffee.jpg", description: "Strong South Indian-style brewed coffee." },
+  { name: 'Masala Dosa',          price: 90,  category: 'South Indian', image: img(3),  description: 'Crispy dosa filled with spiced potatoes.' },
+  { name: 'Idli Sambar',          price: 60,  category: 'South Indian', image: img(4),  description: 'Steamed rice cakes with spicy lentil soup.' },
+  { name: 'Medu Vada',            price: 70,  category: 'South Indian', image: img(5),  description: 'Crispy lentil fritters.' },
+  { name: 'Upma',                 price: 65,  category: 'South Indian', image: img(6),  description: 'Semolina breakfast dish with spices.' },
+  { name: 'Pongal',               price: 75,  category: 'South Indian', image: img(7),  description: 'Rice-lentil dish seasoned with pepper and ghee.' },
+  { name: 'Onion Uttapam',        price: 85,  category: 'South Indian', image: img(8),  description: 'Thick dosa topped with onions.' },
+  { name: 'Lemon Rice',           price: 80,  category: 'South Indian', image: img(9),  description: 'Tangy yellow rice with mustard seeds.' },
+  { name: 'Chicken Chettinad',    price: 190, category: 'South Indian', image: img(0),  description: 'Spicy Chettinad-style chicken curry.' },
+  { name: 'Fish Curry',           price: 200, category: 'South Indian', image: img(1),  description: 'Tangy fish curry with coconut and spices.' },
+  { name: 'Curd Rice',            price: 70,  category: 'South Indian', image: img(2),  description: 'Cooling rice mixed with curd and seasoning.' },
+  { name: 'Pesarattu',            price: 85,  category: 'South Indian', image: img(3),  description: 'Green gram dosa.' },
+  { name: 'Kozhukattai',          price: 65,  category: 'South Indian', image: img(4),  description: 'Steamed rice dumpling, often sweet.' },
+  { name: 'Rasam',                price: 60,  category: 'South Indian', image: img(5),  description: 'Spicy and tangy tamarind soup.' },
+  { name: 'Sambar Rice',          price: 90,  category: 'South Indian', image: img(6),  description: 'Rice mixed with lentil-vegetable stew.' },
+  { name: 'Thayir Vadai',         price: 80,  category: 'South Indian', image: img(7),  description: 'Lentil fritters soaked in curd.' },
+  { name: 'Avial',                price: 95,  category: 'South Indian', image: img(8),  description: 'Mixed vegetables cooked in coconut gravy.' },
+  { name: 'Tomato Bath',          price: 85,  category: 'South Indian', image: img(9),  description: 'Spiced tomato rice.' },
+  { name: 'Kootu',                price: 70,  category: 'South Indian', image: img(0),  description: 'Vegetable stew with lentils.' },
+  { name: 'Murukku',              price: 50,  category: 'South Indian', image: img(1),  description: 'Crispy spiral savory snack.' },
+  { name: 'Filter Coffee',        price: 40,  category: 'South Indian', image: img(2),  description: 'Strong South Indian-style brewed coffee.' },
 
   // ---------- ITALIAN ----------
-  { name: "Margherita Pizza", price: 180, category: "Italian", image: "/assets/foods/margherita-pizza.jpg", description: "Classic pizza with tomato, mozzarella, and basil." },
-  { name: "Pasta Alfredo", price: 160, category: "Italian", image: "/assets/foods/pasta-alfredo.jpg", description: "Creamy white sauce pasta." },
-  { name: "Lasagna", price: 200, category: "Italian", image: "/assets/foods/lasagna.jpg", description: "Layered pasta with cheese, sauce, and meat." },
-  { name: "Penne Arrabiata", price: 170, category: "Italian", image: "/assets/foods/penne-arrabiata.jpg", description: "Penne pasta in spicy tomato sauce." },
-  { name: "Garlic Bread", price: 90, category: "Italian", image: "/assets/foods/garlic-bread.jpg", description: "Toasted bread with garlic and butter." },
-  { name: "Spaghetti Bolognese", price: 190, category: "Italian", image: "/assets/foods/spaghetti-bolognese.jpg", description: "Spaghetti in meat-based sauce." },
-  { name: "Fettuccine Alfredo", price: 180, category: "Italian", image: "/assets/foods/fettuccine-alfredo.jpg", description: "Flat pasta in creamy Alfredo sauce." },
-  { name: "Cheese Ravioli", price: 170, category: "Italian", image: "/assets/foods/cheese-ravioli.jpg", description: "Stuffed pasta with cheese filling." },
-  { name: "Pizza Pepperoni", price: 200, category: "Italian", image: "/assets/foods/pizza-pepperoni.jpg", description: "Pizza topped with spicy pepperoni." },
-  { name: "Mushroom Risotto", price: 160, category: "Italian", image: "/assets/foods/mushroom-risotto.jpg", description: "Creamy rice dish with mushrooms." },
-  { name: "Tiramisu", price: 120, category: "Italian", image: "/assets/foods/tiramisu.jpg", description: "Coffee-flavored Italian dessert." },
-  { name: "Bruschetta", price: 100, category: "Italian", image: "/assets/foods/bruschetta.jpg", description: "Grilled bread topped with tomatoes and basil." },
-  { name: "Calzone", price: 180, category: "Italian", image: "/assets/foods/calzone.jpg", description: "Folded pizza stuffed with meats and cheese." },
-  { name: "Gnocchi", price: 150, category: "Italian", image: "/assets/foods/gnocchi.jpg", description: "Soft potato dumplings served with sauce." },
-  { name: "Caprese Salad", price: 110, category: "Italian", image: "/assets/foods/caprese-salad.jpg", description: "Fresh tomatoes, mozzarella, and basil." },
-  { name: "Cannoli", price: 100, category: "Italian", image: "/assets/foods/cannoli.jpg", description: "Tube-shaped pastry with sweet filling." },
-  { name: "Pizza Bianca", price: 190, category: "Italian", image: "/assets/foods/pizza-bianca.jpg", description: "White pizza without tomato sauce." },
-  { name: "Tomato Basil Soup", price: 90, category: "Italian", image: "/assets/foods/tomato-basil-soup.jpg", description: "Smooth tomato soup with fresh basil." },
-  { name: "Minestrone Soup", price: 100, category: "Italian", image: "/assets/foods/minestrone-soup.jpg", description: "Vegetable soup with pasta and beans." },
-  { name: "Espresso", price: 50, category: "Italian", image: "/assets/foods/espresso.jpg", description: "Strong and rich Italian coffee shot." }
+  { name: 'Margherita Pizza',     price: 180, category: 'Italian', image: pizza,       description: 'Classic pizza with tomato, mozzarella, and basil.' },
+  { name: 'Pasta Alfredo',        price: 160, category: 'Italian', image: img(7),      description: 'Creamy white sauce pasta.' },
+  { name: 'Lasagna',              price: 200, category: 'Italian', image: img(8),      description: 'Layered pasta with cheese, sauce, and meat.' },
+  { name: 'Penne Arrabiata',      price: 170, category: 'Italian', image: img(9),      description: 'Penne pasta in spicy tomato sauce.' },
+  { name: 'Garlic Bread',         price: 90,  category: 'Italian', image: img(0),      description: 'Toasted bread with garlic and butter.' },
+  { name: 'Spaghetti Bolognese',  price: 190, category: 'Italian', image: img(1),      description: 'Spaghetti in meat-based sauce.' },
+  { name: 'Fettuccine Alfredo',   price: 180, category: 'Italian', image: img(2),      description: 'Flat pasta in creamy Alfredo sauce.' },
+  { name: 'Cheese Ravioli',       price: 170, category: 'Italian', image: img(3),      description: 'Stuffed pasta with cheese filling.' },
+  { name: 'Pizza Pepperoni',      price: 200, category: 'Italian', image: cheeseburst, description: 'Pizza topped with spicy pepperoni.' },
+  { name: 'Mushroom Risotto',     price: 160, category: 'Italian', image: img(5),      description: 'Creamy rice dish with mushrooms.' },
+  { name: 'Tiramisu',             price: 120, category: 'Italian', image: icecream,    description: 'Coffee-flavored Italian dessert.' },
+  { name: 'Bruschetta',           price: 100, category: 'Italian', image: img(7),      description: 'Grilled bread topped with tomatoes and basil.' },
+  { name: 'Calzone',              price: 180, category: 'Italian', image: img(8),      description: 'Folded pizza stuffed with meats and cheese.' },
+  { name: 'Gnocchi',              price: 150, category: 'Italian', image: img(9),      description: 'Soft potato dumplings served with sauce.' },
+  { name: 'Caprese Salad',        price: 110, category: 'Italian', image: img(0),      description: 'Fresh tomatoes, mozzarella, and basil.' },
+  { name: 'Cannoli',              price: 100, category: 'Italian', image: img(1),      description: 'Tube-shaped pastry with sweet filling.' },
+  { name: 'Pizza Bianca',         price: 190, category: 'Italian', image: pizza,       description: 'White pizza without tomato sauce.' },
+  { name: 'Tomato Basil Soup',    price: 90,  category: 'Italian', image: img(3),      description: 'Smooth tomato soup with fresh basil.' },
+  { name: 'Minestrone Soup',      price: 100, category: 'Italian', image: img(4),      description: 'Vegetable soup with pasta and beans.' },
+  { name: 'Espresso',             price: 50,  category: 'Italian', image: img(5),      description: 'Strong and rich Italian coffee shot.' },
 ];
 
 export default foodData;

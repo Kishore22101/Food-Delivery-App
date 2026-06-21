@@ -1,227 +1,305 @@
-.hero-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 60px 8%;
+/* ─── HeroSection v4 — Foody Template Style ─── */
+.hero {
   position: relative;
-  background: linear-gradient(120deg, #fff8ed, #fff0e0);
-  flex-wrap: wrap;
-  overflow: hidden;
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-.hero-left {
-  flex: 1;
-  z-index: 2;
-}
-
-.hero-left h1 {
-  font-size: 3.2rem;
-  color: #222;
-  margin-bottom: 12px;
-  line-height: 1.3;
-}
-
-.hero-left h1 span {
-  color: #ff6b00;
-  font-weight: 800;
-  background: linear-gradient(90deg, #ff6b00, #ffb100);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero-left p {
-  font-size: 1.15rem;
-  color: #555;
-  margin-bottom: 28px;
-}
-
-.location-bar {
+  min-height: calc(100vh - var(--navbar-h, 70px));
   display: flex;
   align-items: center;
-  background-color: #fff;
-  padding: 10px 14px;
-  border-radius: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  max-width: 480px;
-  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+  background: linear-gradient(145deg, #F7F1EA 0%, #F2EBE0 45%, #EDE5D8 100%);
+  padding: 60px 40px;
 }
 
-.location-bar:focus-within {
-  box-shadow: 0 6px 24px rgba(255, 107, 0, 0.3);
-}
-
-.map-icon {
-  font-size: 1.3rem;
-  margin-right: 10px;
-  color: #ff6b00;
-}
-
-.location-bar input {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 20px;
-  color: #333;
-}
-
-.location-bar input::placeholder {
-  color: #999;
-}
-
-.order-btn {
-  background: linear-gradient(90deg, #ff6b00, #ff9900);
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 20px;
-  margin-left: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
-}
-
-.order-btn:hover {
-  background-color: #e65c00;
-  transform: translateY(-1px);
-}
-
-.hero-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  z-index: 2;
-}
-
-.hero-right img {
-  width: 100%;
-  max-width: 460px;
-  border-radius: 50%;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.hero-right img:hover {
-  transform: scale(1.02);
-}
-
-.background-wave {
+/* ── Blobs ── */
+.hero-blob {
   position: absolute;
-  top: -100px;
-  right: -150px;
-  width: 620px;
-  height: 620px;
-  background: radial-gradient(circle at center, #ff6b00, #ff6b00cc);
   border-radius: 50%;
-  z-index: 1;
-  opacity: 0.2;
-  filter: blur(20px);
-  animation: pulse 4s infinite ease-in-out;
-}
-
-/* 💨 Floating Ingredient Styles - all float near top-left, bigger size */
-.floating {
-  position: absolute;
-  z-index: 1;
+  filter: blur(80px);
   pointer-events: none;
-  animation: float 6s ease-in-out infinite;
-  opacity: 0.9;
+}
+.hero-blob-1 {
+  width: 440px; height: 440px;
+  background: radial-gradient(circle, rgba(232,48,58,0.14), transparent);
+  top: -120px; right: 8%;
+  animation: orbFloat1 16s ease-in-out infinite;
+}
+.hero-blob-2 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(232,48,58,0.08), transparent);
+  bottom: -80px; left: 3%;
+  animation: orbFloat2 20s ease-in-out infinite;
 }
 
-.tomato {
-  top: 5%;
-  left: 4%;
-  width: 70px;
-  animation-delay: 0s;
+/* ── Inner Grid ── */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-w, 1280px);
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
 }
 
-.basil {
-  top: 6%;
-  left: 12%;
-  width: 65px;
-  animation-delay: 0.8s;
+/* ── Left Content ── */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-.garlic {
-  top: 8%;
-  left: 20%;
-  width: 68px;
-  animation-delay: 1.6s;
+/* Big bold Playfair Display headline */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+}
+.hero-title-italic {
+  font-style: italic;
+  color: var(--brand-primary);
 }
 
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(12deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+/* ── CTA Buttons ── */
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--brand-gradient);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 8px 28px rgba(232,48,58,0.32);
+  transition: transform var(--dur-fast), box-shadow var(--dur-fast);
+  cursor: pointer;
+  letter-spacing: 0.2px;
+}
+.hero-btn-primary svg { width: 16px; height: 16px; }
+.hero-btn-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 36px rgba(232,48,58,0.40);
 }
 
-@keyframes fadeIn {
-  from {
-    transform: translateY(40px);
-    opacity: 0;
+.hero-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 30px;
+  background: #fff;
+  color: var(--text-primary);
+  border: 1.5px solid rgba(26,10,10,0.14);
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: border-color var(--dur-fast), background var(--dur-fast), box-shadow var(--dur-fast);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.hero-btn-outline:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  box-shadow: 0 8px 24px rgba(232,48,58,0.12);
+}
+
+/* ── Reviews ── */
+.hero-reviews {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.hero-review-avatars {
+  display: flex;
+  align-items: center;
+}
+.hero-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #fff;
+  margin-left: -10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+.hero-avatar:first-child { margin-left: 0; }
+
+.hero-review-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.hero-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: #F4A000;
+}
+.hero-stars svg { width: 14px; height: 14px; }
+.hero-review-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+}
+
+/* ── Right Image ── */
+.hero-image-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image-ring {
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  border: 2px dashed rgba(232,48,58,0.18);
+  animation: spinSlow 35s linear infinite;
+}
+
+.hero-image {
+  width: clamp(280px, 42vw, 500px);
+  height: clamp(280px, 42vw, 500px);
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow:
+    0 32px 80px rgba(232,48,58,0.18),
+    0 0 0 14px rgba(255,255,255,0.6),
+    0 0 0 28px rgba(232,48,58,0.06);
+  animation: float 7s ease-in-out infinite;
+}
+
+/* ── Discount Pill (top-left of image) ── */
+.hero-discount-pill {
+  position: absolute;
+  top: 10%;
+  left: -4%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: var(--r-lg);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  animation: floatX 5s ease-in-out infinite;
+  z-index: 3;
+}
+.hero-discount-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  background: rgba(232,48,58,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+.hero-discount-icon svg { width: 18px; height: 18px; }
+.hero-discount-value {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  line-height: 1;
+}
+.hero-discount-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Delivery Pill (bottom) ── */
+.hero-pill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: var(--r-lg);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  z-index: 3;
+}
+.hero-pill-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  background: rgba(232,48,58,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+.hero-pill-icon svg { width: 18px; height: 18px; }
+.hero-pill-value {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.hero-pill-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.hero-pill-bottom {
+  bottom: 8%;
+  right: -4%;
+  animation: floatX 4.5s ease-in-out 0.5s infinite reverse;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero { padding: 50px 24px; }
+  .hero-inner { gap: 40px; }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    padding: 40px 20px 60px;
+    min-height: auto;
   }
-  to {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.2;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.3;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.2;
-  }
-}
-
-/* 📱 Mobile Responsive */
-@media (max-width: 768px) {
-  .hero-container {
-    flex-direction: column;
-    padding: 40px 20px;
+  .hero-inner {
+    grid-template-columns: 1fr;
     text-align: center;
+    gap: 40px;
   }
-
-  .hero-left h1 {
-    font-size: 2.2rem;
+  .hero-cta { justify-content: center; }
+  .hero-reviews { justify-content: center; }
+  .hero-image-wrap { order: -1; }
+  .hero-image {
+    width: clamp(240px, 65vw, 380px);
+    height: clamp(240px, 65vw, 380px);
   }
-
-  .location-bar {
-    flex-direction: column;
-    gap: 12px;
-    border-radius: 20px;
-    padding: 16px;
-    max-width: 100%;
-  }
-
-  .order-btn {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .hero-right {
-    margin-top: 30px;
-  }
-
-  .hero-right img {
-    max-width: 300px;
-  }
-
-  .background-wave {
-    display: none;
-  }
-
-  .tomato, .basil, .garlic {
-    display: none;
-  }
+  .hero-discount-pill { left: 0; top: 5%; }
+  .hero-pill-bottom { right: 0; bottom: 5%; }
 }

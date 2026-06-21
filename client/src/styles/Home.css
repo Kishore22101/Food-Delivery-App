@@ -1,16 +1,4 @@
 /* src/styles/Home.css */
-.hero-section {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #f9f9f9;
-}
-
-.hero-section h1 {
-  font-size: 2.5rem;
-  color: #222;
-}
-
-.hero-section p {
-  font-size: 1.2rem;
-  color: #555;
+.home-page {
+  /* Sections stack vertically, each handles its own padding */
 }

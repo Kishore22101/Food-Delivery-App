@@ -1,0 +1,341 @@
+/* src/components/AuthModal.css */
+
+.auth-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13, 5, 5, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: amFadeIn 0.3s ease-out forwards;
+}
+
+.auth-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(13, 5, 5, 0.15);
+  border: 1px solid rgba(232, 48, 58, 0.08);
+  padding: 40px;
+  z-index: 10001;
+  animation: amScaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Scrollbar styling for modal card */
+.auth-modal-card::-webkit-scrollbar {
+  width: 6px;
+}
+.auth-modal-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+.auth-modal-card::-webkit-scrollbar-thumb {
+  background: #EDE8E2;
+  border-radius: 10px;
+}
+.auth-modal-card::-webkit-scrollbar-thumb:hover {
+  background: #E8303A;
+}
+
+.auth-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #EDE8E2;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-modal-close:hover {
+  background: #E8303A;
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.auth-modal-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.auth-modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FDE8E9;
+  color: #E8303A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.auth-modal-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.auth-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a0a0a;
+  margin-bottom: 8px;
+}
+
+.auth-modal-subtitle {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Tabs */
+.auth-modal-tabs {
+  position: relative;
+  display: flex;
+  background: #F5F0EB;
+  border-radius: 30px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.auth-modal-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 30px;
+  transition: color 0.3s ease;
+}
+
+.auth-modal-tab.active {
+  color: #E8303A;
+}
+
+.auth-modal-tab-indicator {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: calc(50% - 4px);
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.auth-modal-tab-indicator.right {
+  transform: translateX(100%);
+}
+
+/* Forms */
+.auth-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-modal-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.auth-modal-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-modal-input-icon {
+  position: absolute;
+  left: 14px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.auth-modal-input-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.auth-modal-input-wrap input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border-radius: 12px;
+  border: 1px solid #EDE8E2;
+  background: #ffffff;
+  font-size: 14px;
+  color: #1a0a0a;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.auth-modal-input-wrap input:focus {
+  border-color: #E8303A;
+  box-shadow: 0 0 0 3px rgba(232, 48, 58, 0.1);
+}
+
+.auth-modal-eye {
+  position: absolute;
+  right: 14px;
+  border: none;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.auth-modal-eye svg {
+  width: 18px;
+  height: 18px;
+}
+
+.auth-modal-eye:hover {
+  color: #E8303A;
+}
+
+/* Submit Button */
+.auth-modal-submit {
+  border: none;
+  background: #E8303A;
+  color: #ffffff;
+  padding: 14px 0;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.auth-modal-submit:hover:not(:disabled) {
+  background: #C1272D;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(232, 48, 58, 0.2);
+}
+
+.auth-modal-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auth-modal-submit:disabled {
+  background: #f7a0a4;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.auth-modal-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: amSpin 0.8s linear infinite;
+}
+
+/* Errors */
+.auth-modal-error {
+  background: #FDE8E9;
+  border-left: 4px solid #E8303A;
+  color: #c1272d;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  animation: amShake 0.4s ease-out;
+}
+
+.auth-modal-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #888;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.auth-modal-note svg {
+  width: 14px;
+  height: 14px;
+  color: #27AE60;
+}
+
+/* Animations */
+@keyframes amFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes amScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes amSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes amShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}

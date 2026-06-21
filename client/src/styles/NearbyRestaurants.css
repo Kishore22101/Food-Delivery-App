@@ -1,123 +1,199 @@
-/* src/styles/NearbyRestaurants.css */
-.nearby-carousel {
-  padding: 3rem 1rem;
-  background: linear-gradient(135deg, #fffefc, #f9f9ff);
-  max-width: 1200px;
-  margin: 3rem auto;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+/* ─── Food Slider Section v4 — Foody Template ─── */
+.food-slider-section {
+  padding: 80px 40px;
+  background: var(--bg-page);
   position: relative;
-  overflow-x: hidden;
 }
 
-.nearby-carousel h2 {
-  text-align: center;
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 2.5rem;
-  background: linear-gradient(45deg, #ff8a00, #e52e71);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;
-  animation: slideIn 0.5s ease;
-}
-
-/* ✅ Scroll Wrapper with animation */
-.carousel-track {
+/* Header */
+.food-slider-header {
   display: flex;
-  gap: 1rem;
-  animation: scrollLeft 20s linear infinite;
-  will-change: transform;
+  align-items: flex-end;
+  justify-content: space-between;
+  max-width: var(--max-w);
+  margin: 0 auto 48px;
+  gap: 16px;
 }
 
-/* Card Styling */
-.restaurant-card {
-  flex: 0 0 260px;
-  background: #ffffff;
-  border-radius: 18px;
+.food-slider-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin-bottom: 6px;
+}
+
+.food-slider-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+/* Arrow Controls */
+.food-slider-arrows {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.slider-arrow {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: transform var(--dur-fast), box-shadow var(--dur-fast), background var(--dur-fast);
+  flex-shrink: 0;
+}
+.slider-arrow svg { width: 18px; height: 18px; }
+
+.slider-arrow-left {
+  background: #fff;
+  color: var(--text-primary);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+.slider-arrow-left:hover {
+  background: var(--bg-surface);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+  transform: scale(1.06);
+}
+
+.slider-arrow-right {
+  background: var(--brand-gradient);
+  color: #fff;
+  box-shadow: var(--shadow-brand);
+}
+.slider-arrow-right:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 28px rgba(232,48,58,0.40);
+}
+
+/* Track */
+.food-slider-track-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
   overflow: hidden;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.restaurant-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+.food-slider-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 20px 4px 28px;
+}
+.food-slider-track::-webkit-scrollbar { display: none; }
+
+/* ── Individual Food Card — Foody Style ── */
+.food-card {
+  flex-shrink: 0;
+  width: 230px;
+  background: var(--bg-card);
+  border-radius: var(--r-xl);
+  box-shadow: 0 6px 28px rgba(26,10,10,0.08);
+  overflow: visible;
+  scroll-snap-align: start;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
+  position: relative;
+  padding-top: 60px;
+}
+.food-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(26,10,10,0.12);
 }
 
-.restaurant-card img {
-  width: 100%;
-  height: 200px;
+/* Circular image protruding above card */
+.food-card-img-wrap {
+  position: absolute;
+  top: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.food-card-img {
+  width: 120px; height: 120px;
+  border-radius: 50%;
   object-fit: cover;
-  border-bottom: 1px solid #f0f0f0;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 28px rgba(26,10,10,0.14);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.food-card:hover .food-card-img { transform: scale(1.05); }
+
+/* Cart button — dark circle */
+.food-card-cart-btn {
+  position: absolute;
+  bottom: -2px; right: -2px;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: #1A0A0A;
+  color: #fff;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(26,10,10,0.28);
+  transition: background var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast);
+  z-index: 2;
+}
+.food-card-cart-btn svg { width: 15px; height: 15px; }
+.food-card-cart-btn:hover {
+  background: var(--brand-primary);
+  transform: scale(1.12);
+  box-shadow: 0 6px 18px rgba(232,48,58,0.45);
+}
+.food-card-cart-btn.added {
+  background: var(--brand-primary);
+  animation: scaleInBounce 0.4s var(--ease-bounce);
 }
 
-/* Card Content */
-.card-info {
-  padding: 1rem;
+/* Card body */
+.food-card-body {
+  padding: 16px 20px 20px;
+  text-align: center;
 }
-
-.card-info h3 {
-  font-size: 1.3rem;
-  color: #ff6f00;
-  margin: 0.5rem 0;
-}
-
-.card-info p {
+.food-card-name {
+  font-family: var(--font-sans);
   font-size: 0.95rem;
-  color: #444;
-  margin: 0.3rem 0;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+.food-card-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.food-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.food-card-price {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--text-primary);
 }
 
-.card-info span {
-  font-size: 0.85rem;
-  color: #999;
-  display: inline-block;
-  margin-top: 0.4rem;
-}
-
-/* ✅ Slide Keyframe */
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Heading Slide Animation */
-@keyframes slideIn {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* ✅ Mobile Responsive */
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  .restaurant-card {
-    flex: 0 0 200px;
-  }
-
-  .restaurant-card img {
-    height: 160px;
-  }
-
-  .card-info h3 {
-    font-size: 1.1rem;
-  }
-
-  .card-info p {
-    font-size: 0.9rem;
-  }
-
-  .card-info span {
-    font-size: 0.8rem;
-  }
+  .food-slider-section { padding: 60px 20px; }
+  .food-slider-header { margin-bottom: 36px; }
+  .food-slider-title { font-size: 1.7rem; }
+  .food-card { width: 200px; }
+  .food-card-img,
+  .food-card-img-wrap { width: 100px; height: 100px; }
+  .food-card-img-wrap { top: -44px; }
+  .food-card { padding-top: 50px; }
 }
