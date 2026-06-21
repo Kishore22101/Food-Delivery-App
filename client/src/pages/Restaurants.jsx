@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './Restaurants.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import rest1 from '../assets/restaurants/rest1.jpg';
 import rest2 from '../assets/restaurants/rest2.jpg';
 import rest3 from '../assets/restaurants/rest3.jpg';
@@ -22,18 +23,18 @@ const IconChair   = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentCo
 const IconCreditCard = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>;
 
 export const dummyRestaurants = [
-  { id: 1,  name: 'Tandoori Tadka',   location: 'Chennai',     cuisine: 'North Indian', rating: 4.5, image: rest1, deliveryTime: '25-35 min' },
-  { id: 2,  name: 'South Feast',      location: 'Madurai',     cuisine: 'South Indian', rating: 4.2, image: rest2, deliveryTime: '30-40 min' },
-  { id: 3,  name: 'Pasta Villa',      location: 'Salem',       cuisine: 'Italian',      rating: 4.1, image: rest3, deliveryTime: '35-45 min' },
-  { id: 4,  name: 'Rice & Spice',     location: 'Trichy',      cuisine: 'South Indian', rating: 4.3, image: rest4, deliveryTime: '20-30 min' },
-  { id: 5,  name: 'PizzaCraft',       location: 'Hyderabad',   cuisine: 'Italian',      rating: 4.6, image: rest5, deliveryTime: '40-50 min' },
-  { id: 6,  name: 'Biryani Express',  location: 'Chennai',     cuisine: 'North Indian', rating: 4.4, image: rest1, deliveryTime: '20-30 min' },
-  { id: 7,  name: 'Curry Pot',        location: 'Trivandrum',  cuisine: 'South Indian', rating: 4.2, image: rest2, deliveryTime: '30-40 min' },
-  { id: 8,  name: 'Delizioso',        location: 'Coimbatore',  cuisine: 'Italian',      rating: 4.5, image: rest3, deliveryTime: '35-45 min' },
-  { id: 9,  name: 'Masala Nation',    location: 'Bangalore',   cuisine: 'North Indian', rating: 4.1, image: rest4, deliveryTime: '25-35 min' },
-  { id: 10, name: 'Hot Tawa',         location: 'Madurai',     cuisine: 'South Indian', rating: 4.0, image: rest5, deliveryTime: '20-30 min' },
-  { id: 11, name: 'Zesty Italian',    location: 'Trichy',      cuisine: 'Italian',      rating: 4.3, image: rest1, deliveryTime: '40-50 min' },
-  { id: 12, name: 'Spice Route',      location: 'Coimbatore',  cuisine: 'North Indian', rating: 4.6, image: rest2, deliveryTime: '25-35 min' },
+  { id: 1,  name: 'Tandoori Tadka',   location: 'Chennai',     cuisine: 'North Indian', rating: 4.5, image: rest1 },
+  { id: 2,  name: 'South Feast',      location: 'Madurai',     cuisine: 'South Indian', rating: 4.2, image: rest2 },
+  { id: 3,  name: 'Pasta Villa',      location: 'Salem',       cuisine: 'Italian',      rating: 4.1, image: rest3 },
+  { id: 4,  name: 'Rice & Spice',     location: 'Trichy',      cuisine: 'South Indian', rating: 4.3, image: rest4 },
+  { id: 5,  name: 'PizzaCraft',       location: 'Hyderabad',   cuisine: 'Italian',      rating: 4.6, image: rest5 },
+  { id: 6,  name: 'Biryani Express',  location: 'Chennai',     cuisine: 'North Indian', rating: 4.4, image: rest1 },
+  { id: 7,  name: 'Curry Pot',        location: 'Trivandrum',  cuisine: 'South Indian', rating: 4.2, image: rest2 },
+  { id: 8,  name: 'Delizioso',        location: 'Coimbatore',  cuisine: 'Italian',      rating: 4.5, image: rest3 },
+  { id: 9,  name: 'Masala Nation',    location: 'Bangalore',   cuisine: 'North Indian', rating: 4.1, image: rest4 },
+  { id: 10, name: 'Hot Tawa',         location: 'Madurai',     cuisine: 'South Indian', rating: 4.0, image: rest5 },
+  { id: 11, name: 'Zesty Italian',    location: 'Trichy',      cuisine: 'Italian',      rating: 4.3, image: rest1 },
+  { id: 12, name: 'Spice Route',      location: 'Coimbatore',  cuisine: 'North Indian', rating: 4.6, image: rest2 },
 ];
 
 /* ─── Seat Map ─── */
@@ -151,7 +152,6 @@ function BookingModal({ restaurant, onClose }) {
                   <h3>{restaurant.name}</h3>
                   <p><IconMapPin /> {restaurant.location}</p>
                   <p><IconStar /> {restaurant.rating} · {restaurant.cuisine}</p>
-                  <p><IconClock /> {restaurant.deliveryTime}</p>
                 </div>
               </div>
               <div className="bk-note">
@@ -268,9 +268,10 @@ function BookingModal({ restaurant, onClose }) {
 /* ─── Main Restaurants Component ─── */
 function Restaurants() {
   const query = useQuery();
+  const navigate = useNavigate();
   const [search,  setSearch]  = useState('');
   const [cuisine, setCuisine] = useState('All');
-  const [bookingRestaurant, setBookingRestaurant] = useState(null);
+
 
   useEffect(() => {
     const loc = query.get('location');
@@ -291,7 +292,7 @@ function Restaurants() {
     <div className="restaurants-page">
       <div className="restaurants-header">
         <h1 className="restaurants-title">Restaurants Near You</h1>
-        <p className="restaurants-subtitle">{dummyRestaurants.length} restaurants available for delivery &amp; dining</p>
+        <p className="restaurants-subtitle">{dummyRestaurants.length} restaurants available for dining</p>
       </div>
 
       {/* Controls */}
@@ -338,11 +339,10 @@ function Restaurants() {
                 <p className="rest-card-cuisine">{r.cuisine}</p>
                 <div className="rest-card-meta">
                   <span className="rest-card-location"><IconMapPin />{r.location}</span>
-                  <span className="rest-card-time">{r.deliveryTime}</span>
                 </div>
                 <button
                   className="rest-book-btn"
-                  onClick={() => setBookingRestaurant(r)}
+                  onClick={() => navigate('/book-table', { state: r })}
                   id={`book-table-${r.id}`}
                 >
                   <IconCalendar /> Book a Table
@@ -351,15 +351,7 @@ function Restaurants() {
             </div>
           ))}
         </div>
-      )}
 
-      {/* Booking Modal */}
-      {bookingRestaurant && (
-        <BookingModal
-          restaurant={bookingRestaurant}
-          onClose={() => setBookingRestaurant(null)}
-        />
-      )}
     </div>
   );
 }

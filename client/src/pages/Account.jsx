@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './Account.css';
 import { useNavigate } from 'react-router-dom';
-import { loginUser, registerUser } from '../utils/api';
+import { loginUser, registerUser, getOrderHistory } from '../utils/api';
 
 /* ─── SVG Icons ─── */
 const IconUser = () => (
@@ -78,6 +78,7 @@ const IconShield = () => (
 function Account() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
+  const [orderHistory, setOrderHistory] = useState([]);
   
   // Tab State: 'signin' | 'signup'
   const [activeTab, setActiveTab] = useState('signin');
@@ -110,6 +111,7 @@ function Account() {
     const cached = localStorage.getItem('eatzup_user');
     if (cached) {
       setCurrentUser(JSON.parse(cached));
+      setOrderHistory(getOrderHistory());
     }
   }, []);
 
@@ -307,23 +309,56 @@ function Account() {
               )}
             </div>
 
-            {/* Quick Stats */}
+            {/* Order History */}
             <div className="account-stats-col">
-              <div className="account-stat-card glow-card">
-                <span className="account-stat-value count-up">12</span>
-                <span className="account-stat-label">Orders Placed</span>
+              <div className="account-stats-top-row">
+                <div className="account-stat-card glow-card">
+                  <span className="account-stat-value count-up">{orderHistory.length}</span>
+                  <span className="account-stat-label">Orders Placed</span>
+                </div>
+                <div className="account-stat-card glow-card">
+                  <span className="account-stat-value count-up">
+                    {orderHistory.length > 0
+                      ? '₹' + orderHistory.reduce((sum, o) => sum + (o.grandTotal || 0), 0).toLocaleString('en-IN')
+                      : '₹0'}
+                  </span>
+                  <span className="account-stat-label">Total Spent</span>
+                </div>
               </div>
-              <div className="account-stat-card glow-card">
-                <span className="account-stat-value count-up">3</span>
-                <span className="account-stat-label">Active Orders</span>
-              </div>
-              <div className="account-stat-card glow-card">
-                <span className="account-stat-value count-up">4.8</span>
-                <span className="account-stat-label">Avg. Rating</span>
-              </div>
-              <div className="account-stat-card glow-card">
-                <span className="account-stat-value count-up">&#8377;2,480</span>
-                <span className="account-stat-label">Total Spent</span>
+
+              {/* Order History List */}
+              <div className="account-order-history">
+                <h3 className="account-oh-title">Order History</h3>
+                {orderHistory.length === 0 ? (
+                  <div className="account-oh-empty">
+                    <span>🍽️</span>
+                    <p>No orders yet. Start ordering!</p>
+                    <button className="account-oh-cta" onClick={() => navigate('/menu')}>Browse Menu</button>
+                  </div>
+                ) : (
+                  <div className="account-oh-list">
+                    {orderHistory.slice(0, 5).map((order, i) => (
+                      <div className="account-oh-item" key={i}>
+                        <div className="account-oh-left">
+                          <span className="account-oh-badge">#{order.orderId}</span>
+                          <div>
+                            <p className="account-oh-items">
+                              {order.items?.slice(0, 2).map(it => it.name).join(', ')}
+                              {order.items?.length > 2 ? ` +${order.items.length - 2} more` : ''}
+                            </p>
+                            <p className="account-oh-date">{order.date} · {order.paymentMethod}</p>
+                          </div>
+                        </div>
+                        <span className="account-oh-total">₹{order.grandTotal?.toLocaleString('en-IN')}</span>
+                      </div>
+                    ))}
+                    {orderHistory.length > 5 && (
+                      <button className="account-oh-more" onClick={() => navigate('/orders')}>
+                        View all {orderHistory.length} orders
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -102,10 +102,7 @@
 .account-action-btn svg { width: 14px; height: 14px; }
 .account-logout-btn:hover { background: rgba(239,68,68,0.06); border-color: #ef4444; color: #ef4444; }
 
-/* ── Stats ── */
-.account-stats-col {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 18px; height: fit-content;
-}
+/* ── Stats row (moved to order history section) ── */
 .account-stat-card {
   background: var(--bg-card);
   border-radius: var(--r-lg); border: 1px solid var(--border-light);
@@ -308,3 +305,103 @@
   .auth-submit-btn { font-size: 0.95rem; }
 }
 
+/* ── Order History Panel ── */
+.account-stats-col {
+  display: flex; flex-direction: column; gap: 18px;
+  height: fit-content;
+}
+
+.account-stats-top-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+}
+
+.account-order-history {
+  background: var(--bg-card, #fff);
+  border-radius: var(--r-lg, 16px);
+  border: 1px solid var(--border-light, #f0f0f0);
+  box-shadow: var(--shadow-xs, 0 2px 8px rgba(0,0,0,0.05));
+  overflow: hidden;
+}
+
+.account-oh-title {
+  font-size: 0.92rem; font-weight: 700;
+  color: var(--text-primary, #1a0a0a);
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--border-light, #f0f0f0);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.account-oh-empty {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; padding: 30px 20px;
+  text-align: center; color: var(--text-muted, #888);
+}
+.account-oh-empty span { font-size: 2rem; }
+.account-oh-empty p { font-size: 0.85rem; margin: 0; }
+.account-oh-cta {
+  margin-top: 6px;
+  padding: 8px 20px;
+  background: var(--brand-gradient, linear-gradient(135deg, #E8303A, #C1272D));
+  color: #fff; border: none; border-radius: 999px;
+  font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(232,48,58,0.28);
+}
+.account-oh-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(232,48,58,0.38); }
+
+.account-oh-list { display: flex; flex-direction: column; }
+
+.account-oh-item {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 12px 18px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: background 0.18s;
+}
+.account-oh-item:last-child { border-bottom: none; }
+.account-oh-item:hover { background: rgba(232,48,58,0.025); }
+
+.account-oh-left {
+  display: flex; align-items: flex-start; gap: 10px;
+  min-width: 0; flex: 1;
+}
+
+.account-oh-badge {
+  flex-shrink: 0;
+  background: rgba(232,48,58,0.08);
+  color: #E8303A;
+  font-size: 0.68rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 6px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.account-oh-items {
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--text-primary, #1a0a0a);
+  margin: 0 0 2px;
+  overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap; max-width: 180px;
+}
+
+.account-oh-date {
+  font-size: 0.7rem; color: var(--text-muted, #888);
+  margin: 0;
+}
+
+.account-oh-total {
+  font-size: 0.88rem; font-weight: 800;
+  color: var(--text-primary, #1a0a0a);
+  flex-shrink: 0;
+}
+
+.account-oh-more {
+  width: 100%; padding: 12px;
+  background: none; border: none;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  color: #E8303A; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; transition: background 0.2s;
+  font-family: inherit;
+}
+.account-oh-more:hover { background: rgba(2，32,48,58,0.04); }

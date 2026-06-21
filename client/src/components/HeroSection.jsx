@@ -70,7 +70,7 @@ function HeroSection() {
             <button
               id="hero-book-table-btn"
               className="hero-btn-outline"
-              onClick={() => navigate('/book-table')}
+              onClick={() => navigate('/restaurants')}
               aria-label="Book a table"
             >
               Book A Table

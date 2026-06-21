@@ -315,3 +315,37 @@
   .about-hero { padding: 70px 20px 60px; }
   .founders-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
 }
+
+/* ── Founder Social Links ── */
+.founder-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.founder-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  background: #fff;
+  color: var(--text-secondary);
+  transition: all 0.22s;
+  flex-shrink: 0;
+}
+.founder-social-link svg {
+  width: 15px;
+  height: 15px;
+}
+.founder-social-link:hover {
+  background: var(--card-color, #E8303A);
+  border-color: var(--card-color, #E8303A);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}

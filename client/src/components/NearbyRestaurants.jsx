@@ -1,11 +1,8 @@
 // src/components/NearbyRestaurants.jsx
-import React, { useRef, useState, useCallback } from 'react';
+// Shows 10 randomly picked items from the real menu (same data as the Menu page)
+import React, { useRef, useState, useCallback, useMemo } from 'react';
 import '../styles/NearbyRestaurants.css';
-import rest1 from '../assets/rest1.jpg';
-import rest2 from '../assets/rest2.jpg';
-import rest3 from '../assets/rest3.jpg';
-import rest4 from '../assets/rest4.jpg';
-import rest5 from '../assets/rest5.jpg';
+import foodData from '../data/foodData';
 
 const IconCart = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -26,19 +23,19 @@ const IconChevRight = () => (
 
 const dispatchCartUpdate = () => window.dispatchEvent(new Event('cartUpdated'));
 
-const dishes = [
-  { name: 'Pappardelle',      subtitle: 'With Vegetable',     image: rest1, price: 35 },
-  { name: 'Ravioli Stuffed',  subtitle: 'With Pesto Sauce',   image: rest2, price: 42 },
-  { name: 'Pappardelle',      subtitle: 'With Vegetable',     image: rest3, price: 35 },
-  { name: 'Ravioli Stuffed',  subtitle: 'With Pesto Sauce',   image: rest4, price: 42 },
-  { name: 'Sushi Platter',    subtitle: 'Premium Selection',  image: rest5, price: 58 },
-  { name: 'Spice Bowl',       subtitle: 'Indian Fusion',      image: rest1, price: 29 },
-];
+// Pick 10 random items from foodData (seeded once per mount)
+function pickRandom(arr, n) {
+  const shuffled = [...arr].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, n);
+}
 
 function NearbyRestaurants() {
   const trackRef = useRef(null);
   const [cartItems, setCartItems] = useState(() => JSON.parse(localStorage.getItem('cartItems')) || []);
   const [addedMap, setAddedMap] = useState({});
+
+  // Pick 10 random menu items once (stable across renders via useMemo)
+  const dishes = useMemo(() => pickRandom(foodData, 10), []);
 
   const saveCart = useCallback((newCart) => {
     setCartItems(newCart);
@@ -48,7 +45,7 @@ function NearbyRestaurants() {
 
   const handleAdd = (dish, e) => {
     const updated = [...cartItems];
-    const existing = updated.find(c => c.name === dish.name && c.subtitle === dish.subtitle);
+    const existing = updated.find(c => c.name === dish.name);
     if (existing) {
       existing.quantity += 1;
     } else {
@@ -72,7 +69,7 @@ function NearbyRestaurants() {
     }
 
     // Button feedback
-    const key = dish.name + dish.subtitle;
+    const key = dish.name;
     setAddedMap(prev => ({ ...prev, [key]: true }));
     setTimeout(() => setAddedMap(prev => ({ ...prev, [key]: false })), 900);
   };
@@ -114,7 +111,7 @@ function NearbyRestaurants() {
       <div className="food-slider-track-wrap">
         <div className="food-slider-track" ref={trackRef} role="list">
           {dishes.map((dish, i) => {
-            const key = dish.name + dish.subtitle;
+            const key = dish.name;
             const isAdded = addedMap[key];
             return (
               <div className="food-card" key={i} role="listitem">
@@ -133,9 +130,9 @@ function NearbyRestaurants() {
                 {/* Card body */}
                 <div className="food-card-body">
                   <h3 className="food-card-name">{dish.name}</h3>
-                  <p className="food-card-sub">{dish.subtitle}</p>
+                  <p className="food-card-sub">{dish.category}</p>
                   <div className="food-card-footer">
-                    <span className="food-card-price">${dish.price}.00</span>
+                    <span className="food-card-price">₹{dish.price}</span>
                   </div>
                 </div>
               </div>

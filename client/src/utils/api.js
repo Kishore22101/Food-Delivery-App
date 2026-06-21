@@ -1,8 +1,12 @@
 // src/utils/api.js – EatzUp API helper
 import axios from 'axios';
 
+// In production (Vercel), VITE_API_URL should point to the deployed server.
+// Locally it falls back to localhost:5000
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: BASE_URL,
   timeout: 8000,
   headers: { 'Content-Type': 'application/json' },
 });
@@ -22,5 +26,17 @@ export const getOrderById       = (orderId)  => API.get(`/orders/${orderId}`);
 
 // ── Newsletter ──
 export const subscribeNewsletter = (email)   => API.post('/newsletter', { email });
+
+// ── Local Order History helpers (client-side localStorage) ──
+export const saveOrderToHistory = (order) => {
+  const existing = JSON.parse(localStorage.getItem('eatzup_order_history') || '[]');
+  existing.unshift(order); // newest first
+  // keep max 50 orders
+  localStorage.setItem('eatzup_order_history', JSON.stringify(existing.slice(0, 50)));
+};
+
+export const getOrderHistory = () => {
+  return JSON.parse(localStorage.getItem('eatzup_order_history') || '[]');
+};
 
 export default API;

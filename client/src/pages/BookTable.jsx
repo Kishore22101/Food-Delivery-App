@@ -1,40 +1,26 @@
 // src/pages/BookTable.jsx
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './BookTable.css';
-import { dummyRestaurants } from './Restaurants';
+import html2pdf from 'html2pdf.js';
+import logo from '../assets/logo.png';
+import stamp1 from '../assets/stamp1.png';
+import stamp2 from '../assets/stamp2.png';
+import stamp3 from '../assets/stamp3.png';
+import stamp4 from '../assets/stamp4.png';
 
 /* ─── SVG Icons ─── */
-const IconStar = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ width: '16px', height: '16px' }}>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-  </svg>
-);
-const IconMapPin = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ width: '16px', height: '16px' }}>
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-  </svg>
-);
-const IconCalendar = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ width: '18px', height: '18px' }}>
-    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
-  </svg>
-);
-const IconUsers = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ width: '18px', height: '18px' }}>
-    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
-  </svg>
-);
-const IconClock = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ width: '18px', height: '18px' }}>
-    <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-  </svg>
-);
-const IconCheck = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ width: '24px', height: '24px' }}>
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
+const IconStar      = () => <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>;
+const IconMapPin    = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>;
+const IconCalendar  = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>;
+const IconUsers     = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>;
+const IconClock     = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
+const IconCheck     = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>;
+const IconCreditCard= () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>;
+const IconDownload  = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>;
+const IconArrowLeft = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>;
+const IconArrowRight= () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>;
+const IconChair     = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 3v16M19 3v16M5 11h14M5 19h14"/></svg>;
 
 const TIME_SLOTS = [
   { label: '12:00 PM', period: 'Lunch' },
@@ -44,405 +30,288 @@ const TIME_SLOTS = [
   { label: '8:00 PM',  period: 'Dinner' },
   { label: '9:00 PM',  period: 'Dinner' },
 ];
-
-const GUEST_OPTIONS = ['1 Guest', '2 Guests', '3 Guests', '4 Guests', '5 Guests', '6+ Guests'];
-
-// Generate dummy tables for the visual seat map
+const GUEST_OPTIONS = ['1','2','3','4','5','6+'];
 const SEAT_MAP_TABLES = [
-  { id: 'T1', type: 'small', seats: 2, x: 20, y: 30, reserved: false },
-  { id: 'T2', type: 'small', seats: 2, x: 50, y: 30, reserved: true },
-  { id: 'T3', type: 'medium', seats: 4, x: 80, y: 30, reserved: false },
-  { id: 'T4', type: 'medium', seats: 4, x: 20, y: 70, reserved: false },
-  { id: 'T5', type: 'large', seats: 6, x: 50, y: 70, reserved: false },
-  { id: 'T6', type: 'medium', seats: 4, x: 80, y: 70, reserved: true },
+  { id: 'T1', type: 'small',  seats: 2, x: 12, y: 20, reserved: false },
+  { id: 'T2', type: 'small',  seats: 2, x: 40, y: 20, reserved: true  },
+  { id: 'T3', type: 'medium', seats: 4, x: 68, y: 20, reserved: false },
+  { id: 'T4', type: 'medium', seats: 4, x: 12, y: 58, reserved: false },
+  { id: 'T5', type: 'large',  seats: 6, x: 40, y: 58, reserved: false },
+  { id: 'T6', type: 'medium', seats: 4, x: 68, y: 58, reserved: true  },
 ];
+const PAYMENT_METHODS = ['GPay', 'PhonePe', 'UPI', 'Visa/Mastercard', 'Net Banking', 'Cash'];
+const STEPS = ['Select Restaurant', 'Reservation Details', 'Seat Map', 'Booking Summary'];
 
 function BookTable() {
-  const navigate = useNavigate();
+  const navigate    = useNavigate();
+  const location    = useLocation();
+  const ticketRef   = useRef(null);
+  const restaurantFromState = location.state;
 
-  // State
-  const [selectedRest, setSelectedRest]   = useState(dummyRestaurants[0]);
-  const [bookingDate, setBookingDate]       = useState('');
-  const [guestCount, setGuestCount]         = useState('2 Guests');
-  const [selectedTime, setSelectedTime]     = useState('7:00 PM');
-  const [selectedTable, setSelectedTable]   = useState(null);
-  
-  // User/Contact Info
-  const [name, setName]                     = useState('');
-  const [email, setEmail]                   = useState('');
-  const [mobile, setMobile]                 = useState('');
-  const [pincode, setPincode]               = useState('');
-  const [notes, setNotes]                   = useState('');
-  
-  // Status
-  const [isBooked, setIsBooked]             = useState(false);
-  const [bookingRef]                        = useState(() => Math.floor(100000 + Math.random() * 900000));
+  const [step, setStep]               = useState(restaurantFromState ? 2 : 1);
+  const [restaurant, setRestaurant]   = useState(restaurantFromState || null);
+  const [bookingDate, setBookingDate] = useState('');
+  const [guestCount, setGuestCount]   = useState('2');
+  const [selectedTime, setSelectedTime] = useState('7:00 PM');
+  const [selectedTable, setSelectedTable] = useState(null);
+  const [name, setName]               = useState('');
+  const [email, setEmail]             = useState('');
+  const [mobile, setMobile]           = useState('');
+  const [notes, setNotes]             = useState('');
+  const [paymentMethod, setPaymentMethod] = useState(null);
+  const [paid, setPaid]               = useState(false);
+  const [bookingRef] = useState(() => 'ETZ' + Math.floor(100000 + Math.random() * 900000));
 
   useEffect(() => {
-    // Pre-fill user data if logged in
     const cached = localStorage.getItem('eatzup_user');
     if (cached) {
       const u = JSON.parse(cached);
       setName(u.name || '');
       setEmail(u.email || '');
       setMobile(u.mobile || '');
-      setPincode(u.pincode || '');
     }
-    // Set default date to tomorrow
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    setBookingDate(tomorrow.toISOString().split('T')[0]);
+    const tm = new Date(); tm.setDate(tm.getDate() + 1);
+    setBookingDate(tm.toISOString().split('T')[0]);
   }, []);
 
-  const handleTableClick = (table) => {
-    if (table.reserved) return;
-    setSelectedTable(table.id === selectedTable ? null : table.id);
+  const handleTableClick = (t) => {
+    if (t.reserved) return;
+    setSelectedTable(prev => prev === t.id ? null : t.id);
   };
 
-  const handleConfirmBooking = (e) => {
+  const downloadPDF = async () => {
+    await html2pdf().set({
+      margin: [8, 8, 8, 8],
+      filename: `EatzUp_Reservation_${bookingRef}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    }).from(ticketRef.current).save();
+  };
+
+  const handlePayAndConfirm = async (e) => {
     e.preventDefault();
-    if (!selectedTable) {
-      alert('Please select a table from the visual seat map first.');
-      return;
-    }
-    setIsBooked(true);
+    if (!paymentMethod) return;
+    await downloadPDF();
+    setPaid(true);
   };
 
-  if (isBooked) {
+  /* ── Success / Ticket Screen ── */
+  if (paid) {
     return (
-      <div className="booking-success-container reveal animate-fade-up">
-        <div className="booking-ticket">
-          <div className="ticket-header">
-            <div className="ticket-circle"><IconCheck /></div>
-            <h2>Reservation Confirmed</h2>
-            <p className="ticket-ref">Booking Ref: #{bookingRef}</p>
-          </div>
-          
-          <div className="ticket-body">
-            <div className="ticket-row">
-              <div className="ticket-col">
-                <span className="ticket-label">Restaurant</span>
-                <span className="ticket-value">{selectedRest.name}</span>
-              </div>
-              <div className="ticket-col">
-                <span className="ticket-label">Location</span>
-                <span className="ticket-value">{selectedRest.location}</span>
-              </div>
-            </div>
-
-            <div className="ticket-row">
-              <div className="ticket-col">
-                <span className="ticket-label">Date</span>
-                <span className="ticket-value">{bookingDate.split('-').reverse().join('/')}</span>
-              </div>
-              <div className="ticket-col">
-                <span className="ticket-label">Time Slot</span>
-                <span className="ticket-value">{selectedTime}</span>
-              </div>
-            </div>
-
-            <div className="ticket-row">
-              <div className="ticket-col">
-                <span className="ticket-label">Table Selected</span>
-                <span className="ticket-value">Table {selectedTable}</span>
-              </div>
-              <div className="ticket-col">
-                <span className="ticket-label">Guests Count</span>
-                <span className="ticket-value">{guestCount}</span>
-              </div>
-            </div>
-
-            <div className="ticket-row">
-              <div className="ticket-col">
-                <span className="ticket-label">Guest Name</span>
-                <span className="ticket-value">{name}</span>
-              </div>
-              <div className="ticket-col">
-                <span className="ticket-label">Contact Details</span>
-                <span className="ticket-value">{mobile}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="ticket-footer">
-            <div className="barcode" aria-hidden="true">
-              <div className="barcode-line" style={{width:'4px'}} />
-              <div className="barcode-line" style={{width:'2px'}} />
-              <div className="barcode-line" style={{width:'6px'}} />
-              <div className="barcode-line" style={{width:'3px'}} />
-              <div className="barcode-line" style={{width:'1px'}} />
-              <div className="barcode-line" style={{width:'5px'}} />
-              <div className="barcode-line" style={{width:'2px'}} />
-              <div className="barcode-line" style={{width:'4px'}} />
-              <div className="barcode-line" style={{width:'7px'}} />
-              <div className="barcode-line" style={{width:'2px'}} />
-            </div>
-            <p className="ticket-note">Show this pass at the reception counter.</p>
-          </div>
-        </div>
-
-        <div className="booking-success-actions">
-          <button className="booking-btn-primary" onClick={() => navigate('/')}>
-            Back to Home
-          </button>
-        </div>
+      <div className="bkt-success-screen">
+        <div className="bkt-success-icon"><IconCheck /></div>
+        <h1>Reservation Confirmed!</h1>
+        <p>Your table at <strong>{restaurant?.name}</strong> is booked.</p>
+        <p className="bkt-success-sub">Reservation ticket PDF downloaded. See you there!</p>
+        <button className="bkt-home-btn" onClick={() => navigate('/')}>Back to Home</button>
       </div>
     );
   }
 
   return (
-    <div className="booking-page page-wrap reveal animate-fade-up">
-      <div className="booking-header">
-        <h1 className="booking-title">Book a Table</h1>
-        <p className="booking-subtitle">Secure your fine dining reservation instantly</p>
+    <div className="bkt-page">
+      {/* Header */}
+      <div className="bkt-header">
+        <button className="bkt-back-nav" onClick={() => navigate('/restaurants')} aria-label="Back to restaurants">
+          <IconArrowLeft /> Restaurants
+        </button>
+        <h1 className="bkt-title">Book a Table</h1>
+        <p className="bkt-subtitle">Secure your fine dining reservation instantly</p>
       </div>
 
-      <form onSubmit={handleConfirmBooking} className="booking-layout">
-        {/* Left Side: Selectors & Map */}
-        <div className="booking-form-col">
-          {/* Step 1: Restaurant Grid */}
-          <div className="booking-section-card">
-            <h3>1. Select Restaurant</h3>
-            <div className="booking-rest-grid">
-              {dummyRestaurants.slice(0, 4).map((rest) => (
-                <div
-                  key={rest.id}
-                  className={`booking-rest-card${selectedRest.id === rest.id ? ' selected' : ''}`}
-                  onClick={() => setSelectedRest(rest)}
-                >
-                  <img src={rest.image} alt={rest.name} className="booking-rest-img" />
-                  <div className="booking-rest-info">
-                    <h4>{rest.name}</h4>
-                    <div className="booking-rest-rating">
-                      <IconStar />
-                      <span>{rest.rating}</span>
-                      <span className="bullet">&bull;</span>
-                      <span>{rest.cuisine}</span>
-                    </div>
-                    <p className="booking-rest-loc">
-                      <IconMapPin /> {rest.location}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* Step Progress */}
+      <div className="bkt-steps-bar">
+        {STEPS.map((s, i) => (
+          <div key={i} className={`bkt-step-item${step === i+1 ? ' active' : ''}${step > i+1 ? ' done' : ''}`}>
+            <div className="bkt-step-circle">{step > i+1 ? <IconCheck /> : i+1}</div>
+            <span className="bkt-step-name">{s}</span>
           </div>
+        ))}
+      </div>
 
-          {/* Step 2: Date, Guest & Time Slots */}
-          <div className="booking-section-card">
-            <h3>2. Reservation Details</h3>
-            <div className="booking-details-grid">
-              {/* Date Input */}
-              <div className="booking-detail-field">
-                <label>
-                  <IconCalendar /> Date
-                </label>
-                <input
-                  type="date"
-                  value={bookingDate}
-                  onChange={(e) => setBookingDate(e.target.value)}
-                  required
-                />
+      <div className="bkt-body">
+        {/* ── Step 1: Restaurant confirmed ── */}
+        {step === 1 && (
+          <div className="bkt-step-panel">
+            <h2 className="bkt-panel-title">Choose Your Restaurant</h2>
+            <p className="bkt-panel-sub">Select a restaurant from the list on the Restaurants page, or continue below.</p>
+            <div className="bkt-rest-note">
+              <IconMapPin /> Please go back to the Restaurants page and click "Book a Table" on a specific restaurant.
+            </div>
+            <button className="bkt-primary-btn" onClick={() => navigate('/restaurants')}>
+              <IconMapPin /> Go to Restaurants
+            </button>
+          </div>
+        )}
+
+        {/* ── Step 2: Reservation Details ── */}
+        {step === 2 && (
+          <div className="bkt-step-panel">
+            {restaurant && (
+              <div className="bkt-rest-confirm-card">
+                <img src={restaurant.image} alt={restaurant.name} className="bkt-rest-confirm-img" />
+                <div className="bkt-rest-confirm-info">
+                  <h3>{restaurant.name}</h3>
+                  <p><IconMapPin /> {restaurant.location}</p>
+                  <p><IconStar /> {restaurant.rating} · {restaurant.cuisine}</p>
+                </div>
               </div>
-
-              {/* Guest Count Pills */}
-              <div className="booking-detail-field">
-                <label>
-                  <IconUsers /> Guests Count
-                </label>
-                <div className="guest-pills-row">
-                  {GUEST_OPTIONS.map((opt) => (
-                    <button
-                      key={opt}
-                      type="button"
-                      className={`guest-pill${guestCount === opt ? ' active' : ''}`}
-                      onClick={() => setGuestCount(opt)}
-                    >
-                      {opt.split(' ')[0]}
-                    </button>
+            )}
+            <div className="bkt-fee-notice">
+              <IconCreditCard /> A reservation fee of <strong>₹100</strong> is required to confirm your booking.
+            </div>
+            <div className="bkt-fields-grid">
+              <div className="bkt-field">
+                <label><IconCalendar /> Date</label>
+                <input type="date" value={bookingDate} onChange={e => setBookingDate(e.target.value)}
+                  min={new Date().toISOString().split('T')[0]} className="bkt-input" required />
+              </div>
+              <div className="bkt-field">
+                <label><IconUsers /> Number of Guests</label>
+                <div className="bkt-pills">
+                  {GUEST_OPTIONS.map(g => (
+                    <button key={g} type="button"
+                      className={`bkt-pill${guestCount === g ? ' active' : ''}`}
+                      onClick={() => setGuestCount(g)}>{g}</button>
                   ))}
                 </div>
               </div>
-            </div>
-
-            {/* Time Slot Selector */}
-            <div className="booking-detail-field time-section">
-              <label>
-                <IconClock /> Select Time Slot
-              </label>
-              <div className="time-slots-container">
-                <div className="time-period-group">
-                  <span className="period-label">Lunch Slots</span>
-                  <div className="slots-row">
-                    {TIME_SLOTS.filter(s => s.period === 'Lunch').map((slot) => (
-                      <button
-                        key={slot.label}
-                        type="button"
-                        className={`time-slot-btn${selectedTime === slot.label ? ' active' : ''}`}
-                        onClick={() => setSelectedTime(slot.label)}
-                      >
-                        {slot.label}
-                      </button>
+              <div className="bkt-field">
+                <label><IconClock /> Time Slot</label>
+                <div className="bkt-time-sections">
+                  <p className="bkt-period">Lunch</p>
+                  <div className="bkt-pills">
+                    {TIME_SLOTS.filter(t => t.period === 'Lunch').map(t => (
+                      <button key={t.label} type="button"
+                        className={`bkt-pill${selectedTime === t.label ? ' active' : ''}`}
+                        onClick={() => setSelectedTime(t.label)}>{t.label}</button>
                     ))}
                   </div>
-                </div>
-                <div className="time-period-group">
-                  <span className="period-label">Dinner Slots</span>
-                  <div className="slots-row">
-                    {TIME_SLOTS.filter(s => s.period === 'Dinner').map((slot) => (
-                      <button
-                        key={slot.label}
-                        type="button"
-                        className={`time-slot-btn${selectedTime === slot.label ? ' active' : ''}`}
-                        onClick={() => setSelectedTime(slot.label)}
-                      >
-                        {slot.label}
-                      </button>
+                  <p className="bkt-period">Dinner</p>
+                  <div className="bkt-pills">
+                    {TIME_SLOTS.filter(t => t.period === 'Dinner').map(t => (
+                      <button key={t.label} type="button"
+                        className={`bkt-pill${selectedTime === t.label ? ' active' : ''}`}
+                        onClick={() => setSelectedTime(t.label)}>{t.label}</button>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
+            <div className="bkt-nav-row">
+              <span />
+              <button className="bkt-primary-btn" onClick={() => setStep(3)}>
+                Continue <IconArrowRight />
+              </button>
+            </div>
           </div>
+        )}
 
-          {/* Step 3: Interactive Visual Seat Map */}
-          <div className="booking-section-card">
-            <div className="booking-section-header">
-              <h3>3. Interactive Visual Seat Map</h3>
-              <span className="seat-hint">Select your preferred table spot below</span>
+        {/* ── Step 3: Seat Map ── */}
+        {step === 3 && (
+          <div className="bkt-step-panel">
+            <div className="bkt-legend">
+              <span><span className="bkt-dot available" />Available</span>
+              <span><span className="bkt-dot selected" />Selected</span>
+              <span><span className="bkt-dot reserved" />Reserved</span>
             </div>
-
-            <div className="seat-map-legend">
-              <div className="legend-item"><span className="legend-dot available" /> Available</div>
-              <div className="legend-item"><span className="legend-dot selected" /> Selected</div>
-              <div className="legend-item"><span className="legend-dot reserved" /> Reserved</div>
-            </div>
-
-            <div className="visual-dining-hall">
-              <div className="dining-stage">FRONT / BUFFET COUNTER</div>
-
-              <div className="dining-floor">
-                {SEAT_MAP_TABLES.map((table) => (
-                  <button
-                    key={table.id}
-                    type="button"
-                    className={`visual-table ${table.type}${table.reserved ? ' reserved' : ''}${selectedTable === table.id ? ' selected' : ''}`}
-                    style={{ left: `${table.x}%`, top: `${table.y}%` }}
-                    onClick={() => handleTableClick(table)}
-                    title={`Table ${table.id} (Table for ${table.seats})`}
+            <div className="bkt-dining-hall">
+              <div className="bkt-stage">BUFFET / FRONT COUNTER</div>
+              <div className="bkt-floor">
+                {SEAT_MAP_TABLES.map(t => (
+                  <button key={t.id} type="button"
+                    className={`bkt-table-btn ${t.type}${t.reserved ? ' reserved' : ''}${selectedTable === t.id ? ' selected' : ''}`}
+                    style={{ left: `${t.x}%`, top: `${t.y}%` }}
+                    onClick={() => handleTableClick(t)}
+                    title={`Table ${t.id} – ${t.seats} seats${t.reserved ? ' (Reserved)' : ''}`}
                   >
-                    <span className="table-body">
-                      <span className="table-id">{table.id}</span>
-                      <span className="table-chairs">
-                        {[...Array(table.seats)].map((_, i) => (
-                          <span key={i} className="chair" />
-                        ))}
-                      </span>
-                    </span>
+                    <span className="bkt-table-id">{t.id}</span>
+                    <span className="bkt-table-seats"><IconChair />{t.seats}</span>
+                  </button>
+                ))}
+              </div>
+              <div className="bkt-entrance">ENTRANCE</div>
+            </div>
+            {!selectedTable && <p className="bkt-hint">Please select an available table above.</p>}
+            <div className="bkt-nav-row">
+              <button className="bkt-outline-btn" onClick={() => setStep(2)}><IconArrowLeft /> Back</button>
+              <button className="bkt-primary-btn" disabled={!selectedTable} onClick={() => setStep(4)}>
+                Continue <IconArrowRight />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ── Step 4: Booking Summary + Pay ── */}
+        {step === 4 && (
+          <div className="bkt-step4-layout">
+            {/* Ticket Preview for PDF */}
+            <div className="bkt-ticket-col" ref={ticketRef}>
+              <div className="bkt-ticket-brand">
+                <img src={logo} alt="EatzUp" className="bkt-ticket-logo" />
+                <span className="bkt-ticket-brand-name">EatzUp</span>
+              </div>
+              <div className="bkt-ticket-card">
+                <div className="bkt-ticket-header">
+                  <h2>Reservation Ticket</h2>
+                  <p className="bkt-ticket-ref">Ref: <strong>{bookingRef}</strong></p>
+                </div>
+                <div className="bkt-ticket-grid">
+                  <div className="bkt-ticket-item"><span>Restaurant</span><strong>{restaurant?.name}</strong></div>
+                  <div className="bkt-ticket-item"><span>Location</span><strong>{restaurant?.location}</strong></div>
+                  <div className="bkt-ticket-item"><span>Date</span><strong>{bookingDate.split('-').reverse().join('/')}</strong></div>
+                  <div className="bkt-ticket-item"><span>Time</span><strong>{selectedTime}</strong></div>
+                  <div className="bkt-ticket-item"><span>Guests</span><strong>{guestCount}</strong></div>
+                  <div className="bkt-ticket-item"><span>Table</span><strong>Table {selectedTable}</strong></div>
+                  <div className="bkt-ticket-item"><span>Guest Name</span><strong>{name}</strong></div>
+                  <div className="bkt-ticket-item"><span>Mobile</span><strong>{mobile}</strong></div>
+                  <div className="bkt-ticket-item bkt-fee-row"><span>Reservation Fee</span><strong className="bkt-fee">₹100</strong></div>
+                </div>
+                <div className="bkt-stamps-row">
+                  <p className="bkt-stamps-label">Authorised by Founders</p>
+                  <div className="bkt-stamps-grid">
+                    <img src={stamp1} alt="Stamp 1" className="bkt-stamp" />
+                    <img src={stamp2} alt="Stamp 2" className="bkt-stamp" />
+                    <img src={stamp3} alt="Stamp 3" className="bkt-stamp" />
+                    <img src={stamp4} alt="Stamp 4" className="bkt-stamp" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Payment Side */}
+            <form className="bkt-payment-col" onSubmit={handlePayAndConfirm}>
+              <h3 className="bkt-payment-title">Your Details & Payment</h3>
+              <div className="bkt-contact-fields">
+                <div className="bkt-field"><label>Full Name *</label><input className="bkt-input" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Your name" required /></div>
+                <div className="bkt-field"><label>Mobile *</label><input className="bkt-input" type="tel" value={mobile} onChange={e => setMobile(e.target.value)} placeholder="+91 98765 43210" required /></div>
+                <div className="bkt-field"><label>Email</label><input className="bkt-input" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" /></div>
+                <div className="bkt-field"><label>Special Requests</label><textarea className="bkt-input bkt-textarea" value={notes} onChange={e => setNotes(e.target.value)} placeholder="E.g. Window seat, baby chair..." /></div>
+              </div>
+
+              <h4 className="bkt-pay-method-title">Select Payment Method</h4>
+              <div className="bkt-pay-methods">
+                {PAYMENT_METHODS.map(m => (
+                  <button key={m} type="button"
+                    className={`bkt-pay-method${paymentMethod === m ? ' selected' : ''}`}
+                    onClick={() => setPaymentMethod(m)}>{m}
+                    {paymentMethod === m && <span className="bkt-pay-check"><IconCheck /></span>}
                   </button>
                 ))}
               </div>
 
-              <div className="dining-entrance">ENTRANCE</div>
-            </div>
+              <div className="bkt-nav-row">
+                <button type="button" className="bkt-outline-btn" onClick={() => setStep(3)}><IconArrowLeft /> Back</button>
+                <button type="submit" className={`bkt-pay-btn${!paymentMethod ? ' disabled' : ''}`} disabled={!paymentMethod}>
+                  <IconDownload /> Pay ₹100 & Download Ticket
+                </button>
+              </div>
+              {!paymentMethod && <p className="bkt-pay-hint">Please select a payment method.</p>}
+            </form>
           </div>
-        </div>
-
-        {/* Right Side: Form details review & contact details */}
-        <div className="booking-summary-col">
-          <div className="booking-summary-card">
-            <h3>4. Booking Summary</h3>
-            <div className="summary-details-list">
-              <div className="summary-item">
-                <span>Restaurant</span>
-                <strong>{selectedRest.name}</strong>
-              </div>
-              <div className="summary-item">
-                <span>Date</span>
-                <strong>{bookingDate ? bookingDate.split('-').reverse().join('/') : 'Not selected'}</strong>
-              </div>
-              <div className="summary-item">
-                <span>Time Slot</span>
-                <strong>{selectedTime}</strong>
-              </div>
-              <div className="summary-item">
-                <span>Guests</span>
-                <strong>{guestCount}</strong>
-              </div>
-              <div className="summary-item">
-                <span>Table Spot</span>
-                <strong>{selectedTable ? `Table ${selectedTable}` : 'Please select table on map'}</strong>
-              </div>
-            </div>
-
-            <div className="booking-contact-fields">
-              <h4>Contact Information</h4>
-              
-              <div className="summary-input-group">
-                <label htmlFor="bk-name">Full Name</label>
-                <input
-                  id="bk-name"
-                  type="text"
-                  placeholder="Your Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="summary-input-group">
-                <label htmlFor="bk-email">Email Address</label>
-                <input
-                  id="bk-email"
-                  type="email"
-                  placeholder="Your Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="summary-input-group">
-                <label htmlFor="bk-mobile">Mobile Number</label>
-                <input
-                  id="bk-mobile"
-                  type="tel"
-                  placeholder="Mobile Number"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="summary-input-group">
-                <label htmlFor="bk-pincode">Pin Code</label>
-                <input
-                  id="bk-pincode"
-                  type="text"
-                  placeholder="Postal Code"
-                  value={pincode}
-                  onChange={(e) => setPincode(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="summary-input-group">
-                <label htmlFor="bk-notes">Special Requests (Optional)</label>
-                <textarea
-                  id="bk-notes"
-                  placeholder="E.g. High chair for baby, window seat..."
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <button type="submit" className="booking-confirm-submit">
-              Confirm Table Reservation
-            </button>
-          </div>
-        </div>
-      </form>
+        )}
+      </div>
     </div>
   );
 }

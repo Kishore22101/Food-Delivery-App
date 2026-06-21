@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Payment.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import html2pdf from 'html2pdf.js';
+import { saveOrderToHistory } from '../utils/api';
 import logo from '../assets/logo.png';
 import AuthModal from '../components/AuthModal';
 import gpayImg    from '../assets/payment/gpay.png';
@@ -110,6 +111,14 @@ function Payment() {
   const handleConfirm = async () => {
     if (!selectedMethod) return;
     await downloadPDF();
+    // Save order to local history
+    saveOrderToHistory({
+      orderId,
+      date: date || new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+      items: cartItems,
+      grandTotal,
+      paymentMethod: selectedMethod,
+    });
     localStorage.removeItem('cartItems');
     window.dispatchEvent(new Event('cartUpdated'));
     setPaid(true);

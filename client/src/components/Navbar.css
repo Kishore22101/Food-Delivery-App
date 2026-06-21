@@ -87,8 +87,8 @@
   gap: 10px;
 }
 .navbar-logo {
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
   border-radius: var(--r-sm);
   transition: transform 0.4s var(--ease-bounce);
@@ -97,7 +97,7 @@
 
 .navbar-brand-text {
   font-family: var(--font-display);
-  font-size: 1.55rem;
+  font-size: 1.75rem;
   font-weight: 900;
   color: var(--text-primary);
   letter-spacing: -0.5px;

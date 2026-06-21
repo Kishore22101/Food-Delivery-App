@@ -128,7 +128,7 @@ function Orders() {
       return;
     }
     setAppliedCoupon({ ...found, code });
-    setCouponSuccess(`🎉 Coupon applied! ${found.label}`);
+    setCouponSuccess(`Coupon applied! ${found.label}`);
     setCouponCode('');
   };
 
@@ -232,7 +232,7 @@ function Orders() {
             {isFreeDelivery && appliedCoupon?.type !== 'freedel' && (
               <div className="free-delivery-badge">
                 <IconTruck />
-                <span>🎉 Free delivery on orders above ₹499!</span>
+                <span>Free delivery on orders above ₹499!</span>
               </div>
             )}
 

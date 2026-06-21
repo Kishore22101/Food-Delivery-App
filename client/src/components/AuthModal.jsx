@@ -98,7 +98,21 @@ function AuthModal({ onSuccess, onClose, reason = 'to continue' }) {
       window.dispatchEvent(new Event('userLoggedIn'));
       onSuccess(user);
     } catch (err) {
-      setError(err.response?.data?.error || 'Invalid credentials. Please try again.');
+      // Network/CORS error — try local fallback
+      if (!err.response) {
+        const localUsers = JSON.parse(localStorage.getItem('eatzup_local_users') || '[]');
+        const found = localUsers.find(u => u.email.toLowerCase() === siEmail.trim().toLowerCase() && u.password === siPassword);
+        if (found) {
+          const user = { id: found.id, name: found.name, email: found.email, mobile: found.mobile || '', address: found.address || '', pincode: found.pincode || '', joined: found.joined };
+          localStorage.setItem('eatzup_user', JSON.stringify(user));
+          window.dispatchEvent(new Event('userLoggedIn'));
+          onSuccess(user);
+        } else {
+          setError('Invalid credentials. Please check your email and password.');
+        }
+      } else {
+        setError(err.response?.data?.error || 'Invalid credentials. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -125,7 +139,25 @@ function AuthModal({ onSuccess, onClose, reason = 'to continue' }) {
       window.dispatchEvent(new Event('userLoggedIn'));
       onSuccess(user);
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed. Please try again.');
+      // Network/CORS error — save locally
+      if (!err.response) {
+        const localUsers = JSON.parse(localStorage.getItem('eatzup_local_users') || '[]');
+        if (localUsers.find(u => u.email.toLowerCase() === suEmail.toLowerCase())) {
+          setError('Email already registered. Please sign in.');
+          setLoading(false);
+          return;
+        }
+        const { v4: uuid } = await import('uuid').catch(() => ({ v4: () => Math.random().toString(36).slice(2) }));
+        const newUser = { id: uuid(), name: suName, email: suEmail, password: suPassword, mobile: suMobile, address: suAddress, pincode: suPincode, joined: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) };
+        localUsers.push(newUser);
+        localStorage.setItem('eatzup_local_users', JSON.stringify(localUsers));
+        const user = { id: newUser.id, name: newUser.name, email: newUser.email, mobile: newUser.mobile, address: newUser.address, pincode: newUser.pincode, joined: newUser.joined };
+        localStorage.setItem('eatzup_user', JSON.stringify(user));
+        window.dispatchEvent(new Event('userLoggedIn'));
+        onSuccess(user);
+      } else {
+        setError(err.response?.data?.error || 'Registration failed. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
