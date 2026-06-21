@@ -1,0 +1,20 @@
+[
+  { "name": "Chole Bhature",        "price": 120, "category": "North Indian", "description": "Spicy chickpeas served with deep-fried bread." },
+  { "name": "Butter Chicken",       "price": 200, "category": "North Indian", "description": "Creamy tomato-based chicken curry." },
+  { "name": "Paneer Tikka",         "price": 160, "category": "North Indian", "description": "Grilled marinated paneer cubes." },
+  { "name": "Dal Makhani",          "price": 130, "category": "North Indian", "description": "Slow-cooked black lentils in creamy gravy." },
+  { "name": "Rajma Chawal",         "price": 100, "category": "North Indian", "description": "Red kidney beans curry with rice." },
+  { "name": "Tandoori Chicken",     "price": 190, "category": "North Indian", "description": "Chicken marinated in yogurt and spices." },
+  { "name": "Masala Dosa",          "price": 90,  "category": "South Indian", "description": "Crispy dosa filled with spiced potatoes." },
+  { "name": "Idli Sambar",          "price": 60,  "category": "South Indian", "description": "Steamed rice cakes with spicy lentil soup." },
+  { "name": "Medu Vada",            "price": 70,  "category": "South Indian", "description": "Crispy lentil fritters." },
+  { "name": "Chicken Chettinad",    "price": 190, "category": "South Indian", "description": "Spicy Chettinad-style chicken curry." },
+  { "name": "Filter Coffee",        "price": 40,  "category": "South Indian", "description": "Strong South Indian-style brewed coffee." },
+  { "name": "Margherita Pizza",     "price": 180, "category": "Italian",      "description": "Classic pizza with tomato, mozzarella, and basil." },
+  { "name": "Pasta Alfredo",        "price": 160, "category": "Italian",      "description": "Creamy white sauce pasta." },
+  { "name": "Lasagna",              "price": 200, "category": "Italian",      "description": "Layered pasta with cheese, sauce, and meat." },
+  { "name": "Penne Arrabiata",      "price": 170, "category": "Italian",      "description": "Penne pasta in spicy tomato sauce." },
+  { "name": "Garlic Bread",         "price": 90,  "category": "Italian",      "description": "Toasted bread with garlic and butter." },
+  { "name": "Tiramisu",             "price": 120, "category": "Italian",      "description": "Coffee-flavored Italian dessert." },
+  { "name": "Espresso",             "price": 50,  "category": "Italian",      "description": "Strong and rich Italian coffee shot." }
+]
