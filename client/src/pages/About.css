@@ -1,4 +1,4 @@
-/* ─── About Page v3 ─── */
+/* ─── About Page v4 — Big Founder Photos + Animations ─── */
 .about-page {
   min-height: 100vh;
   background: var(--bg-page);
@@ -92,104 +92,155 @@
 .about-pillar-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); }
 .about-pillar-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75; }
 
-/* ── Team Section ── */
-.about-team-section {
-  padding: 64px 40px;
-  background: var(--bg-page);
+/* ══════════════════════════════════════════
+   FOUNDERS SECTION — Big Photos
+══════════════════════════════════════════ */
+.founders-section {
+  padding: 80px 40px;
+  background: linear-gradient(180deg, var(--bg-page) 0%, #F9F4F0 100%);
 }
 .about-section-header {
-  text-align: center; margin-bottom: 48px;
+  text-align: center; margin-bottom: 60px;
 }
 .about-section-title {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 900; color: var(--text-primary); margin-bottom: 10px;
   letter-spacing: -0.5px;
 }
 .about-section-subtitle { font-size: 0.95rem; color: var(--text-muted); }
 
-.about-team-grid {
+/* ── Founders Grid ── */
+.founders-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 24px;
-  max-width: 1100px; margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.about-team-card {
-  background: var(--bg-card);
-  border-radius: var(--r-xl);
-  border: 1px solid var(--border-light);
-  padding: 32px 24px;
-  display: flex; flex-direction: column; gap: 18px;
-  box-shadow: var(--shadow-xs);
-  transition: transform 0.28s var(--ease-out), box-shadow 0.28s, border-color 0.28s;
-  position: relative;
-  overflow: hidden;
+/* ── Founder Card ── */
+@keyframes founderReveal {
+  from { opacity: 0; transform: translateY(40px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
 }
-.about-team-card::before {
+
+.founder-card {
+  background: var(--bg-card);
+  border-radius: 24px;
+  border: 1px solid var(--border-light);
+  overflow: visible;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 0 28px;
+  cursor: default;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+  animation: founderReveal 0.6s var(--ease-out, ease-out) both;
+  position: relative;
+}
+.founder-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.14);
+}
+/* Top accent line */
+.founder-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--brand-gradient);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s var(--ease-out);
+  height: 4px;
+  border-radius: 24px 24px 0 0;
+  background: var(--card-color, var(--brand-primary));
 }
-.about-team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--border-brand); }
-.about-team-card:hover::before { transform: scaleX(1); }
 
-/* Avatar */
-.about-member-avatar {
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  background: var(--brand-gradient);
-  display: flex; align-items: center; justify-content: center;
+/* ── Photo Wrap ── */
+.founder-photo-wrap {
   position: relative;
-  box-shadow: var(--shadow-brand);
-  border: 3px solid #fff;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  padding-top: 110%;   /* aspect ratio ~1:1.1 */
   overflow: hidden;
+  border-radius: 24px 24px 0 0;
 }
-.about-member-img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  transition: transform 0.4s var(--ease-out);
+.founder-photo-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px 24px 0 0;
+  background: linear-gradient(160deg, var(--card-color, #E8303A) 0%, transparent 60%);
+  opacity: 0.08;
+  z-index: 1;
+  transition: opacity 0.3s;
 }
-.about-team-card:hover .about-member-img { transform: scale(1.08); }
-.about-team-card:hover .about-member-avatar {
-  border-color: var(--brand-primary);
-  box-shadow: 0 0 0 3px rgba(255,107,0,0.2), var(--shadow-brand);
-}
-.about-member-initial {
-  font-size: 1.8rem; font-weight: 800;
-  color: #fff; font-family: var(--font-display);
-}
-.about-member-role-icon {
-  position: absolute; bottom: -2px; right: -2px;
-  width: 24px; height: 24px; border-radius: 50%;
-  background: #fff; border: 2px solid var(--bg-page);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--brand-primary); z-index: 3;
-}
-.about-member-role-icon svg { width: 11px; height: 11px; }
+.founder-card:hover .founder-photo-ring { opacity: 0.14; }
 
-.about-member-info {}
-.about-member-name { font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 3px; }
-.about-member-degree { font-size: 0.78rem; color: var(--brand-primary); font-weight: 700; margin-bottom: 2px; }
-.about-member-year { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; }
-.about-member-role-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px;
-  background: rgba(232,48,58,0.07);
-  border: 1px solid rgba(232,48,58,0.15);
-  border-radius: var(--r-full);
-  color: var(--brand-primary); font-size: 0.73rem; font-weight: 700;
-  margin-bottom: 12px;
+.founder-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 24px 24px 0 0;
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+  z-index: 0;
 }
-.about-member-role-badge svg { width: 12px; height: 12px; }
-.about-member-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
+.founder-card:hover .founder-photo {
+  transform: scale(1.07);
+}
+
+/* ── Role Badge (floating on photo) ── */
+.founder-badge {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--card-color, #E8303A);
+  color: #fff;
+  border-radius: 100px;
+  font-size: 0.72rem; font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  letter-spacing: 0.3px;
+  transition: transform 0.3s;
+}
+.founder-card:hover .founder-badge { transform: translateX(-50%) translateY(-3px); }
+.founder-badge-icon { display: flex; align-items: center; }
+.founder-badge-icon svg { width: 13px; height: 13px; }
+
+/* ── Info ── */
+.founder-info {
+  padding: 22px 20px 0;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.founder-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 800;
+  color: var(--text-primary);
+}
+.founder-degree {
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--card-color, var(--brand-primary));
+  margin-bottom: 1px;
+}
+.founder-year {
+  font-size: 0.72rem; color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.founder-role {
+  font-size: 0.76rem; font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.founder-desc {
+  font-size: 0.8rem; color: var(--text-muted);
+  line-height: 1.65;
+}
 
 /* ── Demo Video ── */
 .about-demo-section {
@@ -250,12 +301,17 @@
 .about-cta-btn svg { width: 18px; height: 18px; }
 .about-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(255,107,0,0.4); }
 
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .founders-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 900px) {
   .about-pillars { grid-template-columns: 1fr; padding: 40px 24px; }
-  .about-team-section, .about-demo-section { padding: 50px 24px; }
+  .founders-section { padding: 60px 24px; }
+  .about-demo-section { padding: 50px 24px; }
   .about-cta { padding: 70px 24px; }
 }
 @media (max-width: 600px) {
   .about-hero { padding: 70px 20px 60px; }
-  .about-team-grid { grid-template-columns: 1fr; }
+  .founders-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
 }

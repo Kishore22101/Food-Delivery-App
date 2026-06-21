@@ -263,6 +263,39 @@
 .auth-submit-btn:hover::after { background: rgba(255,255,255,0.05); }
 .auth-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
+/* ── Edit Profile ── */
+.account-edit-form {
+  width: 100%;
+  display: flex; flex-direction: column; gap: 14px;
+  margin-top: 4px;
+  animation: fadeInUp 0.3s var(--ease-out) both;
+}
+.account-edit-field {
+  display: flex; flex-direction: column; gap: 6px; text-align: left;
+}
+.account-edit-field label {
+  font-size: 0.74rem; font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.account-edit-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border-medium);
+  border-radius: var(--r-md);
+  font-size: 0.92rem; font-family: var(--font-body);
+  background: #fff; color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.22s, box-shadow 0.22s;
+}
+.account-edit-input:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(232,48,58,0.10);
+}
+.account-edit-actions {
+  display: flex; gap: 10px; margin-top: 4px;
+}
+
 @media (max-width: 900px) {
   .account-layout { grid-template-columns: 1fr; }
 }
@@ -270,6 +303,8 @@
   .account-page { padding: 24px 16px 60px; }
   .account-profile-card { padding: 24px 18px; }
   .account-actions { flex-direction: column; }
+  .account-edit-actions { flex-direction: column; }
   .auth-card-inner { padding: 28px 20px; }
   .auth-submit-btn { font-size: 0.95rem; }
 }
+
