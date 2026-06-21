@@ -351,7 +351,7 @@ function Restaurants() {
             </div>
           ))}
         </div>
-
+      )}
     </div>
   );
 }
