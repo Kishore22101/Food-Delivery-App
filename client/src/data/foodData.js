@@ -7,11 +7,11 @@ import burger from '../assets/Burger.jpg';
 import rolls from '../assets/rolls.jpg';
 import cheeseburst from '../assets/cheeseburst.jpg';
 import icecream from '../assets/icecream.jpg';
-import rest1Img from '../assets/rest1.jpg';
-import rest2Img from '../assets/rest2.jpg';
-import rest3Img from '../assets/rest3.jpg';
-import rest4Img from '../assets/rest4.jpg';
-import rest5Img from '../assets/rest5.jpg';
+import rest1Img from '../assets/restaurants/rest1.jpg';
+import rest2Img from '../assets/restaurants/rest2.jpg';
+import rest3Img from '../assets/restaurants/rest3.jpg';
+import rest4Img from '../assets/restaurants/rest4.jpg';
+import rest5Img from '../assets/restaurants/rest5.jpg';
 
 // Eagerly load all menu images from src/Image
 const images = import.meta.glob('../Image/*', { eager: true });
