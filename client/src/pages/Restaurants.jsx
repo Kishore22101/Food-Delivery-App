@@ -22,7 +22,19 @@ const IconX       = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentCo
 const IconChair   = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 3v16M19 3v16M5 11h14M5 19h14"/></svg>;
 const IconCreditCard = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>;
 
-export const dummyRestaurants = [
+// Eagerly load all restaurant images from src/rest
+const restImages = import.meta.glob('../rest/*.png', { eager: true });
+
+const getRestaurantImage = (name) => {
+  const key = Object.keys(restImages).find(k => {
+    const filename = k.split('/').pop();
+    const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.'));
+    return nameWithoutExt.toLowerCase() === name.toLowerCase();
+  });
+  return key ? restImages[key].default : null;
+};
+
+const rawRestaurants = [
   { id: 1,  name: 'Tandoori Tadka',   location: 'Chennai',     cuisine: 'North Indian', rating: 4.5, image: rest1 },
   { id: 2,  name: 'South Feast',      location: 'Madurai',     cuisine: 'South Indian', rating: 4.2, image: rest2 },
   { id: 3,  name: 'Pasta Villa',      location: 'Salem',       cuisine: 'Italian',      rating: 4.1, image: rest3 },
@@ -36,6 +48,11 @@ export const dummyRestaurants = [
   { id: 11, name: 'Zesty Italian',    location: 'Trichy',      cuisine: 'Italian',      rating: 4.3, image: rest1 },
   { id: 12, name: 'Spice Route',      location: 'Coimbatore',  cuisine: 'North Indian', rating: 4.6, image: rest2 },
 ];
+
+export const dummyRestaurants = rawRestaurants.map(r => ({
+  ...r,
+  image: getRestaurantImage(r.name) || r.image
+}));
 
 /* ─── Seat Map ─── */
 const SEAT_MAP_TABLES = [

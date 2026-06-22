@@ -227,7 +227,7 @@ function About() {
         </div>
         <div className="about-video-wrap">
           <iframe
-            src="https://www.loom.com/embed/7ef6e7d69813471d87d6547c005c8c82"
+            src="https://www.loom.com/embed/d1b13be51f594ce3abc2b2c72e967e59"
             title="EatzUp Demo Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

@@ -13,11 +13,23 @@ import rest3Img from '../assets/rest3.jpg';
 import rest4Img from '../assets/rest4.jpg';
 import rest5Img from '../assets/rest5.jpg';
 
-// Rotating available images across food items
+// Eagerly load all menu images from src/Image
+const images = import.meta.glob('../Image/*', { eager: true });
+
+const getFoodImage = (name) => {
+  const key = Object.keys(images).find(k => {
+    const filename = k.split('/').pop();
+    const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.'));
+    return nameWithoutExt.toLowerCase() === name.toLowerCase();
+  });
+  return key ? images[key].default : null;
+};
+
+// Rotating available images across food items (fallbacks)
 const imgs = [pizza, burger, rolls, cheeseburst, icecream, rest1Img, rest2Img, rest3Img, rest4Img, rest5Img];
 const img = (i) => imgs[i % imgs.length];
 
-const foodData = [
+const rawFoodData = [
   // ---------- NORTH INDIAN ----------
   { name: 'Chole Bhature',         price: 120, category: 'North Indian', image: img(0),  description: 'Spicy chickpeas served with deep-fried bread.' },
   { name: 'Butter Chicken',        price: 200, category: 'North Indian', image: img(1),  description: 'Creamy tomato-based chicken curry.' },
@@ -84,5 +96,10 @@ const foodData = [
   { name: 'Minestrone Soup',      price: 100, category: 'Italian', image: img(4),      description: 'Vegetable soup with pasta and beans.' },
   { name: 'Espresso',             price: 50,  category: 'Italian', image: img(5),      description: 'Strong and rich Italian coffee shot.' },
 ];
+
+const foodData = rawFoodData.map(item => ({
+  ...item,
+  image: getFoodImage(item.name) || item.image
+}));
 
 export default foodData;

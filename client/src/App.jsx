@@ -12,6 +12,9 @@ import Categories from './pages/Categories';
 import Footer from './components/Footer';
 import Payment from './pages/Payment';
 import BookTable from './pages/BookTable';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
 
 /* ── Floating SVG Components ── */
 const LeafIcon = () => (
@@ -194,7 +197,10 @@ function App() {
           <Route path="/cart"        element={<Cart />} />
           <Route path="/categories"  element={<Categories />} />
           <Route path="/payment"     element={<Payment />} />
-          <Route path="/book-table"  element={<BookTable />} />
+          <Route path="/book-table"       element={<BookTable />} />
+          <Route path="/privacy-policy"   element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/cookie-policy"    element={<CookiePolicy />} />
         </Routes>
       </main>
 

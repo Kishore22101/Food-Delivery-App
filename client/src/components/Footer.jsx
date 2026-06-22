@@ -1,7 +1,7 @@
 // src/components/Footer.jsx
 import React from 'react';
 import './Footer.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 /* ─── SVG Icons ─── */
@@ -47,9 +47,10 @@ const IconMapPin = () => (
 
 const navLinks = [
   { to: '/',            label: 'Home' },
-  { to: '/categories',  label: 'Categories' },
+  { to: '/categories',  label: 'Menu' },
   { to: '/restaurants', label: 'Restaurants' },
-  { to: '/orders',      label: 'Orders' },
+  { to: '/cart',        label: 'My Cart' },
+  { to: '/orders',      label: 'My Orders' },
   { to: '/about',       label: 'About Us' },
   { to: '/account',     label: 'Account' },
 ];
@@ -127,9 +128,9 @@ function Footer() {
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} EatzUp. All rights reserved.</p>
         <div className="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Policy</a>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/terms-of-service">Terms of Service</Link>
+          <Link to="/cookie-policy">Cookie Policy</Link>
         </div>
       </div>
     </footer>

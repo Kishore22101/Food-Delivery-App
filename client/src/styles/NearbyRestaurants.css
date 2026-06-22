@@ -77,7 +77,8 @@
 .food-slider-track-wrap {
   max-width: var(--max-w);
   margin: 0 auto;
-  overflow: hidden;
+  overflow: visible;
+  /* Allow protruding circular images to show above the track */
 }
 
 .food-slider-track {
@@ -87,7 +88,8 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: 20px 4px 28px;
+  /* Extra top padding so the 52px-protruding circular images aren't clipped */
+  padding: 64px 4px 28px;
 }
 .food-slider-track::-webkit-scrollbar { display: none; }
 
